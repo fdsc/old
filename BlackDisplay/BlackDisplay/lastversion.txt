@@ -1,0 +1,6 @@
+string:version:20120818
+bool:replace:no
+string:ufv:20111107
+string:name:relaxtime
+string:eralyes:
+string:end:это поле всегда должно быть последним

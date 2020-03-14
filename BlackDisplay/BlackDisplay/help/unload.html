@@ -1,0 +1,9 @@
+<script type="text/javascript">
+	window.onbeforeunload = function()
+	{
+		if(!confirm("Do you want to leave without saving your changes?\n\nOK to Go, Cancel to stay on this page."))
+		{
+			window.unload=false;
+		}
+	}
+</script>

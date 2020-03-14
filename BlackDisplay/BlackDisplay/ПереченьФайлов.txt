@@ -1,0 +1,14 @@
+﻿
+Файлы логирования
+
+	error_rtbd.log
+	error_u.log
+	error_um.log
+	updator.log
+	lastinput.log
+
+
+Файлы типа
+	update-20110929.updt
+	options.txt
+	uopts.txt

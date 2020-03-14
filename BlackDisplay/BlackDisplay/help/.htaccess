@@ -1,0 +1,57 @@
+RewriteBase /
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:GyqaGu
+ErrorDocument 404 /404.html
+# DO NOT REMOVE THIS LINE AND THE LINES ABOVE GyqaGu:ERRORPAGEID
+
+AddDefaultCharset WINDOWS-1251
+
+Options -Indexes
+
+
+#<If "%{HTTPS} == 'on'">
+#    Header set X-VIN "TRUE"
+#</If>
+#<Else>
+#    Header set X-VIN "FALSE"
+#</Else>
+
+
+<ifModule mod_headers.c>
+Header set X-Frame-Options "DENY"
+
+<FilesMatch "\.(html|htm|php)$">
+# https://www.w3.org/TR/CSP3/
+# Header set Content-Security-Policy-Report-Only
+Header set Content-Security-Policy "default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self' https://yandex.st/share/share.js http://yandex.st/share/share.js https://mc.yandex.ru/metrika/watch.js http://mc.yandex.ru/metrika/watch.js; img-src 'self' data: https://yandex.st http://yandex.st https://bs.yandex.ru http://bs.yandex.ru;"
+</FilesMatch>
+
+<Files "navigator.html">
+Header unset Content-Security-Policy
+Header set X-Frame-Options "SAMEORIGIN; ALLOW-FROM: samy.pl"
+</Files>
+
+
+# -------------------------
+# Управление кешированием
+<filesmatch ".(jpg|gif|png|css|js)$">
+ExpiresActive on
+ExpiresDefault "access plus 1 day"
+</filesmatch>
+
+# Иначе обновлялщик не вылетает на кодировке null
+<filesmatch ".(txtn|updt)$">
+Header set Content-Type "text/plain; charset=WINDOWS-1251"
+</filesmatch>
+
+
+<files "rtdbsupport.gif">
+ExpiresActive on
+ExpiresDefault "access plus 30 day"
+</files>
+<files "DSC09898-100.jpg">
+ExpiresActive on
+ExpiresDefault "access plus 150 day"
+</files>
+
+</ifModule>

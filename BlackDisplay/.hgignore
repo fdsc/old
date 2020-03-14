@@ -1,0 +1,14 @@
+syntax: glob
+arc/*
+bin/*
+testKeccak/obj/*
+AttentionTests/obj/*
+BalckDisplay/bin2/*
+BalckDisplay/obj/*
+*/obj/*
+binDebug/*
+BalckDisplay/help/download/*
+*.suo
+BlackDisplay160902(1).vsp
+.vs/*
+*.updt

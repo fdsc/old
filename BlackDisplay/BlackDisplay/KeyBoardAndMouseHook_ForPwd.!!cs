@@ -1,0 +1,205 @@
+﻿using System.Runtime.InteropServices;
+using System;
+using options;
+
+// ms-help://MS.MSDNQTR.v90.en/enu_kbnetframeworkkb/netframeworkkb/318804.htm
+namespace BlackDisplay
+{
+    public partial class Form1
+    {
+        public delegate int HookProc(int nCode, int wParam, IntPtr lParam);
+
+        //Declare the hook handle as an int.
+        static int hHook1 = 0, hHook2 = 0;
+
+        //Declare MouseHookProcedure as a HookProc type.
+        static HookProc mproc = null, kproc = null;
+
+        //Declare the wrapper managed POINT class.
+        [StructLayout(LayoutKind.Sequential)]
+        public class POINT 
+        {
+	        public int x;
+	        public int y;
+
+            public POINT(int x, int y)
+            {
+            }
+        }
+
+        static readonly int WH_MOUSE_LL = 14, WH_KEYBOARD_LL = 13;
+
+        //Declare the wrapper managed MouseHookStruct class.
+        [StructLayout(LayoutKind.Sequential)]
+        public class MSLLHOOKSTRUCT 
+        {
+	        /*public POINT pt;
+	        public int hwnd;
+	        public int wHitTestCode;
+	        public int dwExtraInfo;*/
+            public POINT pt;
+            int mouseData;
+            int flags;
+            int time;
+            IntPtr dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public class KBLLHOOKSTRUCT 
+        {
+	        int     vkCode;
+            int     scanCode;
+            int     flags;
+            int     time;
+            IntPtr  dwExtraInfo;
+        }
+
+        //This is the Import for the SetWindowsHookEx function.
+        //Use this function to install a thread-specific hook.
+        [DllImport("user32.dll",CharSet=CharSet.Auto,
+         CallingConvention=CallingConvention.StdCall)]
+        public static extern int SetWindowsHookEx(int idHook, HookProc lpfn, 
+        IntPtr hInstance, int threadId);
+
+        //This is the Import for the UnhookWindowsHookEx function.
+        //Call this function to uninstall the hook.
+        [DllImport("user32.dll",CharSet=CharSet.Auto,
+         CallingConvention=CallingConvention.StdCall)]
+        public static extern bool UnhookWindowsHookEx(int idHook);
+
+        //This is the Import for the CallNextHookEx function.
+        //Use this function to pass the hook information to the next hook procedure in chain.
+        [DllImport("user32.dll",CharSet=CharSet.Auto,
+         CallingConvention=CallingConvention.StdCall)]
+        public static extern int CallNextHookEx(int idHook, int nCode, 
+        int wParam, IntPtr lParam);
+
+        public static int registerHooksResult = 0;
+        public static int registerHooks(bool register = true)
+        {
+            if (register && registerHooksResult < 0)
+                return -3;
+
+            DbgLog.dbg.messageToLog("registerHooks", "register = " + register);
+
+            if ((hHook1 == 0 || hHook2 == 0) && register)
+	        {
+	                // Create an instance of HookProc.
+		        mproc = new HookProc(Form1.LowLevelMouseHookProc);
+                kproc = new HookProc(Form1.LowLevelKeyboardHookProc);
+
+                if (hHook1 == 0)
+		            hHook1 = SetWindowsHookEx(WH_MOUSE_LL, 
+					                            mproc, 
+					                            (IntPtr)0,
+					                            0 //AppDomain.GetCurrentThreadId()
+                                                );
+
+                if (hHook2 ==0)
+                    hHook2 = SetWindowsHookEx(WH_KEYBOARD_LL, 
+					                            kproc, 
+					                            (IntPtr)0,
+					                            0 //AppDomain.GetCurrentThreadId()
+                                                );
+
+		        //If the SetWindowsHookEx function fails.
+		        if(hHook1 == 0 || hHook2 == 0)
+		        {
+                    Program.toLogFile("Не удалось зарегистрировать хуки! " + hHook1 + " / " + hHook2 + " " + GetLastError());
+
+			        registerHooksResult = -1;
+			        return registerHooksResult;
+		        }
+
+                lastMouseMoveTime = DateTime.Now.Ticks;
+                lastKeyDownTime   = lastMouseMoveTime;
+
+                DbgLog.dbg.messageToLog("registerHooks", "registered");
+
+                registerHooksResult = 1;
+                return 1;
+	        }
+	        else
+            if ((hHook1 != 0 || hHook2 != 0) && !register)
+	        {
+                bool ret1 = true, ret2 = true;
+                if (hHook1 != 0)
+		            ret1 = UnhookWindowsHookEx(hHook1);
+                if (hHook2 != 0)
+                    ret2 = UnhookWindowsHookEx(hHook2);
+
+		        if (ret1 == false || ret2 == false)
+		        {
+                    Program.toLogFile("Не удалось снять хуки с регистрации! " + ret1 + " / " + ret2 + " " + GetLastError());
+
+                    registerHooksResult = -2;
+			        return registerHooksResult;
+		        }
+                
+                hHook1 = 0;
+                hHook2 = 0;
+
+                DbgLog.dbg.messageToLog("registerHooks", "unregistered");
+
+                registerHooksResult = 2;
+                return 2;
+	        }
+
+            return 0;
+        }
+
+
+        static readonly int WM_LBUTTONDOWN = 0x0201;
+        static readonly int WM_RBUTTONDOWN = 0x0204;
+        static readonly int WM_MBUTTONDOWN = 0x0207;
+        static readonly int WM_MOUSEHWHEEL = 0x020E;
+        static readonly int WM_MOUSEMOVE   = 0x0200;
+        static readonly int WM_KEYDOWN     = 0x0100;
+        static readonly int WM_SYSKEYDOWN  = 0x0104;
+
+        public static long  lastMouseMoveTime = 0;
+        public static POINT lastPoint = new POINT(0, 0);
+        public static int LowLevelMouseHookProc(int nCode, int wParam, IntPtr lParam)
+        {
+	        MSLLHOOKSTRUCT MouseHookStruct = (MSLLHOOKSTRUCT) Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
+
+	        if (nCode < 0)
+	        {
+		        return CallNextHookEx(hHook1, nCode, wParam, lParam);
+	        }
+	        else
+	        {
+                if (wParam == WM_LBUTTONDOWN || wParam == WM_RBUTTONDOWN || wParam == WM_MBUTTONDOWN || wParam == WM_MOUSEHWHEEL)
+                {
+                    lastKeyDownTime = DateTime.Now.Ticks;
+                }
+
+                if (wParam == WM_MOUSEMOVE)
+                {
+                    if (Math.Abs(lastPoint.x - MouseHookStruct.pt.x) > 32 || Math.Abs(lastPoint.y - MouseHookStruct.pt.y) > 32)
+                        lastMouseMoveTime = DateTime.Now.Ticks;
+                }
+
+		        return CallNextHookEx(hHook1, nCode, wParam, lParam); 
+	        }
+        }
+
+        public static long lastKeyDownTime = 0;
+        public static int LowLevelKeyboardHookProc(int nCode, int wParam, IntPtr lParam)
+        {
+	        KBLLHOOKSTRUCT KeyboardHookStruct = (KBLLHOOKSTRUCT) Marshal.PtrToStructure(lParam, typeof(KBLLHOOKSTRUCT));
+
+	        if (nCode < 0)
+	        {
+		        return CallNextHookEx(hHook2, nCode, wParam, lParam);
+	        }
+	        else
+	        {
+                if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)
+                    lastKeyDownTime = DateTime.Now.Ticks;
+
+		        return CallNextHookEx(hHook2, nCode, wParam, lParam); 
+	        }
+        }
+    }
+}
