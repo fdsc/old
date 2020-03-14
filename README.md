@@ -2,12 +2,14 @@
 old of my code
 
 ----
+http-useragent-cleaner
 http-useragent-cleaner outdated code in the "http-useragent-cleaner" directory
 Work only with Basilisk. Builded versions in the directory "http-useragent-cleaner/mozillasigned"
 For build need outdated the nodejs "jpm" packet. I don't know if it's possible to build it now. 
 
 -----
 BlackDisplay
+
 Устаревшая программа для Windows с .NET (теоретически, отдельный билд можно построить для Mono) для напоминания о времени отдыха с функциями шифрования. Обратите внимание, что вычисление хеша sha-3 происходит с ошибкой - вместо него вычисляется оригинальный хеш keccak, а не его модификация sha-3
 
 Для того, чтобы сбилдить верно, нужно помучиться, т.к. в проекте PostBuilder имеются полные пути, зависимые от компьютера. Также в каком-то из проектов могут быть пути в post build actioans, но они, кажется, относительные.
