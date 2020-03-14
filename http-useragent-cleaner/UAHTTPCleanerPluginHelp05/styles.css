@@ -1,0 +1,150 @@
+@charset "windows-1251";
+
+*{FONT-WEIGHT: normal; FONT-SIZE: 18px; FONT-FAMILY: "Courier New", serif; background-color: #DDDDDD}
+
+A.NavigationLink:link, A.NavigationLink:active, A.NavigationLink:visited, A.NavigationLink:hover
+ {
+	FONT-WEIGHT: normal; FONT-SIZE: 18px; COLOR: #7e7ab6; FONT-FAMILY: "MS Sans Serif", serif; background-color: transparent
+}
+
+A.DownLoadLink 
+{
+	FONT-WEIGHT: bold; FONT-SIZE: 18px; FONT-FAMILY: "Courier New", monospace;
+}
+
+.Text 
+{
+	FONT-WEIGHT: normal; FONT-SIZE: 18px; FONT-FAMILY: "Courier New", serif; background-color: #DDDDDD;
+	padding-left: 1em;
+}
+
+.bold
+{
+	FONT-WEIGHT: bold;
+}
+
+.BoldText 
+{
+	FONT-WEIGHT: bold; FONT-SIZE: 18px; FONT-FAMILY: "Courier New", serif; background-color: #DDDDDD;
+	padding-left: 1em;
+}
+
+.NewConcept
+{
+	font-weight: bold; text-decoration: underline
+}
+
+.BigText, H2
+{
+	FONT-WEIGHT: bold; FONT-SIZE: 20px; FONT-FAMILY: "Arial", serif; background-color: #DDDDDD
+}
+.SmallText
+{
+	FONT-WEIGHT: normal; FONT-SIZE: 16px; FONT-FAMILY: "Courier New", serif; background-color: #DDDDDD;
+	padding-left: 1em;
+}
+
+.SmallLink
+{
+	FONT-WEIGHT: normal; FONT-SIZE: 16px; FONT-FAMILY: "Times New Roman", serif; background-color: #DDDDDD
+}
+
+.Link, .ELink
+{
+	FONT-WEIGHT: normal; FONT-SIZE: 18px;
+}
+
+.ELink, .ExternalLink
+{
+	
+}
+
+.ELink:active, .ExternalLink:active
+{
+	Color: Red
+}
+
+H1 {text-align: center; FONT-STYLE: italic; FONT-WEIGHT: bold; FONT-SIZE: 24px; FONT-FAMILY: "Times New Roman", serif}
+
+.sli
+{
+	list-style-type: disc
+}
+
+.sliD
+{
+	list-style-type: decimal
+}
+
+.Text_sli {
+	FONT-WEIGHT: normal; FONT-SIZE: 18px; FONT-FAMILY: "Times New Roman", serif; text-indent: 9.0pt; margin-left:12.0pt
+}
+
+.Expander, .Closer
+{
+	display: none;
+}
+
+.Closer
+{
+	display: none;
+	padding-bottom: 2em;
+}
+
+.ExpanderO, .ExpanderC
+{
+	display: block;
+	padding-left: 1em;
+	padding-top: 0.5em;
+}
+
+.Expander, .Closer
+{
+	cursor: pointer;
+}
+
+.RedColor, A.RedColor:link, A.RedColor:active, A.RedColor:visited
+{
+	color: Red; font-weight: bold
+}
+
+.none {DISPLAY: none}
+
+A:link, A:active 
+{
+	COLOR: blue
+}
+A:visited, A.RedColor:hover 
+{
+	COLOR: navy
+}
+A:hover 
+{
+	COLOR: red
+}
+
+OL {MARGIN-TOP: 0cm; list-style-type: decimal}
+
+.prewrap {white-space: pre-wrap}
+.preline {white-space: pre-line}
+.tdmwem {min-width: 1em}
+.tdempty {height: 0.1em; background-color: black}
+.certstable1 {font: 16px "Times New Roman"; background-color: rgb(170, 170, 170);}
+.certstable2 {font: 16px "Times New Roman"; background-color: rgb(221, 221, 221);}
+.certstable3 {font: 16px "Times New Roman";}
+.certstable4 {font: 16px "Times New Roman"; background-color: red;}
+.certstable5 {font: 16px "Times New Roman"; background-color: rgb(0, 0, 0); height: 0.1em;}
+.certstable6 {font: 16px "Times New Roman"; background-color: rgb(204, 204, 204);}
+.certstable7 {font: 16px "Times New Roman"; max-width: 60em;}
+.certstable8 {font: bold 16px "Times New Roman";}
+
+
+#SiteVersion {FONT-SIZE: 14px; FONT-STYLE: normal;}
+#maindiv {text-align: justify; width: 45em}
+#metrika {position: fixed; left: 0; bottom: 0}
+.rtdbsupport {vertical-align: center;}
+.mcyandex{position:absolute; left:-9999px;}
+
+Q {quotes: "\0000AB" "\0000BB" "\00201C" "\00201D"}
+Q:before {content:  open-quote}
+Q:after  {content: close-quote}

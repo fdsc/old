@@ -1,0 +1,133 @@
+RewriteBase /
+
+AddDefaultCharset WINDOWS-1251
+php_value default_charset "cp1251"
+
+ErrorDocument 404 /404.html
+
+# http://blogerator.org/page/fajl-primery-htaccess-redirekt-dostup
+
+Options -Indexes
+
+#RemoveHandler .rdf
+
+AddHandler server-parsed .htm
+AddHandler application/x-httpd-php .html
+
+<ifModule mod_headers.c>
+Header set X-Frame-Options "DENY"
+
+<FilesMatch "\.(html|htm|php)$">
+# https://www.w3.org/TR/CSP3/
+# Header set Content-Security-Policy-Report-Only
+
+Header set Content-Security-Policy "default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'"
+
+# Header set Content-Security-Policy "default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data: http://mc.yandex.ru/watch/23496292 https://mc.yandex.ru/watch/23496292 http://mc.yandex.ru/watch/23496292/1 https://mc.yandex.ru/watch/23496292/1; report-to csp; report-uri http://huac.8vs.ru/csp-report.php"
+# Header set Report-To "{ \"url\": \"http://huac.8vs.ru/csp-report.php\", \"group\": \"csp\", \"max-age\": 3600 }"
+</FilesMatch>
+
+<files "2.html">
+Header set Content-Security-Policy "default-src 'none'; style-src 'self'; script-src 'sha256-dGBI94V+8ZWpy+qByfyHu1kL1PdbFe2BsVnA+2QzcCk='; img-src 'self' data: http://mc.yandex.ru/watch/23496292 https://mc.yandex.ru/watch/23496292 http://mc.yandex.ru/watch/23496292/1 https://mc.yandex.ru/watch/23496292/1; report-to csp; report-uri http://huac.8vs.ru/csp-report.php"
+</files>
+
+# При доступе к старому файлу, его не должно быть. Тогда пользователь получит перенаправление на новый файл.
+RewriteEngine on
+RewriteCond %{REQUEST_URI} -[0-9]+-perm\.htm$
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^(.*)-[0-9]+-perm\.(.+)$ $1.html [R=301,L]
+
+# редирект старых файлов на новые
+Redirect 301 /news.html /news.htm
+Redirect 301 /newsOld.html /newsOld.htm
+
+
+
+
+# запрет хотлинкинга
+<filesmatch "\.(jpg|jpeg|gif|png)$">
+RewriteCond %{HTTP_REFERER} !^$ [NC]
+RewriteCond %{HTTP_REFERER} !^https?://[^./:?#]+.8vs.ru[./:?#] [NC]
+RewriteCond %{REQUEST_URI} !^/rtdbsupport.gif$ [NC]
+RewriteCond %{REQUEST_URI} !^/hotlink.png$ [NC]
+RewriteRule ^ http://huac.8vs.ru/hotlink.png [NC,R=302,L]
+</filesmatch>
+
+
+
+
+# -------------------------
+# Управление кешированием
+#ExpiresActive on
+
+
+#ExpiresDefault "access plus 1 hour"
+Header set Cache-Control "max-age=3600, proxy-revalidate, public"
+
+<files "*.html">
+Header set Cache-Control "max-age=57600, proxy-revalidate, public"
+</files>
+
+# Это тестовые файлы
+<files "_.htm*">
+Header set Cache-Control "max-age=15, proxy-revalidate, public"
+#Header set Last-Modified "Sun, 26 Feb 2017 19:11:23 GMT"
+</files>
+<files "index-.html">
+Header set Cache-Control "max-age=15, proxy-revalidate, public"
+</files>
+
+<files "index-.aty">
+AddHandler application/x-httpd-php .aty
+</files>
+
+
+<files "news.html">
+Header set Cache-Control "max-age=300, proxy-revalidate, public"
+</files>
+<files "index.html">
+Header set Cache-Control "max-age=900, proxy-revalidate, public"
+</files>
+
+<files "*-perm.htm">
+Header set Cache-Control "max-age=3153600000, proxy-revalidate, public"
+</files>
+
+<filesmatch "\.(jpg|jpeg|gif|png)$">
+#ExpiresDefault "access plus 1 day"
+#ExpiresByType text/css "access plus 1 day"
+Header set Cache-Control "max-age=3153600000, proxy-revalidate, public"
+</filesmatch>
+
+<files "favicon.ico">
+Header set Cache-Control "max-age=604800, proxy-revalidate, public"
+</files>
+
+<filesmatch "\.(css|js)$">
+#ExpiresDefault "access plus 1 day"
+#ExpiresByType text/css "access plus 1 year"
+Header set Cache-Control "max-age=3153600000, public"
+</filesmatch>
+
+<files "*.xpi">
+Header set Cache-Control "max-age=3153600000, public"
+</files>
+
+<files "hotlink.png">
+Header set Cache-Control "max-age=86400, public"
+</files>
+<files "rtdbsupport.gif">
+Header set Cache-Control "max-age=3153600000, public"
+</files>
+
+
+
+<files "rss.php">
+Header set Cache-Control "max-age=0, must-revalidate, proxy-revalidate, no-cache, no-store, private"
+</files>
+
+<files "csp-report.php">
+Header set Cache-Control "max-age=3600, must-revalidate, proxy-revalidate, private"
+</files>
+
+</ifModule>

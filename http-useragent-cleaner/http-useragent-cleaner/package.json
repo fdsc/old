@@ -1,0 +1,253 @@
+{
+  "name": "http-useragent-cleaner",
+  "fullName": "HTTP UserAgent cleaner",
+  "id": "HTTPUserAgentcleanerG@addons.8vs.ru",
+  "description": "Increases privacy",
+  "author": "Сергей Виноградов (fdsc)",
+  "license": "only special agreement for you",
+  "homepage": "http://huac.8vs.ru/",
+  "permissions": {"private-browsing": true, "multiprocess": false},
+  "version": "2.3.3",
+  
+  "engines":
+  {
+    "firefox": ">=38.0"
+  },
+
+  "main": "lib/main.js",
+  "icon": "data/HTTPUACleaner.png",
+  "preferences": 
+  [
+	{
+		"description": "Disable E10S automatically (need for the extension work)",
+		"name": "e10sfalse",
+		"title": "Disable E10S automatically",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Resource:// and other services schemes will disallowed to ws and http pages",
+		"name": "resourceDisallow",
+		"title": "Disallow resource scheme",
+		"type": "bool",
+		"value": true
+	},
+	{
+		"description": "Resource:// and other services schemes will disallowed to ws and http pages with the resource of all FireFox extensions",
+		"name": "resourceDisallowStrong",
+		"title": "Disallow resource scheme by strong",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Merge the site HPKP if the site HPKP max-age (in days) < this setting",
+		"name": "certs.HPKP.minMaxAge",
+		"title": "Merge the site HPKP with Extension hpkp",
+		"type": "integer",
+		"value": 45
+	},
+	{
+		"description": "The minimal max-age (in days) of the Extension HPKP",
+		"name": "certs.HPKP.minMaxAgeReplace",
+		"title": "The minimal max-age of the Extension HPKP",
+		"type": "integer",
+		"value": 45
+	},
+	{
+		"description": "The Extension will tracking the TLS certificates from hosts",
+		"name": "certs.hosts",
+		"title": "Tracking TLS certificates",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Allow tracking TLS certificates without saving the host address",
+		"name": "certs.hosts.TimeOnly",
+		"title": "Tracking TLS certificates without saving the host address",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Allow tracking TLS certificates for private browsing (warning: the private page host address will be saved in huac log file)",
+		"name": "certs.hosts.private",
+		"title": "Tracking TLS certificates for the private browsing",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Allow tracking TLS certificates without saving the host address in private",
+		"name": "certs.hosts.TimeOnly.private",
+		"title": "Tracking TLS certificates without saving the host address in private",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "If the 'HTTPS only' filter enabled, HUAC block http request or try to convert request from http to https", 
+		"name": "forceHttps",
+		"title": "Use non block https filter",
+		"type": "bool",
+		"value": true
+	},
+	{
+		"description": "The 'HTTPS only' filter will deny a viewing of the request content if the TLS ciphers strong is equal or below", 
+		"name": "minTLSStrong",
+		"title": "Minimum TLS strong for HTTPS filter",
+		"type": "integer",
+		"value": 1
+	},
+	{
+		"description": "Side table enabled", 
+		"name": "SideTable.enabled",
+		"title": "Side table enabled",
+		"type": "bool",
+		"value": true
+	},
+	{
+		"description": "Enable blocking log", 
+		"name": "logb.enabled",
+		"title": "Blocking Log enabled",
+		"type": "bool",
+		"value": true
+	},
+	{
+		"description": "Estimate TLS", 
+		"name": "EstimateTLS",
+		"title": "Estimate TLS",
+		"type": "bool",
+		"value": true
+	},
+	{
+		"description": "Blocking log url max length, default: 100",
+		"name": "truncLenght.url",
+		"title": "Blocking log url max length",
+		"type": "integer",
+		"value": 100
+	},
+	{
+		"description": "http log POST data max length (see also httplog.enabled), default: 1024",
+		"name": "truncLenght.httplog.data",
+		"title": "http log POST data max length",
+		"type": "integer",
+		"value": 1024
+	},
+	{
+		"description": "http log GET data max length (see also httplog.enabled), default: 0 (nothing to save)",
+		"name": "truncLenght.httplog.info",
+		"title": "http log GET data max length",
+		"type": "integer",
+		"value": 0
+	},
+	{
+		"description": "http log GET image data max length (see also httplog.enabled), default: 0 (nothing to save)",
+		"name": "truncLenght.httplog.infoI",
+		"title": "http log GET image data max length",
+		"type": "integer",
+		"value": 0
+	},
+	{
+		"description": "Not show the filters in side type record in the Blocking Log tab, default: false",
+		"name": "truncLenght.side",
+		"title": "Truncate the side type log record",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Main panel font size and font name, default: 16px \"Times New Roman\"",
+		"name": "mainpanel.font",
+		"title": "mainpanel.font",
+		"type": "string",
+		"value": "16px \"Times New Roman\""
+	},
+	{
+		"description": "Main panel height, default: 870",
+		"name": "mainpanel.height",
+		"title": "mainpanel.height",
+		"type": "string",
+		"value": "880"
+	},
+	{
+		"description": "Blocking log displayed levels, default 0 2 3 6 7 8 9 10 11", 
+		"name": "logb.displayedLevels",
+		"title": "logb.displayedLevels",
+		"type": "string",
+		"value": "0 2 3 6 7 8 9 10"
+	},
+	{
+		"description": "Blocking log displayed levels with no tab log, default 0 2 3 4 5 6 7 8 9 10 11", 
+		"name": "logb.displayedLevelsNoTab",
+		"title": "logb.displayedLevelsNoTab",
+		"type": "string",
+		"value": "0 2 3 4 5 6 7 8 9 10"
+	},
+	{
+		"description": "The http requests to this hosts will allowed on the extension start (space to separate host names)", 
+		"name": "hostsAllowedOnStart",
+		"title": "Hosts allowed on start",
+		"type": "string",
+		"value": ""
+	},
+	{
+		"description": "The OCSP requests will allowed on the extension start", 
+		"name": "ocspAllowedOnStart",
+		"title": "OCSP allowed on start",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Write log of http requests", 
+		"name": "httplog.enabled",
+		"title": "Http log enabled",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Write to the TLS log tab a HPKP certificate digest; default: reseted", 
+		"name": "debug.hpkpdigest",
+		"title": "debug.hpkpdigest",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "On the extension start write to console the setting file pathes; default: reseted", 
+		"name": "debug.writeSettingFilePathes",
+		"title": "debug.writeSettingFilePathes",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Canvas filter will display to the log a blocked canvas image; default: reseted", 
+		"name": "debug.canvasToSee",
+		"title": "See canvas",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Change only by a developer request (only for testing); default: reseted", 
+		"name": "debug.console.httpRequestObserved",
+		"title": "debug.console.httpRequestObserved",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Change only by a developer request (only for testing); default: reseted", 
+		"name": "debug.nonPrivateCookieIsolation",
+		"title": "debug.nonPrivateCookieIsolation",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Change only by a developer request (only for testing); default: reseted", 
+		"name": "debug.FFPrefsObserver",
+		"title": "debug.FFPrefsObserver",
+		"type": "bool",
+		"value": false
+	},
+	{
+		"description": "Change only by a developer request (only for testing); default: reseted", 
+		"name": "debug.IncorrectCertificateLevel",
+		"title": "debug.IncorrectCertificateLevel",
+		"type": "bool",
+		"value": false
+	}
+  ]
+}

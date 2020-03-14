@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="urn:mozilla:extension:HTTPUserAgentcleanerO@addons.8vs.ru"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAFSBNlETIt6JMpsnQgnBRL8y7Db+sOpupaNiKMZw8ypIxK+CBLqiWUJEN1GCOgg3UWiFnYKGAw54DXRsY93gNBqyeWPVeoC6Vw8gMEa/AJUUBiXX/wVDM0P08JxFqbSepqQWbhXhlMVeO59OhIzdQIB1yPjvmlGTpnSV8FwFc4bP">
+    <em:updates RDF:resource="rdf:#$6UaTQ"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$7UaTQ"
+                   em:version="2.2.9-b02">
+    <em:targetApplication RDF:resource="rdf:#$aUaTQ"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="urn:mozilla:extension:HTTPUserAgentcleaner@addons.8vs.ru"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAL/k58+4JpKLFQC3v3XBSVfwft4IdR9+pbXYJagBlT2M5K9fEEu0xj3sCyScvwVoaU9r2YF+6qKQ2kgNGhCnGlV9c0eDhDNTyOQSRgrb9z0MPew8Tfwg176M2wRGvsvRKNt912U5/ckxkgBHwA4xumx/4RnVgrj/GPH5HUTk9xGb">
+    <em:updates RDF:resource="rdf:#$WTaTQ"/>
+  </RDF:Description>
+  <RDF:Seq RDF:about="rdf:#$WTaTQ">
+    <RDF:li RDF:resource="rdf:#$XTaTQ"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$XTaTQ"
+                   em:version="2.3.3-a01">
+    <em:targetApplication RDF:resource="rdf:#$.TaTQ"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$aUaTQ"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="38.0"
+                   em:maxVersion="55.*"
+                   em:updateLink="http://huac.8vs.ru/http_useragent_cleaner_o-2.2.9-b02-fx.xpi"
+                   em:updateHash="sha512:D7F56FDC27E88122BC61CD6C921EAD37B2550807B6BDDA6EEFA9DB9761C0EE03BA9C279EF34C4E77630AB7F6391AA2DE84045A6338898B32C822634FEE60BDC3" />
+  <RDF:Description RDF:about="rdf:#$.TaTQ"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="38.0"
+                   em:maxVersion="57.*"
+                   em:updateLink="http://huac.8vs.ru/2.3.3-a01.xpi"
+                   em:updateHash="sha512:9F75ADD33BFE2E2004559CF95753D8C81C8E59F06C441F65CB0608B0FBCB021BD7B9D1B62353C028E654AF06A84AD9E5A2A10F99302271D9DD6B198116B378B5" />
+  <RDF:Seq RDF:about="rdf:#$6UaTQ">
+    <RDF:li RDF:resource="rdf:#$7UaTQ"/>
+  </RDF:Seq>
+</RDF:RDF>

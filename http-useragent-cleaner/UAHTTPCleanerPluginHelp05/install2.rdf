@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="urn:mozilla:extension:HTTPUserAgentcleanerO@addons.8vs.ru"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAMRTsW3RAfdGTS8967xLHjjzzaCcA4neG3GP5i7vPs3wdnsQCWKiV8meUqD9/RgOOphaAmhjk2+w22TM5e1tXIZOX4xWNgK516WzmAUUXJvM/vEDorJqAlpxmDOSj9DR3CcaUcMQbdEr9aDVUo4xFezjgJam6Z2x1GUBjJVSF4Mz">
+    <em:updates RDF:resource="rdf:#$DPD06"/>
+  </RDF:Description>
+  <RDF:Seq RDF:about="rdf:#$PPD06">
+    <RDF:li RDF:resource="rdf:#$QPD06"/>
+  </RDF:Seq>
+  <RDF:Seq RDF:about="rdf:#$DPD06">
+    <RDF:li RDF:resource="rdf:#$EPD06"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$EPD06"
+                   em:version="2.2.11-b01">
+    <em:targetApplication RDF:resource="rdf:#$HPD06"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$HPD06"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="38.0"
+                   em:maxVersion="55.*"
+                   em:updateLink="http://fxprivacy.8vs.ru/http_useragent_cleaner_o-2.2.11-b01-fx.xpi"
+                   em:updateHash="sha512:DEA4CF1D6AB1410F9A7B04F2382805304F5D32C20848301A4A959596FF17049F8FB38C917F9EF32F3F0E277C6D886C6189D469E58B02655AAB72CA2E1507CBE6" />
+  <RDF:Description RDF:about="rdf:#$TPD06"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="38.0"
+                   em:maxVersion="55.*"
+                   em:updateLink="http://fxprivacy.8vs.ru/http-useragent-cleanerA.xpi"
+                   em:updateHash="sha512:FD97FED818ACF1765FA9A09C5C6F861833550B01FC3646B853924915624BB8D6D4F7314BEA1A9DF2DDC69CDCDA9ABD35CFF99236A7A9C7DE4F1ECC910A3C07CA" />
+  <RDF:Description RDF:about="rdf:#$QPD06"
+                   em:version="2.2.9-a02">
+    <em:targetApplication RDF:resource="rdf:#$TPD06"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="urn:mozilla:extension:HTTPUserAgentcleaner@addons.8vs.ru"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBANxP1QwKfI8cp8ew0yf2k2L22VzIdVcy+FR1PzuDDKLTFTRiwRcgZv2Lm0ndj6fQNVVyE+ZqeVqe81hiQS8p/72vnaeV7rrEjdo3rLuPBhW+hUlMRXKDkxEPfTIDDuSLBd7eFDVOTsRYwFqFk/cJEQjlQ+IakV07X/ICZ8FTnl4m">
+    <em:updates RDF:resource="rdf:#$PPD06"/>
+  </RDF:Description>
+</RDF:RDF>

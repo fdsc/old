@@ -1,0 +1,15 @@
+<?php
+// error_reporting(-1);
+
+$oldFileToDelete = 'indexo3-1488068753084-perm.htm';
+
+if (isset($_GET['new']))
+{
+	include 'inc/newfile.inc';
+	generateNew($_SERVER['SCRIPT_FILENAME'], $oldFileToDelete);
+}
+
+// http_response_code(302);
+header("Location: /" . $oldFileToDelete, true, 302);
+header("Cache-Control: max-age=3153600000, proxy-revalidate, public", true);
+?>

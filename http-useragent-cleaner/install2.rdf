@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Seq RDF:about="rdf:#$p3SQi2">
+    <RDF:li RDF:resource="rdf:#$q3SQi2"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="urn:mozilla:extension:HTTPUserAgentcleanerO@addons.8vs.ru"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAGtudciAQNEijdAb7PNVwxgfdyn9z0qe6LKB9oTPx+14ibXlvxnRtUYGYqgMdzUy7f7zPbeJMXAc6PDqcWNP7FqOaSQ2ZGuFQyEI3j6hXmAHdx79p1hWE1wBdHCpJmq+ywvV1liFPQbHdtj9A//0uRMPWF0wb+0g4gE7uHlaPFUE">
+    <em:updates RDF:resource="rdf:#$p3SQi2"/>
+    <em:updates RDF:resource="rdf:#$B3SQi2"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$F3SQi2"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="38.0"
+                   em:maxVersion="55.*"
+                   em:updateLink="http://huac.8vs.ru/http_useragent_cleaner_o-2.2.9-b02-fx.xpi"
+                   em:updateHash="sha512:D7F56FDC27E88122BC61CD6C921EAD37B2550807B6BDDA6EEFA9DB9761C0EE03BA9C279EF34C4E77630AB7F6391AA2DE84045A6338898B32C822634FEE60BDC3" />
+  <RDF:Description RDF:about="rdf:#$C3SQi2"
+                   em:version="2.2.9-b02">
+    <em:targetApplication RDF:resource="rdf:#$F3SQi2"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$t3SQi2"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="38.0"
+                   em:maxVersion="52.*"
+                   em:updateLink="http://huac.8vs.ru/2.3.5-b04.xpi"
+                   em:updateHash="sha512:CA280F686AB847148B68A7CEDA0DEBF754426C17CB408415A7B8E32F03BDDEAE677776571301048846830E72F9B7A3421C7AEA4C17C62E3ED325C4C5EB828222" />
+  <RDF:Seq RDF:about="rdf:#$B3SQi2">
+    <RDF:li RDF:resource="rdf:#$C3SQi2"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$q3SQi2"
+                   em:version="2.3.5-b04">
+    <em:targetApplication RDF:resource="rdf:#$t3SQi2"/>
+  </RDF:Description>
+</RDF:RDF>

@@ -1,0 +1,140 @@
+https://wiki.mozilla.org/Add-ons/developer/communication
+https://calendar.google.com/calendar/embed?src=mozilla.com_ofjlct07k1784v1u51bqk476bk%40group.calendar.google.com&ctz=America/Los_Angeles
+
+http://irc.mozilla.org/
+
+-----
+В конце 2017 года Mozilla планирует убрать из FireFox возможности, которые использует Http UserAgent Cleaner.
+Новые возможности (в WebExtensions) недостаточны. Возможно, разработчик прекратит разработку данного дополнения.
+(пользуйтесь tor browser https://www.torproject.org/ )
+
+По умолчанию дополнение почти ничего не делает, требует терпеливой настройки. Пожалуйста, смотрите справку по адресу http://huac.8vs.ru/ (закройте рекламу бесплатного хостинга, если она появилась) .
+
+Требует отключения <a href=http://wiki.mozilla.org/Electrolysis>E10S</a>
+
+* Оценивает безопасность https (TLS) соединения, включая безопасность всех побочных запросов со страницы
+* Позволяет следить за сменой сертификатов на сайтах
+* Позволяет блокировать подгрузку не https-страниц
+* Следит за изменением сертификатов страниц https-сайтов
+* Повышает приватность путём подмены "отпечатка браузера". Может случайно посылать комбинации UserAgent, locale, timezone, canvas. Отключает (с настройкой под домену) WebRTC, ajax, куки.
+* Блокирует "resource://" запросы для повышения приватности
+* Блокирует запросы к сторонним сайтам и позволяет управлять куками, отсылаемыми к сторонним сайтам
+* Позволяет просмотреть все корневые сертификаты в едином списке и оценить число доверенных корневых сертификатов
+* Позволяет управлять включёнными криптографическими примитивами
+* Повышает безопасность включением небольшой антифишинговой функции - фильтра "Пароль" (см. справку)
+
+-----
+
+Версия, распространяемая через галерею - не полная. Полная (оригинальная) версия по адресу http://huac.8vs.ru/ .
+
+Преимущества версии для галлереи:
+1. Проверена независимыми редакторами галереи дополнений Mozilla на отсутствие вредоносного кода
+2. Большая стабильность, так как дополнение прошло независимое тестирование
+
+Недостатки версии для галлереи,
+1. Полностью убран фильтр TimeZone, подменяющий дату и время на другой часовой пояс; убран индикатор, что extensions.blocklist настроен по умолчанию
+2. Возможны очень серьёзные задержки с обновлением дополнения (до года), которые могут повлечь за собой долговременный отказ функций дополнения на новых версиях FireFox
+3. Не осуществляется поддержка
+
+Преимущества оригинальной версии:
+1. Обновление происходит с меньшими задержками
+2. Доступна полная функциональность вне зависимости от причуд редакторов галереи дополнений Mozilla
+3. Возможна меньшая стабильность дополнения, но дефекты исправляются быстрее.
+
+---------
+Если вы пользуетесь этим дополнением, пожалуйста, оставляйте отзывы с рейтингом "5". Это поможет другим людям найти это дополнение.
+
+Сообщения о дефектах оставляйте только на e-mail разработчика (указан на главной странице сайта http://huac.8vs.ru/ ), так как от вас наверняка потребуется дополнительная информация и содействие. Без этого исправить дефект вряд ли удастся. Помните, дополнение очень большое, наличие в нём дефектов само собой разумеется. Не оставляйте негативные отзывы только потому, что вы поленились сообщить о дефекте разработчику.
+
+
+-----
+
+Данная страница дополнения время от времени подвергается атаке конкурентов, которые оставляют одни и те же отзывы под видом разных пользователей, чтобы понизить рейтинг дополнения.
+Помните:
+1. Не проходите по ссылкам в пользовательских отзывах: они могут вести на вредоносные сайты.
+2. Так называемая "проприетарная" лицензия никак не мешает вам или любым другим исследователям убедиться в том, что дополнение делает именно то, что заявлено. Дополнение распространяется с открытыми исходными кодами.
+3. Да. Дополнение не идеально. Не ждите от него функций которые вообще не могут быть реализованы в дополнении по технологическим причинам. Противодействовать отслеживанию очень тяжело.
+
+
+-----
+Для просмотра справки на английском или другом, языке используйте Google translate (исходно на русском).
+https://translate.google.ru/translate?hl=en&sl=ru&tl=en&u=http%3A%2F%2Fhuac.8vs.ru%2F&sandbox=1
+
+-----
+At the end of 2017 year Mozilla plans to remove some opportunities from FireFox that use the Http UserAgent Cleaner.
+New opportunities (in WebExtensions) is insufficient. Maybe the developer will stop developing the Extension.
+(use tor browser https://www.torproject.org/ )
+
+By default, the Extension does almost nothing. The Extension requires the neat and complex configuration by user.
+For get help in the your language, you can use <a href="https://translate.google.ru/translate?hl=en&sl=ru&tl=en&u=http%3A%2F%2Fhuac.8vs.ru%2F&sandbox=1">Google translate</a>  (original help in Russian language) (close the ads of free hosting, if it appeared).
+Original version of extension available at http://huac.8vs.ru/ .
+
+Need to disable <a href=http://wiki.mozilla.org/Electrolysis>E10S</a>.
+
+The Extension:
+
+* Evaluates the security strong of https (TLS) connections, including the strong of the all side requests from the page
+* Allows you to monitor the certificate changes on the websites
+* Allows you to block the https pages loading
+* Monitors changes in the certificate of the https pages of sites
+* Increases privacy by substitution of the "browser fingerprint". Can accidentally send a combination UserAgent, locale, canvas, fonts. Disables (with the setting under domain), WebRTC, ajax, cookies. In original version have substitution of the TimeZone fields.
+* Blocks "resource://" requests for privacy reasons
+* Block requests to third-party websites and allows you to manage cookies sent to third-party websites
+* Allows you to view the all root certificates in a single list and to estimate the number of trusted root certificates
+* Allows you to control the included cryptographic primitives
+* Increases security by a small antiphishing function (see "password" filter in help)
+
+----------------------------------
+
+The version of extension for Mozilla addons gallery has been functionality reduced. Original version of extension available at http://huac.8vs.ru/ , but it is not a Mozilla checked version.
+
+
+---------
+If you use this extension, please post the user review with a rating "5". This help for other people to find this extension.
+
+Defect reporting place only by e-mail to the developer (listed on the main page of the site http://huac.8vs.ru/ ), because developer will certainly need an additional information and assistance.  Without this the defect fix is unlikely. Remember, the extension is very large, the presence of defects needless to say. Do not leave negative reviews just because you were too lazy to report about the defect to the developer.
+
+----------
+
+This extension page from time to time has been attacked by competitors who leave the same "user reviews" under different users to downgrade the extension rating.
+Remember:
+1. Don't click on links in the user reviews: they can lead to malicious sites.
+2. The so-called "proprietary" license does not prevent you or any other investigators to ensure that the extension does exactly what is stated. The extension distributed with open source.
+3. Yes. The extension is not perfect. Don't wait for functions that cannot be implemented in extensions for technological reasons. To counteract the tracking very difficult.
+
+
+
+
+
+
+Increase privacy (random replacement for the UserAgent, canvas, locale, timezone, blocking WebRTC, etc.) Blocking the ajax requests to third-party websites and the extra cookies. The assessment for safety of https (TLS) connections. Small antiphishing
+
+----
+mozIndexedDB and other deprecated fields are supported for compatibility with older versions of FireFox.
+
+For simple testing.
+The extension works with the e10s disabled.
+1.Click the extension icon and then go to HTTP tab (first tab).
+2. In first green column click the green "disabled" cell in "Canvas" row. State changed to the red "enabled".
+3. See https://www.browserleaks.com/canvas
+4. In page, probably and usually "Your Fingerprint" "Found in DB" - false .
+5. Record "Signature" in "Your Fingerprint" (the number is similar 9C450D71)
+6. Open private browsing and close private browsing.
+7. Do again the items in this test plan from 3 to 6
+8. First Signature and Second Signature must be unequal
+9. In the extension panel. Go to tab "TLS Log". Information is similar to screenshot #5
+
+When the extension is working the following lines in the browser console (information for users):
+1. Warnings about blocked/allowed requests at a initialization period of the extension.
+[Then the main extension icon turns to green color (same as the extension logo)]
+2. When a download of https connections failed because certificate untrust. "HUAC information: In the request was found the error of loading, this may be relevance to HPKP ...".
+
+If you see any error messages, please copy them and send to the developer at the address prg@vs8.ru or in editor review comments
+
+---
+
+
+In "popupmenu.js" the mouseenter event need to switch the extension behavior. And the CSS rules not available for switch the css styles, because it is a complex CSS switch.
+
+Повышение приватности (случайная замена поля UserAgent, canvas, locale, timezone, блокирование WebRTC и т.п.). Блокирование ajax и запросов к сторонним сайтам и лишних куков. Оценка безопасности https (TLS) соединения. Немного антифишинга.
+

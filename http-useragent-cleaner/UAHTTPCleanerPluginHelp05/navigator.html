@@ -1,0 +1,132 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html;charset=windows-1251">
+</head>
+<body>
+
+<div id = "content"></div>
+<br><br>
+<div id = "localS"></div>
+<br><br>
+<div id = "localSt"></div>
+<br><br><br><br>
+<iframe id = is style="width: 42em; height: 20em;" frameborder = '1'  src=''>
+</iframe>
+
+<iframe id = vkFrame style="width: 42em; height: 80em;"  frameborder = '1'  src='http://yandex.ru/'>
+</iframe>
+
+<iframe id = vkFrame2 style="width: 42em; height: 80em;"  frameborder = '1'  src='https://yandex.ru/'>
+</iframe>
+
+<script type="text/javascript">
+/*
+	try
+	{
+		if (document.location.href.indexOf("?") == -1)
+			document.getElementById("is").contentWindow.document.location.replace("navigator.html?a=a");
+	}
+	catch (e)
+	{
+		console.error(e);
+	}
+	
+	try
+	{
+		if (document.location.href.indexOf("ever") != -1)
+			document.getElementById("cookieFrame").contentWindow.document.location.replace("http://samy.pl/evercookie");
+	}
+	catch (e)
+	{
+		console.error(e);
+	}
+	
+	try
+	{
+		if (document.location.href.indexOf("vk") != -1)
+		{
+			var vkFrame = document.getElementById("vkFrame");
+			vkFrame.contentWindow.document.location.replace("http://vk.com");
+		}
+	}
+	catch (e)
+	{
+		console.error(e);
+	}*/
+
+	var content = document.getElementById("content");
+	var string = "";
+	for (var index in navigator)
+	{
+		try
+		{
+			string += "<br>" + index + ": " + navigator[index];
+		}
+		catch (ex)
+		{
+			string += "<br>" + index + ": " + ex.toString();
+		}
+	}
+
+	string += "<br>"  + "navigator.plugins.length: " + navigator.plugins.length;
+	string += "<br><br>window.screen<br>"
+
+	for (var index in window.screen)
+	{
+		try
+		{
+			string += "<br>" + index + ": " + window.screen[index];
+		}
+		catch (ex)
+		{
+			string += "<br>" + index + ": " + ex.toString();
+		}
+	}
+
+	string += "<br>window.innerWidth: "  + window.innerWidth;
+	string += "<br>window.innerHeight: " + window.innerHeight;
+	string += "<br>window.outerWidth: "  + window.outerWidth;
+	string += "<br>window.outerHeight: " + window.outerHeight + '<br>';
+
+	content.innerHTML = "navigator object:<br>" + string;
+	
+
+	localStorage.test = "localStorage allowed";
+	
+	var content = document.getElementById("localS");
+	var string = "";
+	for (var index in localStorage)
+	{
+		string += "<br>" + index + ": " + localStorage[index];
+	}
+	
+	document.cookie = "doc=doc";
+	content.innerHTML = "localStorage object:<br>" + string + "<br><br>document.cookie = '" + document.cookie + "' (setted to 'doc=doc')";
+	
+	setTimeout
+	(
+	function()
+	{
+		var content = document.getElementById("localSt");
+		try
+		{
+			string = "";
+			for (var index in localStorage)
+			{
+				string += "<br>" + index + ": " + localStorage[index];
+			}
+
+			content.innerHTML = "navigator setTimeout<br>userAgent: " + navigator.userAgent + "<br><br>localstorage: " + string;
+		}
+		catch(ex)
+		{
+			content.innerHTML = "navigator setTimeout userAgent:<br>" + ex.toString();
+		}
+	},
+	2000
+	);
+
+</script>
+
+</body>
+</html>

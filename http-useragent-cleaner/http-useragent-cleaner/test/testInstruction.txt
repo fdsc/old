@@ -1,0 +1,102 @@
+Components global warning: I do not known, how to get Components in E10S frame script (require is not work). Warning wrong?
+
+For testing
+
+For the simplest test doing 1, 43-56 steps only.
+
+
+1. Install HttpFox and FireBug extension. Disable all other extensions (NoScript, RequestPolicy and other)
+2. Set in HTTP UserAgent Cleaner:
+  Filter "X-Forwarded-For" option to "random" (yellow)
+  Filter "Plugin" to "raise error" (dark blue)
+  Filter "User-Agent" to "random" (yellow)
+  Filter "AJAX" to "enabled" (red)
+ 
+All in first column of settings.
+ 
+3. Start HttpFox extension
+4. Go to yandex.ru and see HttpFox output (stop HttpFox after load).
+ 
+5. In HttpFox output in request headers
+  "User-Agent" to random user-agent, and different in each http-request
+  Request have filled "X-Forwarded-For" header
+ 
+6. In Firebug (F12 key) do to input command "navigator.plugins".
+  Result of command like
+  Error: HTTP UserAgent Cleaner raise error so how web-script try to read plugins or mimeTypes fields but regime 'raise error' on 'Plugin' option was setted. For document http://www.yandex.ru/
+ 
+7. In Firebug do to input command "navigator.userAgent" and make sure that it does not correspond to the real.
+
+8. In Firebug do to input command "new XMLHttpRequest()" and command 'navigator.sendBeacon'
+  Result of commands like
+  Error: HTTP UserAgent Cleaner raise error so how web-script try to access to XMLHttpRequest or XMLHttpRequestUpload objects. See help for disable this function. For document http://www.yandex.ru/
+
+9.Disable extension and repeat 3-8 steps. Then enable extension and disable all filters (to green) and repeat 3-8 steps.
+In both cases
+"X-Forwarded-For" header must be missing.
+"User-Agent" to real value and navigator.userAgent to readl value
+Result of commands must not do raise error.
+
+
+10. In private mode. Disable Flash, SilverLight and Java plugins.
+11. AJAX filter to "enabled" (red)
+12. Visit to http://samy.pl/evercookie/
+13. Click to button "click to create evercookie".
+14. Button not work. Cookie found: uid = currently not set
+15. AJAX filter to "disabled" (green).
+Window.name filter to "enabled" (red)
+Storage Filter to "enabled"
+16. Reload page and click to button "click to create evercookie".
+17. "Cookie found" must be setted to a number. (like windowData mechanism: number, sessionData mechanism: number, localData mechanism: number )
+18. Set Cookie filter to "enabled" and ETag filter to "enabled". Cache filter to "no cache"
+19. Reload http://samy.pl/evercookie/
+20. "Cookie found" field must be "Cookie found: uid = undefined"
+
+21. In any firefox mode in "FireFox" tab in top row right cell "Extension black list" see "+" on green background.
+22. Disable all filters (to green)
+
+23. Install Calomel SSL Validation plugin.
+24. In second row of HTTP UserAgent Cleaner extension disable all symmetric ciphers (click to cells with 'AES', 'RC4', 'Camellia', '3DES' to red).
+25. Enter to page https://vk.com
+26. Page not load. Error ssl_error_ssl_disabled .
+27. Click to "AES 256" cell (to green "+").
+28. Enter to page https://vk.com
+29. Calomel see cipher suit with "AES-256" or "AES-128".
+30. Click to 'AES 256' cell to red, click to "AES 128 GCM" cell to green. Repeat 28-29 steps similary. Calomel see cipher siut with AES-128.
+31. Correct the cipher settings for the ones you want. Because after the removal additions settings will still work. (click to reset FireFox button in FireFox tab to reset)
+
+32. "Interval" Filter to "1". "User-Agent" to "low random" (dark yellow)
+33.Record the current time (or see seconds arrow in clock). Enter to http://relaxtime.8vs.ru/navigator.html
+34. In userAgent field on page and userAgent field on frame in bottom of page user agent is FireFox same version.
+35. After 50 seconds from page load do to reload page.
+36. Same UserAgent field.
+37. Wait another 10 seconds and reload page.
+38. Version of FireFox is changed.
+39. Click "Manual UA" filter to "FireFox 28"
+40. Verify what "userAgent: Mozilla/5.0 (X11; OpenBSD amd64; rv:28.0) Gecko/20100101 Firefox/28.0". Moz prefix fields in page available (example, mozPermissionSettings and mozAlarms), but may be null.
+41. Click "Manual UA" filter to "Opera 12.14"
+42. Verify
+  userAgent: Opera/9.80 (X11; Linux x86_64) Presto/2.12.388 Version/12.16
+AND
+  "moz" prefix fields in page missing (not visible).
+
+43. In bottom of FireFox tab click button to reset HTTP tab. Check it.
+44. Click to 'Media', 'Images' to 'enabled' and 'HTML Only' to 'html' (in first column).
+45. Open HttpFox (or other extension) and start log. Check for FireFox update.
+46. Update request in HttpFox must be ended successfully.
+47. Open new tab in FireFox. Going to the 'Blocking log' tab in extension and check that update requests is not blocked.
+48. If update requests to Mozilla has been terminated by error NS_ERROR_NOT_IMPLEMENTED (see in HttpFox) or not visible in HttpFox - hard error (disable extension and check updates for check internet connection and HttpFox visible in normal).
+49. Repeat with 45-48 steps for extensions updates. Similary.
+50. In private browser (with blocked images) load http://www.goodfon.ru/ . In normal window load same site http://www.goodfon.ru/
+51. Open 'Blocking log' tab in private window. Check for records exists. Open 'Blocking log' tab in normal window. Check for records exists.
+52. Close extension tab. Close private window.
+53. Open in 'Blocking log' tab. Check for no records exists.
+54. Disable all 44 step filters (to green) and open https://www.browserleaks.com/canvas. In "How Does It Work" section see image "The result will be the image".
+55. Enable Canvas filter (in first column to red) and open url in new tab. See image "The result will be the image".
+Now, It filled by rectangles. "Signature" field in first page and in the second page is different.
+56. Disable all filters. Enable "Date (Time Zone)" filter. Load any page and in FireBug console call following commands
+  1) Result of "Date()" command must be string and not equal with the computer time (TimeZone is not equal, e.g. computer time 13:18 GMT-0800, in console the time 22:18 GMT+0100)
+  2) Result of "new Date().toString()" must be a string with same TimeZone that Date() (e.g. 22:18:32 GMT+0100 and 22:18:48 GMT+0100)
+  3) Call command "var t1 = new Date().getTime(); var t2 = new Date(t1).getTime();". t1 must be equal t2.
+
+Test ended.

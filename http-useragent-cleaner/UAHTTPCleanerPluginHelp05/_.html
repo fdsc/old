@@ -1,0 +1,20 @@
+<?php
+
+$last_modified_time = filemtime($_SERVER['SCRIPT_FILENAME']);
+
+if 
+	(
+		isset($_SERVER['HTTP_IF_NONE_MATCH']) && 
+		strtotime($_SERVER['HTTP_IF_NONE_MATCH']) == $last_modified_time
+	)
+	{
+		header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+		exit(0);
+	}
+
+header('ETag: W/"' . $last_modified_time . '"');
+
+if (isset($_GET['dump']))
+	var_dump($_SERVER);
+
+?>

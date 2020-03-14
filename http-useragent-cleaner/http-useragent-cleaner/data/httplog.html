@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>HTTP UserAgent Cleaner message</title>
+<meta http-equiv=Content-Type content="text/html;charset=windows-1251">
+<style>
+*
+	{
+		font-family: 'Courier New'; font-size: 16px; color: black
+	}
+</style>
+</head>
+<body style = "background-color: #DDDDDD">
+<div id=grayScreen style='position: fixed; top: 0; left: 0; z-index: 2; width: 100%; height: 100%; background-color: #00000088'>
+</div>
+
+
+<div style='position: fixed; top: 0; left: 0; background-color: black; color: white; width: 100%; z-index: 3'>
+<input type=button id=refresh value='refresh'>
+<input type=checkbox id=errors> Только с ошибками
+<input type=checkbox id=notget> Только не GET-запросы
+<input type=checkbox id=cached checked> Кешированные
+<input type=checkbox id=notcached checked> Не кешированные
+<input type=checkbox id=validated checked> Валидные в кеше
+<br>
+<input type=checkbox id=TLS checked> TLS
+<input type=checkbox id=notTLS checked> not TLS
+<input type=checkbox id=qTLS checked> ?TLS
+&nbsp;
+<input type=checkbox id=inverturl>!<input type=text id=urlf placeholder='Url regex'> <input type=checkbox id=inverth>X<input type=checkbox id=invertn>!<input type=text id=headern placeholder='Header name'> <input type=checkbox id=invertf>!<input type=text id=headerf placeholder='Header val regex'> 
+
+&nbsp;&nbsp;<input type=button id=reset value='reset' style='position: fixed; right: 0px'>
+
+<br>
+<input type=checkbox id=completed checked>Завершены
+<input type=checkbox id=notCompleted checked>Не завершены
+<input type=checkbox id=shortLog>Короткий
+<input type=text id=autoupdate placeholder='Обновлять автоматически'><input type=checkbox id=todown>Авто. вниз
+<input type=checkbox id=hlenabled>Логирование включено
+</div>
+
+<br><br><br><br>
+<div id='entireLogB' style="overflow-wrap: break-word; width: 100%; z-index: 1">
+</div>
+</body>
+</html>

@@ -1,0 +1,267 @@
+Что-то оценка HPKP опускается на половине страниц https://whoer.net/#extended
+Date() перестал работать правильно (фильтр не действует)
+https://habrahabr.ru/hub/php/ не определяется уровень HPKP
+
+https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API
+Убрать connection? dom.network.enabled
+
+Надо последовательную загрузку изображений сделать устойчивой к неудачам при загрузке одного из изображений
+	http://www.dailytechinfo.org/robots/7760-kompaniya-toshiba-gotovit-svoego-robota-plovca-k-pogruzheniyu-v-basseyn-reaktora-stancii-fukusima.html
+
+Запрос пользователя по поводу размеров рабочей области экрана: они очень слабо подделываются, видимо.
+
+При загрузке mail.yandex.ru с фильтром ошибок выводятся и редиректы (сам mail.yandex.ru). Правда, я не вижу, где заголовки ответа. Так что вообще чёрти что. А, это выводится http://, и редирект там моё же дополнение делает. Тогда всё понятно.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1263011
+https://wiki.mozilla.org/WebExtensions/Experiments
+
+https://www.npmjs.com/package/addons-validator
+npm install -g addons-validator
+addons-validator my-addon.xpi
+
+	
+Исправленные дефекты фильтра Date
+
+	* https://groups.google.com/forum/#!forum/mozilla.addons.user-experience не отображаются сообщения
+	* http://ru.investing.com/currencies/eur-chf не отображается график при включённом TimeZone
+		// Требует ajax и разрешённых изображений
+	* При заходе на http://tft.w3arena.net/ виснет, если включён фильтр Date
+		точно зависит от часового пояса, т.к. там есть конструкция
+			var target = new Date(Date.UTC(2015,now.getMonth(),now.getUTCDate(),16,00,00));
+			while(target.getDay() != 2 && target.getDay() != 5)
+				target.setDate(target.getDate() + 1);
+	* При просмотре писем на mail.yandex.ru с включённым фильтром Date наблюдаются проблемы с отображением даты письма (отображается начало эпохи Юникс)
+		Проблема была в том, что дата создавалась не с одним параметром, а с несколькими, а я передавал только один
+
+TLS
+	* При заходе в неавторизованном виде на https://esia.gosuslugi.ru/profile/user/ в конце загрузки вообще не отображается ни оценка, ни запросы на вкладке TLS
+	* Зайти на https://mail.yandex.ru . TLSLog в конце подгрузки пустой (если его специально открыть - его снова сбрасывает window.history)
+	* Зайти на яндекс. На той же вкладке ещё раз зайти на яндекс. Не отображается всё, кроме первых двух запросов
+	* Зайти на https://mail.yandex.ru . После изменения url TLS log не отображает остальные запросы (остаются только два).
+	* Если на mail.yandex.ru перейти на другой логин, потом вернуться, то TLS log не отображает новых запросов
+	
+	* ??? (не известно, исправлено или нет) https://msdn.microsoft.com/en-us/library/windows/desktop/ms645505%28v=vs.85%29.aspx Выводится стойкость шифрования 62, хотя реально 27 (не всегда)
+	
+	* После блокировки вкладки (если вкладка не закрыта), при загрузке других страниц в консоли отображается ошибка 
+		message:"this.urls.fromTabDocument(...) is undefined"	/	lib/logTLS.js:789:19
+
+
+Другие исправленные дефекты
+
+	* https://twitter.com/settings/notifications ни хрена не работает (не прожимается кнопка), даже когда фильтры отключены
+		Виноват в этом storage
+	* При включённом iCookies не работает https://market.yandex.ru/catalog/60575/list?hid=90566
+		Не работают раскрывающиеся списки
+		Storage не преобразовывал значения в DOMString
+	* https://yandex.ru/support/disk/troubleshooting/sup-desktop/cant-sync.xml Неверно отображается (усекается) форма ввода
+		Виноват опять window.name
+	* https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%9B%D0%B5%D0%BE%D0%BD%D0%B0%D1%80%D0%B4%D0%BE
+		Не подгружаются изображения кроме последнего
+	* При загрузке file:///D:/Arcs/Internet/browsers/develop-release/UAHTTPCleanerPluginHelp05/index.html
+		файлы фильтруются не по вкладке, а как будто отдельно запрашиваются
+		* vk.com перестал загружаться, т.к. теперь там некоторый pu.vk.com
+	
+	* Не работает авторизация на http://rutracker.org/forum/index.php , когда ICookies:I
+		Это связано с тем, что авторизация осуществляется на другом хосте
+
+	* Фильтр изображений должен позволять загрузку по клику сторонних изображений
+
+	* http://www.thisisinsider.com/purchase-this-anti-flash-scarf-2016-6
+		При нажатии F9 образуется правило "rd[:1]="
+
+	* http://slonohrom.livejournal.com/1192.html при включённом дополнении нефига не работает (всё время предлагает подтвердить, что вам 18-ть)
+
+	* https://50.mvd.ru/Kontaktnaja_informacija неверно отображает форму, когда включён фильтр canvas
+		(https://mvd.ru/district)
+		(надо разрешить api яндекс.карт и ajax)
+		[Дефект сам перестал повторяться]
+
+	* Не отображается информация http://www.gks.ru/wps/wcm/connect/rosstat_main/rosstat/ru/statistics/population/infraction/
+		[Дефект перестал повторяться сам]
+	
+	* При попытке регистрации http://www.twirpx.com/signup/submit/ при включённом дополнении выдаёт "регистрация невозможна". Поиск также не работает при включённом фильтре TimeZone
+		[Дефект больше не повторяется]
+	
+	* Не грузится изображение	http://velvik45.livejournal.com/202779.html
+		[Само стало подгружаться]
+		
+ 	* ! var at = new window.wrappedJSObject.Array();
+		в WebGLFunc
+		Это дефект безопасности, кажется
+		
+		Нет, это не дефект безопасности, но около того. Точно дефект приватности.
+
+	* При переходе по ссылкам из yandex.почта появляется проблема с блокировкой запросов: они блокируются, но, при этом, нет перенаправления на вкладке.
+	
+
+
+https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/package_json
+https://developer.mozilla.org/en-US/docs/Extension_Versioning,_Update_and_Compatibility#Update_RDF_Format
+
+https://nodejs.org/download/
+
+browser.tabs.remote.autostart
+
+Сертификаты
+https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Certificate_functions
+https://developer.mozilla.org/en-US/docs/Mozilla/Security/x509_Certificates
+http://mxr.mozilla.org/mozilla-central/source/security/manager/
+
+ДЕФЕКТЫ
+
+	* http://feedproxy.google.com/~r/blogspot/wMUFz/~3/Grinpt6mn8Y/blog-post.html
+		Дополнение блокирует запросы без указания на вкладке, что запрос заблокирован
+
+	* http log постоянно превышает ширину нормально панели лога блокировок
+
+	* Редиректы на вкладке лога блокировок иногда появляются вверху, хотя новее, чем записи внизу. Не понял, когда это появляется, но точно, когда одинаковых редиректов много.
+
+	* file:///D:/Arcs/yaDisk/%D0%92%D1%8B%D1%81%D1%82%D1%83%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F/%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D0%B8%D0%BA/memories/html/htmlform.html
+	Изображения блокируются вне зависимости от фильтров
+	
+	* https://ru.wikipedia.org/wiki/%D0%AD%D0%BA%D1%81%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5
+		При первой неполной подгрузке изображений по ctrl+shift+F12 перезагрузка страницы приводит к отображению части картинок (многократная перезагрузка не помогает, хотя, возможно, это следствие кеширования). Кроме этого, неподгруженные изображения так и остаются неподгруженными.
+
+	* Фильтр image блокирует ресурсные картинки
+
+	* При щелчке на фотографии сразу же выдаётся не только фото, но и его увеличение http://blog.cryptographyengineering.com/2016/03/attack-of-week-apple-imessage.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+AFewThoughtsOnCryptographicEngineering+%28A+Few+Thoughts+on+Cryptographic+Engineering%29
+		[Не повторяется, но в блоге есть моменты, где это повторяется]
+
+	* На https://github.com/TohcoK6ieghohp6u/weiyeev9etaeXi3n выдаётся ошибка
+		Error: call to eval() blocked by CSP
+		(Фильтр часового пояса)
+
+
+	* https://lingvolive.ru/translate/en-ru/relieved
+		Если не разрешать api.lingvolive.com, то есть запрет, но он не отображается в логе блокировок (возможно, проблема в том, что он в логе блокировок есть, только как запись без вкладки)
+
+	* http://games.kanobu.ru/app/wpc/ Лог блокировок не показывает блокировки - нет, кажется, показывает
+
+
+	* Зайти на яндекс. Зайти на http://relaxtime.8vs.ru/. В логе не отображается первый запрос к http://relaxtime.8vs.ru/
+	* Зайти на https://mail.yandex.ru . В логе не отображается первый запрос. В консоли стоит ошибка logB по поводу вкладки about:tab.
+		"Http UA Cleaner: in loggerB.addToLog tabURISpec is about:blank  https://mail.yandex.ru/"
+
+	* Разобраться с 
+		https://developer.mozilla.org/en-US/docs/Web/API/Cache
+		https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker
+	
+	
+	* vk.com постоянно пишет, что permission denied (что не может вызвать bind куда-то, если я верно понял). Виноват объект navigator, но, может быть, и что-то другое.
+
+
+	* При заходе на http://kartinki.ru/ второй клик на наполовину подгрузившемся изображении иногда даёт его перезагрузку вмето перехода по ссылке
+	* http://molonlabe.livejournal.com/225731.html картинки движения по журналу заблокированы, но не подгружаются по клику
+		это вызвано тем, что происходит загрузка изображения как background-image с background-position, где объединены сразу все изображения
+	
+	* s.ownKeys = Cu.exportFunction(function(target) в localStorage не работает
+
+	* Неудобно добавлять новые правила, особенно после блокировки страницы (F1 и F2 не работают)
+
+	* Есть подозрение, что хосты :8080 и :80 одинаковы для блокировщика куков
+
+
+Желательные исправления функций
+	* На вкладке "Сторонние" вложенные правила имеют отступ на один пиксель или около того справа.
+	* Шрифты можно обойти
+	* На яндексе при включённом фильтре "Шрифты" в случайном режиме не нажимаются логины для перелогинивания.
+	* Часть запросов уходят в запросы без вкладки, хотя вкладка при этом есть (на mail.yandex.ru это запросы логирования)
+	* LogB - редиректы в виде META и javaScript не учитываются при логировании
+	* Не включаются картинки на ajax-сайтах
+	* TLS Log не запоминает несколько перенаправлений (связано с тем, что redirect, кажется, более просто обрабатывается, чем в LogB)
+	* Фильтр CORS не учитывает jsonp https://ru.wikipedia.org/wiki/JSONP
+	* http://vimpel-v.com/2013/04/08/patron-povyshennoy-probivaemosti-6n24.html Рисунок патрона показывается, но при клике левее, чем картинка незагруженного изображения
+	* При включённом фильтре Storage не подгружается блок картинок (примерно начиная с шестой строки) при поиске в google
+		https://www.google.com/search?q=kitten&source=lnms&tbm=isch&sa=X&ei=KgA5VbW3MsOmgwTzmICQBw&ved=0CAcQ_AUoAQ&biw=1920&bih=977
+		Поиск, при этом, должен выглядеть как нагромаждение картинок, а не как постраничный поиск.
+	* На GitHub, якобы, невозможно изменить комментарий, если включён фильтр "canvas"
+	* При отключении дополнения в документах остаются переопределённые объекты: не очень здорово
+	* DRM ? https://support.mozilla.org/ru/kb/enable-drm?as=u&utm_source=inproduct
+	* http://www.youtube.com/results?search_query=%D0%A1%D0%BF%D0%B5%D1%86%D0%BD%D0%B0%D0%B7+%D0%B3%D1%80%D1%83
+		Не раскрывается выпадающий список Фильтры при включённом фильтре Date и не раскрывается описание по нажатию на "ещё".
+	* загрузка через picture может выдать истинное разрешение экрана
+	* https://oper.ru/news/read.php?t=1051615767 при блокирующем фильтре https всё равно видны запросы http, страница считается небезопасной, но, при этом, реально грузится только https
+	
+	-----
+	E10S
+			https://developer.mozilla.org/en-US/Firefox/Multiprocess_Firefox
+			https://developer.mozilla.org/en-US/Add-ons/SDK/Guides/Multiprocess_Firefox_and_the_SDK
+			https://developer.mozilla.org/en-US/Firefox/Multiprocess_Firefox/Frame_script_environment
+			
+	* Не проверялась работа отказа от кеширования и ETag
+	
+	* Видимо, вообще не работают notification
+	* Date работает только в режиме генерации ошибки, причём ошибку не генерирует (new Date() == undefined)
+		В остальное время вообще никак не проявляет себя
+	* Referer, похоже, тоже не работает. Возможно, это связано с отсутствием content-policy
+	* Не работает Storage. В режиме генерации ошибок - undefined
+	* AJAX и иже с ними вместо генерации исключения тоже undefined
+	* plugins вообще пустой объект
+	* relaxtime/navigator при включённом фильтре плагинов вообще не работает
+	* User-Agent и ручной UA не работают в JavaScript
+
+	!	
+	https://www.browserleaks.com/modernizr
+	
+	https://www.browserleaks.com/canvas
+		var bin = atob(canvas.toDataURL.replace("data:image/png;base64,",""))
+		bin2hex(bin.slice(-16,-12))	// берёт CRC
+	https://www.browserleaks.com/fonts
+		https://www.browserleaks.com/js/fonts-list.js
+		http://www.lalit.org/lab/javascript-css-font-detect/
+		http://hasseg.org/blog/post/526/getting-a-list-of-installed-fonts-with-flash-and-javascript/
+		http://www.lalit.org/wordpress/wp-content/uploads/2008/05/fontdetect.js?ver=0.3
+
+	// https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+	// https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font
+	
+	
+	
+	
+https://www.mozilla.org/ru/firefox/channel/#beta
+https://www.mozilla.org/ru/firefox/channel/#developer
+https://blog.mozilla.org/addons/	
+
+
+http://mxr.mozilla.org/mozilla-central/source/netwerk/cookie/
+
+
+https://developer.mozilla.org/en-US/docs/Tools/Debugger
+
+https://developer.mozilla.org/en-US/docs/Extension_Versioning,_Update_and_Compatibility
+https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#updateURL
+https://developer.mozilla.org/en-US/docs/Installing_Extensions_and_Themes_From_Web_Pages
+
+
+https://wiki.mozilla.org/Security/Server_Side_TLS
+
+https://developer.mozilla.org/en-US/Firefox/Releases
+
+https://developer.mozilla.org/en-US/Add-ons/SDK/Guides/Content_Scripts/Interacting_with_page_scripts#Expose_objects_to_page_scripts
+
+
+https://developers.google.com/speed/public-dns/
+http://dns.yandex.ru/
+*/
+/*
+
+https://panopticlick.eff.org
+	https://firstpartysimulator.org/tracker-nojs?try2=true	(https://panopticlick.eff.org/tracker)
+http://fingerprint.pet-portal.eu/?lang=en
+http://samy.pl/evercookie/
+http://ip-check.info/
+https://www.browserleaks.com/
+https://dnsleaktest.com/
+https://zyan.scripts.mit.edu/sniffly/
+	https://xakep.ru/2015/10/29/hsts-and-hpkp-tracking/
+	При прогрузке надо отключить фильтр изображений
+
+
+Сайт с HPKP
+	https://scotthelme.co.uk/hpkp-http-public-key-pinning/
+
+
+---------------------------------------------------
+https://addons.mozilla.org/ru/firefox/addon/http-useragent-cleaner/
+
+http://www.procato.com/my+headers/

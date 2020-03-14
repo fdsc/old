@@ -1,0 +1,62 @@
+<?php
+//header('Last-Modified: Sun, 26 Feb 2017 19:11:23 GMT', true);
+//header('Cache-Control: max-age=16, proxy-revalidate, public');
+$last_modified_time = filemtime($_SERVER['SCRIPT_FILENAME']);
+
+if 
+	(
+		isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && 
+		strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) >= $last_modified_time
+	)
+	{
+		header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
+		exit(0);
+	}
+
+$header = 'Last-Modified: ' . gmdate('D, d M Y H:i:s \G\M\T', $last_modified_time);
+header($header, true);
+header('X-VIN: TRUE', true);
+flush();
+ob_start();
+echo '1';
+header('Content-Length: ' . strlen(ob_get_contents()));
+ob_end_flush();
+exit(0);
+echo $last_modified_time;
+echo '<br>';
+echo $header;
+echo '<br>';
+echo isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? ($_SERVER['HTTP_IF_MODIFIED_SINCE'] . ' | ' . strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE'])) : '';
+echo '<br>';
+echo $_SERVER['SCRIPT_FILENAME'];
+echo '<br>';
+
+// var_dump($_SERVER);
+
+?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+
+	<head>
+
+		<title>HTTP UserAgent cleaner</title>
+
+<!--#include file="links.inc"-->
+		<meta name='yandex-verification' content='724e26076c33bd78' />
+		<meta name="yandex-verification" content="9ddc010ddfc95c5e" />
+
+		<meta name="description" content="ѕовышение приватности, антифишинг, управление сертификатами FireFox">
+
+	</head>
+
+	<body>
+<br><br>
+“естова€ страница. Ёто нормально, если не выводитс€ поле HTTP_IF_MODIFIED_SINCE в том случае, если отдан ответ 304 (т.к. браузер выводит кеш, а не страницу)
+</BODY>
+
+</html>
+
+<?php
+?>

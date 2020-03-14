@@ -1,0 +1,12 @@
+RewriteBase /
+
+# DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:GyqaGu
+ErrorDocument 404 /404.html
+# DO NOT REMOVE THIS LINE AND THE LINES ABOVE GyqaGu:ERRORPAGEID
+
+AddDefaultCharset WINDOWS-1251
+
+RewriteEngine On
+RewriteRule ^/(.*)$ http://huac.8vs.ru/$1 [L,R=301]
+
+Options -Indexes
