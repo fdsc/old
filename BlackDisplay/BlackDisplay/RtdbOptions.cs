@@ -84,6 +84,7 @@ namespace BlackDisplay
                 add(optsName[32], 1,                 "Ждать бездействия перед выдачей напоминания");
                 add(optsName[33], 2,                 "Максимальное количество повторений сирены в режиме 'Сокращённая сирена'");
                 add(optsName[34], false,             "При старте программы сразу же начинать собирать данные для генерации паролей");
+                add(optsName[35], true,              "Вести лог");
             }
 
             public override void addHadnler(string optionName, OptionsData<object> option)

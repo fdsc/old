@@ -548,7 +548,8 @@ namespace BlackDisplay
                                  /* 15 */  "15NoDialogInFullScreen", "16ShowNewFunctionallity", "17LastNewFunctionDate",
                                  /* 18 */  "18NoNothing", "11shortTime1", "11shortTime2", "11DefaultRegime", "22noAlerts", "23TimeToDecelerate", "24shortDecelerateActiveTime",
                                  /* 25 */  "25NoSmallMouse", "26IntervalInputTimeCoefficient", "27Siren", "28SirenVolume", "29SirenAlways",
-                                 /* 30 */  "30Siren1Duration", "31Siren2Duration", "32WaitForInaction", "33ShortSirenMaxCount", "34CollectPasswordGenerationData"
+                                 /* 30 */  "30Siren1Duration", "31Siren2Duration", "32WaitForInaction", "33ShortSirenMaxCount", "34CollectPasswordGenerationData",
+                                 /* 35 */  "35LogEnabled"
                                           };
 
         private void createOrParseIni() // :обновление :анинсталляция :инсталляция :безопасность
@@ -619,6 +620,7 @@ namespace BlackDisplay
                 ShiftAndTrim(timeRecords);
             }
 
+            if ((bool) opts.options[optsName[35]].data)
             lock (logFileName)
             {
                 File.AppendAllText(logFileName, logString);
@@ -1611,7 +1613,8 @@ namespace BlackDisplay
             lastWndText         = null;
             lastWriteToWndLog   = dt.Ticks;
 
-            File.AppendAllText(  wndLogFileName, String.Format("{0}::none\r\n", dt.Ticks.ToString())  );
+            // Закомментировано, т.к. бесполезная функция, а диск теребит
+            // File.AppendAllText(  wndLogFileName, String.Format("{0}::none\r\n", dt.Ticks.ToString())  );
         }
 
         public static void toWndLog(string processName, int isFullScreen, bool isScr, string windowText)
@@ -1637,7 +1640,8 @@ namespace BlackDisplay
             else
                 isFullScreenText = "US" + isFullScreen;    // неизвестный скрин
 
-            File.AppendAllText(wndLogFileName, String.Format("{0}::{1}/{2}::{3}::[[[{4}]]]::{5}\r\n", dt.Ticks.ToString(), isFullScreenText, isScrText, processName, windowText, dt.Hour + ":" + dt.Minute));
+            // Закомментировано, т.к. бесполезная функция, а диск теребит
+            // File.AppendAllText(wndLogFileName, String.Format("{0}::{1}/{2}::{3}::[[[{4}]]]::{5}\r\n", dt.Ticks.ToString(), isFullScreenText, isScrText, processName, windowText, dt.Hour + ":" + dt.Minute));
         }
 
         static private void setLastTime()
