@@ -153,25 +153,28 @@ namespace PostBuilder
                 Console.WriteLine("key.pfx not found. Assemblyes does not signed");
                 log(keyd + "/key.pfx" + " not exists");
             }
-
+            /* Обновление удалено! Т.к. не поддерживается сейчас
             copyAllFiles(updator, updatorFiles, updt);
             File.Delete(updt + "/updt1.pub");           // удаляем файлы публичных ключей, т.к. они и так уже должны быть на компьютере пользователя
             File.Delete(updt + "/updt2013.pub");
 
             copyAllFiles(updator, updatorFiles, urtdb);
+            */
+
             copyAllFiles(build, rtbdFiles, rtdb);
             copyAllContainsFiles(Path.Combine(build, "Resources"), rtdbA);
             copyAllFiles(build, rtbdFiles, ubin);
 
             copyAllContainsFiles(rtdb, bind);
-            copyAllFiles(updator, new string[] {"uopts.txt"}, Path.Combine(bind, "updator"));
+            // Обновление удалено! Т.к. не поддерживается сейчас
+            // copyAllFiles(updator, new string[] {"uopts.txt"}, Path.Combine(bind, "updator"));
 
 
             Directory.CreateDirectory(rhdir);
             Directory.CreateDirectory(hdir);
             copyAllContainsFiles(rtdb, rhdir);
             copyAllContainsFiles(sh,   hdir);
-
+            
             var pi = new ProcessStartInfo(packerBin, "0 z:\\updt2013 \"" + Path.Combine(ubin, "exe") + "\" relaxtime");
             pi.CreateNoWindow = true;
             pi.WorkingDirectory = Path.GetDirectoryName(packerBin);
@@ -180,6 +183,7 @@ namespace PostBuilder
             pi2.CreateNoWindow = true;
             pi2.WorkingDirectory = pi.WorkingDirectory;
 
+            /* Обновление удалено! Т.к. не поддерживается сейчас
             var p1 = Process.Start(pi);
             var p2 = Process.Start(pi2);
 
@@ -189,6 +193,7 @@ namespace PostBuilder
                 throw new Exception("Ошибка " + p1.ExitCode + " при выполнении " + pi.FileName + " " + pi.Arguments);
             if (p2.ExitCode != 0)
                 throw new Exception("Ошибка " + p2.ExitCode + " при выполнении " + pi2.FileName + " " + pi2.Arguments);
+                */
 
             var arcFileName = Path.Combine(release, "rtdb_" + dts);
             pi = new ProcessStartInfo(path7Zip, "a " + arcFileName + ".7z rtdb/ -mx9");

@@ -1,5 +1,8 @@
 C:\dev\old\old\BlackDisplay\keccak\bin\x64\Debug\keccak.dll
 C:\dev\old\old\BlackDisplay\keccak\bin\x64\Debug\keccak.pdb
+C:\dev\old\old\BlackDisplay\build\keccak.dll
+C:\dev\old\old\BlackDisplay\build\keccak.pdb
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\Debug\keccak.csproj.CoreCompileInputs.cache
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\Debug\keccak.dll
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\Debug\keccak.pdb
+C:\dev\old\old\BlackDisplay\keccak\obj\x64\Debug\keccak.csprojAssemblyReference.cache

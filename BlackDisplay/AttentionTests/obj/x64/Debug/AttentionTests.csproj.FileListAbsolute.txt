@@ -6,6 +6,8 @@ C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\keccak.dll
 C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\options.pdb
 C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\VinPlaning.pdb
 C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\keccak.pdb
+C:\dev\old\old\BlackDisplay\build\AttentionTests.dll
+C:\dev\old\old\BlackDisplay\build\AttentionTests.pdb
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.csprojAssemblyReference.cache
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.Attention2Number.resources
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.Attention2Number_Velocity.resources

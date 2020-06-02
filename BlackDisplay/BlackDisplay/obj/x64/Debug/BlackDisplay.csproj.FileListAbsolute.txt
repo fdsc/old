@@ -11,6 +11,11 @@ C:\dev\old\old\BlackDisplay\blackDisplay\bin\x64\Debug\AttentionTests.pdb
 C:\dev\old\old\BlackDisplay\blackDisplay\bin\x64\Debug\keccak.pdb
 C:\dev\old\old\BlackDisplay\blackDisplay\bin\x64\Debug\options.pdb
 C:\dev\old\old\BlackDisplay\blackDisplay\bin\x64\Debug\VinPlaning.pdb
+C:\dev\old\old\BlackDisplay\build\Resources\siren.wav
+C:\dev\old\old\BlackDisplay\build\Resources\sirenimp.wav
+C:\dev\old\old\BlackDisplay\build\BlackDisplay.exe.config
+C:\dev\old\old\BlackDisplay\build\BlackDisplay.exe
+C:\dev\old\old\BlackDisplay\build\BlackDisplay.pdb
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.csprojAssemblyReference.cache
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.Ask.resources
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.DataSanitizationProgressForm.resources

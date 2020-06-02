@@ -4,6 +4,8 @@ C:\dev\old\old\BlackDisplay\VinPlaning\bin\x64\Debug\keccak.dll
 C:\dev\old\old\BlackDisplay\VinPlaning\bin\x64\Debug\options.dll
 C:\dev\old\old\BlackDisplay\VinPlaning\bin\x64\Debug\keccak.pdb
 C:\dev\old\old\BlackDisplay\VinPlaning\bin\x64\Debug\options.pdb
+C:\dev\old\old\BlackDisplay\build\VinPlaning.dll
+C:\dev\old\old\BlackDisplay\build\VinPlaning.pdb
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.csprojAssemblyReference.cache
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.Properties.Resources.resources
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.TreeTableView.resources

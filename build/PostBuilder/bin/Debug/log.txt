@@ -1,8 +1,0 @@
-02.06.2020 14:55:32
-C:\dev\old\old\BlackDisplay\
-C:\dev\old\old\BlackDisplay\bin\updatorCompile\
-E:\works\programming\IT_helpers\BlackDisplay
-args ended
-
-z:/key.pfx not exists
-General exception Не удалось найти часть пути "C:\dev\old\old\BlackDisplay\bin\updatorCompile\options.dll".
