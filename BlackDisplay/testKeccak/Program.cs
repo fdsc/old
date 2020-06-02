@@ -593,9 +593,9 @@ namespace testKeccak
             Console.WriteLine(" " + ((DateTime.Now.Ticks - dt2.Ticks) / (10000)) + "ms");
 
             {
-                long c20_e = SHA3.getHashCountForMultiHash20(71, 0);
+                long c20_e = SHA3.getHashCountForMultiHash20(71, 4);
                 long c20_1 = SHA3.getHashCountForMultiHash20(71, 1);
-                long c20_2 = SHA3.getHashCountForMultiHash20(71, 0, 5, 5);
+                long c20_2 = SHA3.getHashCountForMultiHash20(71, 4, 5, 5);
 
                 if (c20_1 < 24 || c20_1 / c20_e > 1)    // обычно 28/28
                 {
@@ -613,9 +613,9 @@ namespace testKeccak
             }
 
             {
-                long c20_e = SHA3.getHashCountForMultiHash20(71, 0, 300, 0, 1);
+                long c20_e = SHA3.getHashCountForMultiHash20(71, 4, 300, 0, 1);
                 long c20_1 = SHA3.getHashCountForMultiHash20(71, 1, 300, 0, 1);
-                long c20_2 = SHA3.getHashCountForMultiHash20(71, 0, 5, 5, 1);
+                long c20_2 = SHA3.getHashCountForMultiHash20(71, 4, 5, 5, 1);
 
                 if (c20_1 < 11 || c20_1 / c20_e > 1)    // обычно 28/28
                 {
@@ -787,7 +787,7 @@ namespace testKeccak
                             keys.Add(key);
                             List<byte[]> oivs = new List<byte[]>();
                             oivs.Add(Encoding.UTF8.GetBytes("Мой дядя самых честных правил когда не в шутку занемог он уважать себя заставил и лучше выдумать не мог его пример другим наука но боже мой какая скука с больным сидеть и день и ночь не отходя ни шагу прочь печально подносить"));
-                            crypted_getMACHashMod = sha.getMACHashMod(openText, keys, oivs, 0, 4, 0);
+                            crypted_getMACHashMod = sha.getMACHashMod(openText, keys, oivs, 4, 4, 0);
                         }
                         finally
                         {
@@ -813,7 +813,7 @@ namespace testKeccak
                             var sha = new keccak.SHA3(8192);
                             var keyDK = Encoding.UTF8.GetBytes("Сплався отпечество наше отродное, сратских народов союз чумовой, седками данная пудрость народная, справся срана, мы оптимся гобой");
                             var oivDK = Encoding.UTF8.GetBytes("Мой дядя самых честных правил когда не в шутку занемог он уважать себя заставил и лучше выдумать не мог его пример другим наука но боже мой какая скука с больным сидеть и день и ночь не отходя ни шагу прочь печально подносить");
-                            int pc = 0;
+                            int pc = 4;
                             crypted_getDerivatoKey = sha.getDerivatoKey(keyDK, oivDK, 8, ref pc, 320, 4);
                             var cgdk = sha.getDerivatoKey(keyDK, oivDK, 8, ref pc, 320, 4);
                             if (!BytesBuilder.Compare(crypted_getDerivatoKey, cgdk))
@@ -844,7 +844,7 @@ namespace testKeccak
                         try
                         {
                             var keyDK = Encoding.UTF8.GetBytes("Сплався отпечество наше отродное, сратских народов союз чумовой, седками данная пудрость народная, справся срана, мы оптимся гобой");
-                            int pc = 0;
+                            int pc = 4;
                             byte[] cgmh40, cgmh40_2;
                             SHA3.getMultiHash40(keyDK, out crypted_getMultiHash40, ref pc, 8);
                             SHA3.getMultiHash40(keyDK, out cgmh40, ref pc, 8);
@@ -1029,6 +1029,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted = sha.multiCryptLZMA(openText, key, initVector, 2, true, 19, 1000);
                             decrypt = sha.multiDecryptLZMA(crypted, key);
 
@@ -1059,6 +1060,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted2 = sha.multiCryptLZMA(openText, Encoding.UTF8.GetBytes("Ключ"), initVector, 0, true, 19, 1000);
                             decrypt2 = sha.multiDecryptLZMA(crypted2, Encoding.UTF8.GetBytes("Ключ"));
 
@@ -1089,6 +1091,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted3 = sha.multiCryptLZMA(openText, Encoding.UTF8.GetBytes("Ключ"), initVector, 3, true, 19, 1000);
                             decrypt3 = sha.multiDecryptLZMA(crypted3, Encoding.UTF8.GetBytes("Ключ"));
 
@@ -1119,6 +1122,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted4 = sha.multiCryptLZMA(openText, key, initVector, 10, true, 19, 1000);
                             decrypt4 = sha.multiDecryptLZMA(crypted4, key);
 
@@ -1149,6 +1153,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted5 = sha.multiCryptLZMA(openText, key, initVector, 11, true, 19, 1000);
                             decrypt5 = sha.multiDecryptLZMA(crypted5, key);
 
@@ -1179,6 +1184,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted6 = sha.multiCryptLZMA(openText, key, initVector, 12, true, 19, 1000);
                             decrypt6 = sha.multiDecryptLZMA(crypted6, key);
                             if (decrypt6 != null && BytesBuilder.Compare(openText, decrypt6))
@@ -1208,6 +1214,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             cryptedPT = sha.multiCryptLZMA(openText, key, initVector, 12, false, 0, 1000);
                             decryptPT = sha.multiDecryptLZMA(cryptedPT, key);
                             if (decryptPT != null && BytesBuilder.Compare(openText, decryptPT))
@@ -1237,6 +1244,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted20 = sha.multiCryptLZMA(openText, key, initVector, 20, false, 0, 12);
                             decrypt20 = sha.multiDecryptLZMA(crypted20, key);
                             if (decrypt20 != null && BytesBuilder.Compare(openText, decrypt20))
@@ -1266,6 +1274,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted20f = sha.multiCryptLZMA(openText, key, initVector, 20, true, 19, 12);
                             decrypt20f = sha.multiDecryptLZMA(crypted20f, key);
                             if (decrypt20f != null && BytesBuilder.Compare(openText, decrypt20f))
@@ -1295,6 +1304,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted21 = sha.multiCryptLZMA(openText, key, initVector, 21, true, 19, 12);
                             decrypt21 = sha.multiDecryptLZMA(crypted21, key);
                             if (decrypt21 != null && BytesBuilder.Compare(openText, decrypt21))
@@ -1324,6 +1334,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted22 = sha.multiCryptLZMA(openText, key, initVector, 22, true, 19, 12);
                             decrypt22 = sha.multiDecryptLZMA(crypted22, key);
                             if (decrypt22 != null && BytesBuilder.Compare(openText, decrypt22))
@@ -1361,6 +1372,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted22f = sha.multiCryptLZMA(openText, key, Encoding.UTF8.GetBytes("Мой дядя самых честных правил когда не в шутку занемог он уважать себя заставил и лучше выдумать не мог его пример другим наука но боже мой какая скука с больным сидеть и день и ночь не отходя ни шагу прочь печально подносить"), 22, false, 0, 12);
                             decrypt22f = sha.multiDecryptLZMA(crypted22f, key);
                             if (decrypt22f != null && BytesBuilder.Compare(openText, decrypt22f))
@@ -1404,6 +1416,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted23 = sha.multiCryptLZMA(openText, key, initVector, 23, true, 19, 12);
                             decrypt23 = sha.multiDecryptLZMA(crypted23, key);
                             if (decrypt23 != null && BytesBuilder.Compare(openText, decrypt23))
@@ -1447,6 +1460,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted23f = sha.multiCryptLZMA(openText, key, Encoding.UTF8.GetBytes("Мой дядя самых честных правил когда не в шутку занемог он уважать себя заставил и лучше выдумать не мог его пример другим наука но боже мой какая скука с больным сидеть и день и ночь не отходя ни шагу прочь печально подносить"), 23, false, 0, 12);
                             decrypt23f = sha.multiDecryptLZMA(crypted23f, key);
                             if (decrypt23f != null && BytesBuilder.Compare(openText, decrypt23f))
@@ -1490,6 +1504,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted30 = sha.multiCryptLZMA(openText, key, initVector, 30, true, 19, 12);
                             decrypt30 = sha.multiDecryptLZMA(crypted30, key);
                             if (decrypt30 != null && BytesBuilder.Compare(openText, decrypt30))
@@ -1533,6 +1548,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted30f = sha.multiCryptLZMA(openText, key, Encoding.UTF8.GetBytes("Мой дядя самых честных правил когда не в шутку занемог он уважать себя заставил и лучше выдумать не мог его пример другим наука но боже мой какая скука с больным сидеть и день и ночь не отходя ни шагу прочь печально подносить"), 30, false, 0, 12);
                             decrypt30f = sha.multiDecryptLZMA(crypted30f, key);
                             if (decrypt30f != null && BytesBuilder.Compare(openText, decrypt30f))
@@ -1576,6 +1592,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted33 = sha.multiCryptLZMA(openText, key, initVector, 33, true, 19, 12);
                             decrypt33 = sha.multiDecryptLZMA(crypted33, key);
                             if (decrypt33 != null && BytesBuilder.Compare(openText, decrypt33))
@@ -1619,6 +1636,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted33f = sha.multiCryptLZMA(openText, key, Encoding.UTF8.GetBytes("Мой дядя самых честных правил когда не в шутку занемог он уважать себя заставил и лучше выдумать не мог его пример другим наука но боже мой какая скука с больным сидеть и день и ночь не отходя ни шагу прочь печально подносить"), 33, false, 0, 12);
                             decrypt33f = sha.multiDecryptLZMA(crypted33f, key);
                             if (decrypt33f != null && BytesBuilder.Compare(openText, decrypt33f))
@@ -1662,6 +1680,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted40 = sha.multiCryptLZMA(openTextS, key, initVector, 40, true, 19, 12);
                             decrypt40 = sha.multiDecryptLZMA(crypted40, key);
                             if (decrypt40 != null && BytesBuilder.Compare(openTextS, decrypt40))
@@ -1697,6 +1716,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted40f = sha.multiCryptLZMA(openTextS, key, Encoding.UTF8.GetBytes("Мой дядя самых честных правил когда не в шутку занемог он уважать себя заставил и лучше выдумать не мог его пример другим наука но боже мой какая скука с больным сидеть и день и ночь не отходя ни шагу прочь печально подносить"), 40, false, 0, 12);
                             decrypt40f = sha.multiDecryptLZMA(crypted40f, key);
                             if (decrypt40f != null && BytesBuilder.Compare(openTextS, decrypt40f))
@@ -1732,6 +1752,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted41 = sha.multiCryptLZMA(openTextS, key, initVector, 41, true, 19, 12);
                             decrypt41 = sha.multiDecryptLZMA(crypted41, key);
                             if (decrypt41 != null && BytesBuilder.Compare(openTextS, decrypt41))
@@ -1767,6 +1788,7 @@ namespace testKeccak
                         try
                         {
                             var sha = new keccak.SHA3(8192);
+                            // Тесты дадут другие варианты на не 4-хядерном компьютере
                             crypted41f = sha.multiCryptLZMA(openTextS, key, Encoding.UTF8.GetBytes("Мой дядя самых честных правил когда не в шутку занемог он уважать себя заставил и лучше выдумать не мог его пример другим наука но боже мой какая скука с больным сидеть и день и ночь не отходя ни шагу прочь печально подносить"), 41, false, 0, 12);
                             decrypt41f = sha.multiDecryptLZMA(crypted41f, key);
                             if (decrypt41f != null && BytesBuilder.Compare(openTextS, decrypt41f))
@@ -1961,7 +1983,7 @@ namespace testKeccak
                 Console.WriteLine();
                 Console.WriteLine("!!!~~~ ERROR ~~~!!! error count " + errorflag);
 
-                if (args.Length == 0)
+                // if (args.Length == 0)
                     Console.ReadLine();
             }
             else
@@ -1993,7 +2015,7 @@ namespace testKeccak
             try
             {
                 var sha = new keccak.SHA3(8192);
-                int pc = 0;
+                int pc = 4;
 
                 if (!testForBits_getMultiHash40(ref pc, 0, sha))
                 {

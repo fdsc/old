@@ -62,7 +62,7 @@ namespace testKeccak
             byte[] inData = new byte[len]; //BytesBuilder.CloneBytes(Encoding.ASCII.GetBytes("Ti8xb2bySHIQ13uiYSuLb2Dm8F2kUdNGezex8KOwKb7f0DMiIWIqvE2I3LwCBv3z"), 0, len);
             inData = BytesBuilder.CloneBytes(Encoding.ASCII.GetBytes("Ti8xb2bySHIQ13uiYSuLb2Dm8F2kUdNGezex8KOwKb7f0DMiIWIqvE2I3LwCBv3z"), 0, len);
 
-            var pc = 0;
+            // var pc = 0;
             //var sha2 = new SHA3(32);
             byte[] r;
 

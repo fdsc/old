@@ -1,4 +1,4 @@
-02.06.2020 17:08:13
+02.06.2020 19:17:45
 C:\dev\old\old\BlackDisplay\
 C:\dev\old\old\BlackDisplay\bin\updatorCompile\
 E:\works\programming\IT_helpers\BlackDisplay

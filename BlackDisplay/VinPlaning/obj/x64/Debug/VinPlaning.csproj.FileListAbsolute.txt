@@ -6,6 +6,8 @@ C:\dev\old\old\BlackDisplay\VinPlaning\bin\x64\Debug\keccak.pdb
 C:\dev\old\old\BlackDisplay\VinPlaning\bin\x64\Debug\options.pdb
 C:\dev\old\old\BlackDisplay\build\VinPlaning.dll
 C:\dev\old\old\BlackDisplay\build\VinPlaning.pdb
+C:\dev\old\old\build\VinPlaning.dll
+C:\dev\old\old\build\VinPlaning.pdb
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.csprojAssemblyReference.cache
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.Properties.Resources.resources
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.TreeTableView.resources
@@ -14,5 +16,3 @@ C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.csproj.CoreCompi
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.dll
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.pdb
-C:\dev\old\old\build\VinPlaning.dll
-C:\dev\old\old\build\VinPlaning.pdb

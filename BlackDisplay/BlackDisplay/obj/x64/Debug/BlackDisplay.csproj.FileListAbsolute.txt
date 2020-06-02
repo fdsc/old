@@ -16,6 +16,11 @@ C:\dev\old\old\BlackDisplay\build\Resources\sirenimp.wav
 C:\dev\old\old\BlackDisplay\build\BlackDisplay.exe.config
 C:\dev\old\old\BlackDisplay\build\BlackDisplay.exe
 C:\dev\old\old\BlackDisplay\build\BlackDisplay.pdb
+C:\dev\old\old\build\Resources\siren.wav
+C:\dev\old\old\build\Resources\sirenimp.wav
+C:\dev\old\old\build\BlackDisplay.exe.config
+C:\dev\old\old\build\BlackDisplay.exe
+C:\dev\old\old\build\BlackDisplay.pdb
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.csprojAssemblyReference.cache
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.Ask.resources
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.DataSanitizationProgressForm.resources
@@ -39,8 +44,3 @@ C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.csproj.CoreC
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.exe
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Debug\BlackDisplay.pdb
-C:\dev\old\old\build\Resources\siren.wav
-C:\dev\old\old\build\Resources\sirenimp.wav
-C:\dev\old\old\build\BlackDisplay.exe.config
-C:\dev\old\old\build\BlackDisplay.exe
-C:\dev\old\old\build\BlackDisplay.pdb
