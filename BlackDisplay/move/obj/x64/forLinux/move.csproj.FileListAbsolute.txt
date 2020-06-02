@@ -1,0 +1,6 @@
+C:\dev\old\old\build\umove.exe.config
+C:\dev\old\old\build\umove.exe
+C:\dev\old\old\build\umove.pdb
+C:\dev\old\old\BlackDisplay\move\obj\x64\forLinux\move.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\move\obj\x64\forLinux\umove.exe
+C:\dev\old\old\BlackDisplay\move\obj\x64\forLinux\umove.pdb

@@ -7,3 +7,4 @@ C:\dev\old\old\BlackDisplay\move\obj\x64\Release\move.csproj.CoreCompileInputs.c
 C:\dev\old\old\BlackDisplay\move\obj\x64\Release\umove.exe
 C:\dev\old\old\BlackDisplay\move\obj\x64\Release\umove.pdb
 C:\dev\old\old\build\umove.pdb
+C:\dev\old\old\BlackDisplay\move\obj\x64\Release\move.csprojAssemblyReference.cache

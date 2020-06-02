@@ -1,0 +1,8 @@
+C:\dev\old\old\build\test.exe.config
+C:\dev\old\old\build\test.exe
+C:\dev\old\old\build\test.pdb
+C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.csprojAssemblyReference.cache
+C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.csproj.CopyComplete
+C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.exe
+C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.pdb
