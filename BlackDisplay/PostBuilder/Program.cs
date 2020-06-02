@@ -80,9 +80,10 @@ namespace PostBuilder
         private static int PostBuildAction(string[] args)
         {
             var solution = args[0];
-            var updator  = args[1];
+            // var updator  = args[1];
             var BUILD    = new DirectoryInfo(Path.Combine(new DirectoryInfo(solution).Parent.FullName, "build"));
-            var build    = Path.GetFullPath(Path.Combine(BUILD.FullName, "bin/Release/"));
+            // var build    = Path.GetFullPath(Path.Combine(BUILD.FullName, "bin/Release/"));
+            var build    = Path.GetFullPath(Path.Combine(BUILD.FullName, ""));
 
             if (!BUILD.Exists)
                 BUILD.Create();
@@ -254,8 +255,8 @@ namespace PostBuilder
                 }
             );
 
-
-            var testKeccak = Path.Combine(BUILD.FullName, @"testKeccak\bin\Release\testKeccak.exe");
+            
+            var testKeccak = Path.Combine(BUILD.FullName, @"testKeccak.exe");
             pi = new ProcessStartInfo(testKeccak, "-n");
             pi.CreateNoWindow = true;
             pi.WorkingDirectory = Path.GetDirectoryName(testKeccak);

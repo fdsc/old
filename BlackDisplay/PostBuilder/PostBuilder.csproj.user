@@ -11,9 +11,12 @@
     <StartArguments>D:\works\programming\IT_helpers\BalckDisplay\ D:\works\programming\IT_helpers\BalckDisplay\bin\updatorCompile\</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <StartArguments>0 z:\\updt2013 "E:\works\programming\IT_helpers\BlackDisplay\arc" relaxtime</StartArguments>
+    <StartArguments>C:\dev\old\old\BlackDisplay\ C:\dev\old\old\BlackDisplay\bin\updatorCompile\ E:\works\programming\IT_helpers\BlackDisplay</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'forLinux|x64'">
     <StartArguments>D:\works\programming\IT_helpers\BalckDisplay\ D:\works\programming\IT_helpers\BalckDisplay\bin\updatorCompile\</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <StartArguments>C:\dev\old\old\BlackDisplay\ C:\dev\old\old\BlackDisplay\bin\updatorCompile\ E:\works\programming\IT_helpers\BlackDisplay</StartArguments>
   </PropertyGroup>
 </Project>

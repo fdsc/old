@@ -17,3 +17,5 @@ C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.csproj.C
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.dll
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.pdb
+C:\dev\old\old\build\AttentionTests.dll
+C:\dev\old\old\build\AttentionTests.pdb

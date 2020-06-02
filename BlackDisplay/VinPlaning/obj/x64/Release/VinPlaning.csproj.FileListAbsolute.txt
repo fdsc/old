@@ -1,0 +1,12 @@
+C:\dev\old\old\BlackDisplay\build\VinPlaning.dll
+C:\dev\old\old\BlackDisplay\build\VinPlaning.pdb
+C:\dev\old\old\build\VinPlaning.dll
+C:\dev\old\old\build\VinPlaning.pdb
+C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csprojAssemblyReference.cache
+C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.Properties.Resources.resources
+C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.TreeTableView.resources
+C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csproj.GenerateResource.cache
+C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csproj.CopyComplete
+C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.dll
+C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.pdb

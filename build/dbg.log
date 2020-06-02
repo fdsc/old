@@ -1,0 +1,27 @@
+
+
+
+time: 2 июня 2020 г. 16:13:27
+timeTicks: 637267112076073484
+thread: 1
+etype: MESSAGE
+type: 
+message: semaphore is green - program started
+
+
+
+time: 2 июня 2020 г. 16:13:31
+timeTicks: 637267112117265840
+thread: 1
+etype: MESSAGE
+type: registerHooks
+message: unregistered
+
+
+
+time: 2 июня 2020 г. 16:13:31
+timeTicks: 637267112117265840
+thread: 1
+etype: MESSAGE
+type: blackFormClose
+message: registerHooks(false)

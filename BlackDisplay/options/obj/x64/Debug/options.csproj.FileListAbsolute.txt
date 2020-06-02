@@ -5,3 +5,5 @@ C:\dev\old\old\BlackDisplay\build\options.pdb
 C:\dev\old\old\BlackDisplay\options\obj\x64\Debug\options.csproj.CoreCompileInputs.cache
 C:\dev\old\old\BlackDisplay\options\obj\x64\Debug\options.dll
 C:\dev\old\old\BlackDisplay\options\obj\x64\Debug\options.pdb
+C:\dev\old\old\build\options.dll
+C:\dev\old\old\build\options.pdb

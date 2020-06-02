@@ -14,3 +14,5 @@ C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.csproj.CoreCompi
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.dll
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\Debug\VinPlaning.pdb
+C:\dev\old\old\build\VinPlaning.dll
+C:\dev\old\old\build\VinPlaning.pdb

@@ -15,3 +15,6 @@ C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.csproj.CoreCompileInputs.cac
 C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.exe
 C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.pdb
+C:\dev\old\old\build\test.exe.config
+C:\dev\old\old\build\test.exe
+C:\dev\old\old\build\test.pdb
