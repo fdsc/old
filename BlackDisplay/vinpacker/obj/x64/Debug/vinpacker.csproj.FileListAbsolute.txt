@@ -12,4 +12,3 @@ C:\dev\old\old\BlackDisplay\vinpacker\obj\x64\Debug\vinpacker.csproj.GenerateRes
 C:\dev\old\old\BlackDisplay\vinpacker\obj\x64\Debug\vinpacker.csproj.CoreCompileInputs.cache
 C:\dev\old\old\BlackDisplay\vinpacker\obj\x64\Debug\vinpacker.exe
 C:\dev\old\old\BlackDisplay\vinpacker\obj\x64\Debug\vinpacker.pdb
-C:\dev\old\old\BlackDisplay\vinpacker\obj\x64\Debug\vinpacker.csprojAssemblyReference.cache

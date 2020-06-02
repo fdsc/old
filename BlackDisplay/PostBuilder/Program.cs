@@ -109,7 +109,7 @@ namespace PostBuilder
             Directory.CreateDirectory(release);
 
             var rtdb  = Path.Combine(release,   "rtdb");            // это для первичного архива
-            var urtdb = Path.Combine(rtdb,      "updator");         // это для первичного архива, копируется обновлятель
+            // var urtdb = Path.Combine(rtdb,      "updator");         // это для первичного архива, копируется обновлятель
             var rtdbA = Path.Combine(rtdb,      "Resources");       // это для первичного архива, копируются аудиофалы
             var updt  = Path.Combine(release,   "updt");            // это для архива обновления
             var ubin  = Path.Combine(release,   "bin");             // это для архива обновления
@@ -122,7 +122,7 @@ namespace PostBuilder
             var packerBin = Path.GetFullPath(Path.Combine(BUILD.FullName, "vinpacker/bin/Release/vinpacker.exe"));
 
             Directory.CreateDirectory(rtdb);
-            Directory.CreateDirectory(urtdb);
+            // Directory.CreateDirectory(urtdb);
             Directory.CreateDirectory(updt);
             Directory.CreateDirectory(ubin);
 
@@ -138,14 +138,14 @@ namespace PostBuilder
                         Directory.Delete(bind, true);
                 }
 
-            var updatorFiles = new string[] { "options.dll", "umove.exe", "updatorvs8.exe", /*"updt1.pub", */"updt2013.pub" };
+            // var updatorFiles = new string[] { "options.dll", "umove.exe", "updatorvs8.exe", /*"updt1.pub", */"updt2013.pub" };
             var rtbdFiles    = new string[] { "options.dll", "keccak.dll", "AttentionTests.dll", "VinPlaning.dll", "BlackDisplay.exe" };
 
             if (File.Exists(keyd + "/key.pfx"))
             {
                 log(keyd + "/key.pfx" + " exists");
 
-                signAssemblies(args, updator,  keyd, updatorFiles);
+                // signAssemblies(args, updator,  keyd, updatorFiles);          // Обновление удалено! Т.к. сейчас не поддерживается
                 signAssemblies(args, build, keyd, rtbdFiles);
             }
             else
@@ -153,7 +153,7 @@ namespace PostBuilder
                 Console.WriteLine("key.pfx not found. Assemblyes does not signed");
                 log(keyd + "/key.pfx" + " not exists");
             }
-            /* Обновление удалено! Т.к. не поддерживается сейчас
+            /* Обновление удалено! Т.к. сейчас не поддерживается
             copyAllFiles(updator, updatorFiles, updt);
             File.Delete(updt + "/updt1.pub");           // удаляем файлы публичных ключей, т.к. они и так уже должны быть на компьютере пользователя
             File.Delete(updt + "/updt2013.pub");
