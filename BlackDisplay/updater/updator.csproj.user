@@ -22,4 +22,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'forLinux|AnyCPU'">
     <StartArguments>relaxtime 20110900 D:/rtbd/</StartArguments>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <StartArguments>relaxtime 20110900 D:/rtbd/</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'forLinux|x64'">
+    <StartArguments>relaxtime 20110900 D:/rtbd/</StartArguments>
+  </PropertyGroup>
 </Project>

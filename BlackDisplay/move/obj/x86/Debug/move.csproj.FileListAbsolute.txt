@@ -1,0 +1,7 @@
+C:\dev\old\old\build\updator\bin\Debug\umove.exe.config
+C:\dev\old\old\build\updator\bin\Debug\umove.exe
+C:\dev\old\old\build\updator\bin\Debug\umove.pdb
+C:\dev\old\old\BlackDisplay\move\obj\x86\Debug\move.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\move\obj\x86\Debug\umove.exe
+C:\dev\old\old\BlackDisplay\move\obj\x86\Debug\umove.pdb
+C:\dev\old\old\BlackDisplay\move\obj\x86\Debug\move.csprojAssemblyReference.cache

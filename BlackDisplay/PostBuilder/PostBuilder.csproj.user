@@ -10,4 +10,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'forLinux|x86'">
     <StartArguments>D:\works\programming\IT_helpers\BalckDisplay\ D:\works\programming\IT_helpers\BalckDisplay\bin\updatorCompile\</StartArguments>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <StartArguments>0 z:\\updt2013 "E:\works\programming\IT_helpers\BlackDisplay\arc" relaxtime</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'forLinux|x64'">
+    <StartArguments>D:\works\programming\IT_helpers\BalckDisplay\ D:\works\programming\IT_helpers\BalckDisplay\bin\updatorCompile\</StartArguments>
+  </PropertyGroup>
 </Project>

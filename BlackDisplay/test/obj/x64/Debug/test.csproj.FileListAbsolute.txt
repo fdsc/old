@@ -1,0 +1,14 @@
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\test.exe.config
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\test.exe
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\test.pdb
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\keccak.dll
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\options.dll
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\VinPlaning.dll
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\keccak.pdb
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\options.pdb
+C:\dev\old\old\BlackDisplay\test\bin\x64\Debug\VinPlaning.pdb
+C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.csprojAssemblyReference.cache
+C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.csproj.CopyComplete
+C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.exe
+C:\dev\old\old\BlackDisplay\test\obj\x64\Debug\test.pdb

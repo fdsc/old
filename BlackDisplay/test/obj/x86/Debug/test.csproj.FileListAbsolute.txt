@@ -1,0 +1,8 @@
+C:\dev\old\old\build\test\bin\Debug\test.exe.config
+C:\dev\old\old\build\test\bin\Debug\test.exe
+C:\dev\old\old\build\test\bin\Debug\test.pdb
+C:\dev\old\old\BlackDisplay\test\obj\x86\Debug\test.csprojAssemblyReference.cache
+C:\dev\old\old\BlackDisplay\test\obj\x86\Debug\test.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\test\obj\x86\Debug\test.csproj.CopyComplete
+C:\dev\old\old\BlackDisplay\test\obj\x86\Debug\test.exe
+C:\dev\old\old\BlackDisplay\test\obj\x86\Debug\test.pdb

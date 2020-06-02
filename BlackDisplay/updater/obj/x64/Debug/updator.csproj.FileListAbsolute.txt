@@ -1,0 +1,12 @@
+C:\dev\old\old\BlackDisplay\updater\bin\x64\Debug\updatorvs8.exe.config
+C:\dev\old\old\BlackDisplay\updater\bin\x64\Debug\updatorvs8.exe
+C:\dev\old\old\BlackDisplay\updater\bin\x64\Debug\updatorvs8.pdb
+C:\dev\old\old\BlackDisplay\updater\bin\x64\Debug\options.dll
+C:\dev\old\old\BlackDisplay\updater\bin\x64\Debug\options.pdb
+C:\dev\old\old\BlackDisplay\updater\obj\x64\Debug\updator.csprojAssemblyReference.cache
+C:\dev\old\old\BlackDisplay\updater\obj\x64\Debug\updator.Properties.Resources.resources
+C:\dev\old\old\BlackDisplay\updater\obj\x64\Debug\updator.csproj.GenerateResource.cache
+C:\dev\old\old\BlackDisplay\updater\obj\x64\Debug\updator.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\updater\obj\x64\Debug\updator.csproj.CopyComplete
+C:\dev\old\old\BlackDisplay\updater\obj\x64\Debug\updatorvs8.exe
+C:\dev\old\old\BlackDisplay\updater\obj\x64\Debug\updatorvs8.pdb

@@ -1,0 +1,11 @@
+C:\dev\old\old\build\vinpacker\bin\Debug\updt2013.pub
+C:\dev\old\old\build\vinpacker\bin\Debug\vinpacker.exe.config
+C:\dev\old\old\build\vinpacker\bin\Debug\vinpacker.exe
+C:\dev\old\old\build\vinpacker\bin\Debug\vinpacker.pdb
+C:\dev\old\old\BlackDisplay\vinpacker\obj\x86\Debug\vinpacker.Form1.resources
+C:\dev\old\old\BlackDisplay\vinpacker\obj\x86\Debug\vinpacker.Properties.Resources.resources
+C:\dev\old\old\BlackDisplay\vinpacker\obj\x86\Debug\vinpacker.csproj.GenerateResource.cache
+C:\dev\old\old\BlackDisplay\vinpacker\obj\x86\Debug\vinpacker.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\vinpacker\obj\x86\Debug\vinpacker.exe
+C:\dev\old\old\BlackDisplay\vinpacker\obj\x86\Debug\vinpacker.pdb
+C:\dev\old\old\BlackDisplay\vinpacker\obj\x86\Debug\vinpacker.csprojAssemblyReference.cache

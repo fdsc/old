@@ -1,0 +1,6 @@
+C:\dev\old\old\build\PostBuilder\bin\Debug\PostBuilder.exe.config
+C:\dev\old\old\build\PostBuilder\bin\Debug\PostBuilder.exe
+C:\dev\old\old\BlackDisplay\PostBuilder\obj\x86\Debug\PostBuilder.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\PostBuilder\obj\x86\Debug\PostBuilder.exe
+C:\dev\old\old\BlackDisplay\PostBuilder\obj\x86\Debug\PostBuilder.pdb
+C:\dev\old\old\build\PostBuilder\bin\Debug\PostBuilder.pdb

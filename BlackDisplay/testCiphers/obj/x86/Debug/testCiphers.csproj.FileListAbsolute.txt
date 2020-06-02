@@ -1,0 +1,9 @@
+C:\dev\old\old\build\testCiphers\bin\Debug\simplies.txt
+C:\dev\old\old\build\testCiphers\bin\Debug\testCiphers.exe.config
+C:\dev\old\old\build\testCiphers\bin\Debug\testCiphers.exe
+C:\dev\old\old\build\testCiphers\bin\Debug\testCiphers.pdb
+C:\dev\old\old\BlackDisplay\testCiphers\obj\x86\Debug\testCiphers.csprojAssemblyReference.cache
+C:\dev\old\old\BlackDisplay\testCiphers\obj\x86\Debug\testCiphers.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\testCiphers\obj\x86\Debug\testCiphers.csproj.CopyComplete
+C:\dev\old\old\BlackDisplay\testCiphers\obj\x86\Debug\testCiphers.exe
+C:\dev\old\old\BlackDisplay\testCiphers\obj\x86\Debug\testCiphers.pdb

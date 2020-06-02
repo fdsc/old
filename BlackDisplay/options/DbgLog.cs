@@ -160,7 +160,7 @@ namespace options
 
         public static StackFrame[] getStackFrames()
         {
-            var stackTrace = new StackTrace(Thread.CurrentThread, true);
+            var stackTrace = new StackTrace(true);
             return stackTrace.GetFrames();
         }
 

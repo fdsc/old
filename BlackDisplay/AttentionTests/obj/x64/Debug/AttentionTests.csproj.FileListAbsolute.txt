@@ -1,0 +1,17 @@
+C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\AttentionTests.dll
+C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\AttentionTests.pdb
+C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\options.dll
+C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\VinPlaning.dll
+C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\keccak.dll
+C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\options.pdb
+C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\VinPlaning.pdb
+C:\dev\old\old\BlackDisplay\AttentionTests\bin\x64\Debug\keccak.pdb
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.csprojAssemblyReference.cache
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.Attention2Number.resources
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.Attention2Number_Velocity.resources
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.RedBlack.resources
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.csproj.GenerateResource.cache
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.csproj.CopyComplete
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.dll
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Debug\AttentionTests.pdb

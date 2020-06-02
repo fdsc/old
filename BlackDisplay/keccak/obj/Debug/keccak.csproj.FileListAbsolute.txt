@@ -1,0 +1,5 @@
+C:\dev\old\old\build\keccak\bin\Debug\keccak.dll
+C:\dev\old\old\build\keccak\bin\Debug\keccak.pdb
+C:\dev\old\old\BlackDisplay\keccak\obj\Debug\keccak.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\keccak\obj\Debug\keccak.dll
+C:\dev\old\old\BlackDisplay\keccak\obj\Debug\keccak.pdb

@@ -1,0 +1,11 @@
+C:\dev\old\old\build\AttentionTest\bin\Debug\AttentionTests.dll
+C:\dev\old\old\build\AttentionTest\bin\Debug\AttentionTests.pdb
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.csprojAssemblyReference.cache
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.Attention2Number.resources
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.Attention2Number_Velocity.resources
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.RedBlack.resources
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.csproj.GenerateResource.cache
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.csproj.CoreCompileInputs.cache
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.csproj.CopyComplete
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.dll
+C:\dev\old\old\BlackDisplay\AttentionTests\obj\Debug\AttentionTests.pdb
