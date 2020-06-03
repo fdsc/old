@@ -36,7 +36,7 @@ namespace BlackDisplay
 
         public static int WinVersion = GetVersion() & 0xFF;
 
-        static public string version = "20170415";
+        static public string version = "20200603";
 
         public readonly static string MainMutexName; // = "relaxtime.8vs.ru|" + BitConverter.ToString(System.Text.Encoding.Unicode.GetBytes(Application.StartupPath)).Replace("-", "");
 

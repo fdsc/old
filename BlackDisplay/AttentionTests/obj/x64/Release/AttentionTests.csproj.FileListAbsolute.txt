@@ -11,3 +11,14 @@ C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.csproj
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.dll
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.pdb
+C:\dev\old2\old\build\AttentionTests.dll
+C:\dev\old2\old\build\AttentionTests.pdb
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.csprojAssemblyReference.cache
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.Attention2Number.resources
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.Attention2Number_Velocity.resources
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.RedBlack.resources
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.csproj.GenerateResource.cache
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.csproj.CoreCompileInputs.cache
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.csproj.CopyComplete
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.dll
+C:\dev\old2\old\BlackDisplay\AttentionTests\obj\x64\Release\AttentionTests.pdb

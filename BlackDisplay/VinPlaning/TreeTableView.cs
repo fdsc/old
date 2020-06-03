@@ -31,8 +31,8 @@ namespace VinPlaning
             this.vwb = vwb;
             this.g   = g;
             return;
-            drawCellsLines();
-            drawCellsContent();
+            /*drawCellsLines();
+            drawCellsContent();*/
         }
 
         protected Font tableFont = new Font("Courier New", 12, FontStyle.Regular);

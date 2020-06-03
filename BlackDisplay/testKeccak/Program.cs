@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using keccak;
 using System.Threading;
+using System.Diagnostics;
 
 namespace testKeccak
 {
@@ -635,7 +636,10 @@ namespace testKeccak
             long c = SHA3.getHashCountForMultiHash();
             Console.WriteLine("getHashCountForMultiHash return " + c);
             if (c < 4096)
+            {
                 Interlocked.Increment(ref errorflag);
+                Console.WriteLine("error: getHashCountForMultiHash is slow");
+            }
 
 
 
@@ -1969,6 +1973,9 @@ namespace testKeccak
                     errorflag += BytesBuilder.Compare(file_getMACHashMod, crypted_getMACHashMod) ? 0 :   return1("crypted incorrect: getMACHashMod");
                     errorflag += BytesBuilder.Compare(file_getDerivatoKey, crypted_getDerivatoKey) ? 0 :   return1("crypted incorrect: getDerivatoKey");
                     errorflag += BytesBuilder.Compare(file_getMultiHash40, crypted_getMultiHash40) ? 0 :   return1("crypted incorrect: getMultiHash40");
+
+                    // Из-за того, что файл ShortMsgKAT_224.txt используется в двоичном виде, его нужно брать как двоичный, без преобразования, которое делает git
+                    // !!!!!!!!!! git config --global core.autocrlf false
 
                     /*
                     if (ef != errorflag)
