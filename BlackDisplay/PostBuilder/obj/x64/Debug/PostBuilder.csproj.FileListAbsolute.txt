@@ -9,3 +9,4 @@ C:\dev\old\old\build\PostBuilder.exe
 C:\dev\old\old\BlackDisplay\PostBuilder\obj\x64\Debug\PostBuilder.csproj.CoreCompileInputs.cache
 C:\dev\old\old\BlackDisplay\PostBuilder\obj\x64\Debug\PostBuilder.exe
 C:\dev\old\old\BlackDisplay\PostBuilder\obj\x64\Debug\PostBuilder.pdb
+C:\dev\old\old\build\PostBuilder.pdb

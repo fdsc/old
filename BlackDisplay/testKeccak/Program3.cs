@@ -64,7 +64,7 @@ namespace testKeccak
 
             // var pc = 0;
             //var sha2 = new SHA3(32);
-            byte[] r;
+            // byte[] r;
 
             List<byte[]> keys = new List<byte[]>();
             keys.Add(new byte[144]);
