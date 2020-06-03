@@ -9,9 +9,9 @@ C:\dev\old\old\BlackDisplay\test\bin\x64\Release\options.pdb
 C:\dev\old\old\BlackDisplay\test\bin\x64\Release\VinPlaning.pdb
 C:\dev\old\old\build\test.exe.config
 C:\dev\old\old\build\test.exe
+C:\dev\old\old\build\test.pdb
 C:\dev\old\old\BlackDisplay\test\obj\x64\Release\test.csprojAssemblyReference.cache
 C:\dev\old\old\BlackDisplay\test\obj\x64\Release\test.csproj.CoreCompileInputs.cache
 C:\dev\old\old\BlackDisplay\test\obj\x64\Release\test.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\test\obj\x64\Release\test.exe
 C:\dev\old\old\BlackDisplay\test\obj\x64\Release\test.pdb
-C:\dev\old\old\build\test.pdb

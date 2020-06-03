@@ -1,8 +1,7 @@
-02.06.2020 19:32:31
+03.06.2020 14:12:56
 C:\dev\old\old\BlackDisplay\
 C:\dev\old\old\BlackDisplay\bin\updatorCompile\
 E:\works\programming\IT_helpers\BlackDisplay
 args ended
 
 z:/key.pfx not exists
-General exception Не удается найти указанный файл

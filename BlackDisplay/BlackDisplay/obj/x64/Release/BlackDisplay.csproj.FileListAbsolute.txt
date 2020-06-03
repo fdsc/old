@@ -7,6 +7,7 @@ C:\dev\old\old\build\Resources\siren.wav
 C:\dev\old\old\build\Resources\sirenimp.wav
 C:\dev\old\old\build\BlackDisplay.exe.config
 C:\dev\old\old\build\BlackDisplay.exe
+C:\dev\old\old\build\BlackDisplay.pdb
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Release\BlackDisplay.csprojAssemblyReference.cache
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Release\BlackDisplay.Ask.resources
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Release\BlackDisplay.DataSanitizationProgressForm.resources
@@ -30,4 +31,3 @@ C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Release\BlackDisplay.csproj.Cor
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Release\BlackDisplay.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Release\BlackDisplay.exe
 C:\dev\old\old\BlackDisplay\blackDisplay\obj\x64\Release\BlackDisplay.pdb
-C:\dev\old\old\build\BlackDisplay.pdb

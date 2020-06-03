@@ -1,5 +1,6 @@
 C:\dev\old\old\build\keccak.dll
 C:\dev\old\old\build\keccak.pdb
+C:\dev\old\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.csprojAssemblyReference.cache
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.csproj.CoreCompileInputs.cache
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.dll
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.pdb

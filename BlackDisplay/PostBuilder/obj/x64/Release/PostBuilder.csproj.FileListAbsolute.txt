@@ -3,7 +3,7 @@ C:\dev\old\old\BlackDisplay\build\PostBuilder.exe
 C:\dev\old\old\BlackDisplay\build\PostBuilder.pdb
 C:\dev\old\old\build\PostBuilder.exe.config
 C:\dev\old\old\build\PostBuilder.exe
+C:\dev\old\old\build\PostBuilder.pdb
 C:\dev\old\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.csproj.CoreCompileInputs.cache
 C:\dev\old\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.exe
 C:\dev\old\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.pdb
-C:\dev\old\old\build\PostBuilder.pdb
