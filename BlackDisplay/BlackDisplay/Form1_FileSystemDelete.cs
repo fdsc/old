@@ -94,22 +94,33 @@ namespace BlackDisplay
 
         private static void удалитьДиректориюПодметод(string dirName, DoDataSanitizationObject ddso, int regime, bool endOfProcess, int onlyFirstBytes = -1)
         {
+            var sha = new SHA3(1024);
+            var initVector = sha.CreateInitVector(0, 512, regime);
+            sha.getDuplex(initVector);
+            BytesBuilder.ToNull(initVector);
+
+            AddFilesToList:
+
             var e = Directory.EnumerateFiles(dirName, "*", SearchOption.AllDirectories);
             var d = Directory.EnumerateDirectories(dirName, "*", SearchOption.AllDirectories);
             var list1 = new List<FileInfo>();
             var list2 = new List<string>(d);
             float FSize = 0, FSizeF = 0;
-            var sha = new SHA3(1024);
-            var initVector = sha.CreateInitVector(0, 512, regime);
-            sha.getDuplex(initVector);
-            BytesBuilder.ToNull(initVector);
             bool notSuccess = false;
 
             foreach (var f in d)
             {
-                var fd = new DirectoryInfo(f);
-                if (fd.Attributes != FileAttributes.Directory)
-                    fd.Attributes = FileAttributes.Directory;
+                try
+                {
+                    var fd = new DirectoryInfo(f);
+                    if (fd.Attributes != FileAttributes.Directory)
+                        fd.Attributes = FileAttributes.Directory;
+                }
+                catch (Exception ex)
+                {
+                    notSuccess = true;
+                    ddso.errorMessage += "\r\n" + "error for directory (add in list) " + f + "\r\n" + ex.Message;
+                }
             }
 
             var filesCount = 0;
@@ -118,16 +129,42 @@ namespace BlackDisplay
                 filesCount++;
 
                 FileInfo fi;
-                lock (list1)
+                try
                 {
-                    fi = new FileInfo(f);
-                    FSize += fi.Length;
-                    FSizeF += fi.Length;
+                    lock (list1)
+                    {
+                        fi = new FileInfo(f);
+                        FSize += fi.Length;
+                        FSizeF += fi.Length;
 
-                    list1.Add(fi);
+                        list1.Add(fi);
+                    }
+
+                    sha.getDuplex(new ASCIIEncoding().GetBytes(fi.FullName), true);
                 }
+                catch (PathTooLongException)
+                {
+                    // Бывает такое, что путь ровно 260 символов. Но .NET придирается, что это уже слишком длинно. Приходится извращаться.
+                    // Пытаемся переименовать директорию, в которой содержится файл
+                    var lp  = f.LastIndexOf(Path.DirectorySeparatorChar);
+                    var dir = f.Substring(0, lp);
+                    lp  = dir.LastIndexOf(Path.DirectorySeparatorChar);
+                    var fn  = dir.Substring(lp+1);
+                    var dir2 = dir.Substring(0, lp);
 
-                sha.getDuplex(new ASCIIEncoding().GetBytes(fi.FullName), true);
+                    var di  = new DriveInfo(Path.GetPathRoot(dir));
+                    var fl = fn.Length - 1;
+
+                    var newf = NewRandomFileName(dir, sha, dir2, ref fl, di, 0, 0);
+                    Directory.Move(dir, newf);
+
+                    goto AddFilesToList;
+                }
+                catch (Exception ex)
+                {
+                    notSuccess = true;
+                    ddso.errorMessage += "\r\n" + "error for file (add in list) " + f + "\r\n" + ex.Message;
+                }
             }
 
             // Почему-то диск работает на полную катушку именно при 4-х
@@ -174,7 +211,7 @@ namespace BlackDisplay
                             }
                             catch (Exception ex)
                             {
-                                cddso.errorMessage += "\r\n" + ex.Message;
+                                cddso.errorMessage += "\r\n" + "error for file " + fi.FullName + "\r\n" + ex.Message;
                             }
                             finally
                             {
@@ -184,7 +221,7 @@ namespace BlackDisplay
                                         notSuccess = true;
 
                                     if (!String.IsNullOrEmpty(cddso.errorMessage))
-                                        ddso.errorMessage += "\r\n" + cddso.errorMessage;
+                                        ddso.errorMessage += "\r\n" + "error for file " + fi.FullName + "\r\n" + cddso.errorMessage;
 
                                     if (!cddso.doTerminate)
                                         FSize -= fi.Length;
@@ -227,7 +264,7 @@ namespace BlackDisplay
 
             list2.Sort();
             list2.Reverse();
-            foreach (var f in list2)
+            foreach (var directoryName in list2)
             {
                 if (ddso.doTerminate)
                 {
@@ -238,12 +275,12 @@ namespace BlackDisplay
                 try
                 {
                     if (onlyFirstBytes <= 0)
-                    RenameDirectory(ddso, regime, sha, f);
+                    RenameDirectory(ddso, regime, sha, directoryName);
                 }
                 catch (Exception ex)
                 {
                     notSuccess = true;
-                    ddso.errorMessage += "\r\n" + ex.Message;
+                    ddso.errorMessage += "\r\n" + "error for directory " + directoryName + "\r\n" + ex.Message;
                 }
             }
 
@@ -253,9 +290,9 @@ namespace BlackDisplay
             ddso.success = !notSuccess;
         }
 
-        private static void RenameDirectory(DoDataSanitizationObject ddso, int regime, SHA3 sha, string f)
+        private static void RenameDirectory(DoDataSanitizationObject ddso, int regime, SHA3 sha, string dirName)
         {
-            var fd = new DirectoryInfo(f);/*
+            var fd = new DirectoryInfo(dirName);/*
                     if (fd.Attributes != FileAttributes.Directory)
                         fd.Attributes = FileAttributes.Directory;
                     */
@@ -934,6 +971,17 @@ namespace BlackDisplay
             }
         }
 
+        /// <summary>
+        /// Генерирует новое случайное имя файла. Если файл невозможно переименовать, то генерирует случайное имя длиннее того, что задано в fl
+        /// </summary>
+        /// <param name="FileName">Исходное полное имя файла</param>
+        /// <param name="sha">Инициализированный объект SHA3 для генерации случайной последовательности</param>
+        /// <param name="dir">Имя директории</param>
+        /// <param name="fl">Длина генерируемого имени файла</param>
+        /// <param name="di">Информация о логическом диске</param>
+        /// <param name="k">Параметр k. Если k и i равны нулю, то идет генерация имени файла в ASCII формате. В настоящий момент времени всегда используется ASCII формат</param>
+        /// <param name="i"></param>
+        /// <returns></returns>
         private static string NewRandomFileName(string FileName, SHA3 sha, string dir, ref int fl, DriveInfo di, int k, int i)
         {
             string renamed;

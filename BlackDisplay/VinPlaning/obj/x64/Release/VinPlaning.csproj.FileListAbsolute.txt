@@ -20,3 +20,13 @@ C:\dev\old2\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csproj.CoreCo
 C:\dev\old2\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csproj.CopyComplete
 C:\dev\old2\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.dll
 C:\dev\old2\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.pdb
+C:\dev\old\build\VinPlaning.dll
+C:\dev\old\build\VinPlaning.pdb
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csprojAssemblyReference.cache
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.Properties.Resources.resources
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.TreeTableView.resources
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csproj.GenerateResource.cache
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csproj.CoreCompileInputs.cache
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.csproj.CopyComplete
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.dll
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\Release\VinPlaning.pdb
