@@ -1,7 +1,0 @@
-03.06.2020 15:38:41
-C:\dev\old2\old\BlackDisplay\
-C:\dev\old2\old\BlackDisplay\bin\updatorCompile\
-E:\works\programming\IT_helpers\BlackDisplay
-args ended
-
-z:/key.pfx not exists
