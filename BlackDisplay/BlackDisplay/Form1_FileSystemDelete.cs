@@ -15,6 +15,7 @@ using Tests;
 using options;
 using keccak;
 using System.Threading;
+using System.Collections.Concurrent;
 
 namespace BlackDisplay
 {
@@ -1711,18 +1712,26 @@ namespace BlackDisplay
             int block = (int) (lpSectorsPerCluster * lpBytesPerSector);
             var nullb = sha.getGamma(4*1024*1024 < block ? (long) block : 4*1024*1024);
 
+            ConcurrentQueue<byte[]> gamma = new ConcurrentQueue<byte[]>();
+            gamma.Enqueue(nullb);
+
             bool ended = false;
             var T = new Thread(new ThreadStart
                     (delegate
                     {
-                        int ti = 0;
+                        //int ti = 0;
                         while (!ended)
                         {
                             var t = sha.getGamma(block);
-                            BytesBuilder.CopyTo(t, nullb, ti);
+                            gamma.Enqueue(t);
+                            // BytesBuilder.CopyTo(t, nullb, ti);
+                            /*
                             ti += block;
                             if (ti > nullb.Length)
-                                ti = 0;
+                                ti = 0;*/
+
+                            while (gamma.Count > 16)
+                                Thread.Sleep(50);
                         }
                     })
                 );
@@ -1743,11 +1752,18 @@ namespace BlackDisplay
             long l = 0;
             int FileNameL = 183;
             int errCount  = 0;
+            DateTime dt1 = default, dt2;
             for (long length = 0; /*NumberOfBytesWritten > 0*/ true; )
             {
                 if (sleepForDiskSpaceClean > 0)
-                    Thread.Sleep(sleepForDiskSpaceClean);
+                {
+                    dt1 = DateTime.Now;
+                    // Thread.Sleep(sleepForDiskSpaceClean);
+                }
 
+
+                while (!gamma.TryDequeue(out nullb))
+                    Thread.Sleep(50);
 
                 int bin; string FileName;
                 if (di.DriveFormat.StartsWith("FAT"))
@@ -1925,6 +1941,19 @@ namespace BlackDisplay
                 finally
                 {
                     CloseHandle(bin);
+
+                    if (sleepForDiskSpaceClean > 0)
+                    {
+                        dt2 = DateTime.Now;
+                        var span = dt2 - dt1;
+                        var tm = (int) (span.TotalMilliseconds * 0.5);
+                        if (tm < 50)
+                            tm = 50;
+                        if (tm > 500)
+                            tm = 500;
+
+                        Thread.Sleep(tm);
+                    }
                 }
             }
 

@@ -24,14 +24,3 @@ C:\dev\old2\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.csproj.Generate
 C:\dev\old2\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.csproj.CoreCompileInputs.cache
 C:\dev\old2\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.exe
 C:\dev\old2\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.pdb
-C:\dev\old\build\updt2013.pub
-C:\dev\old\build\vinpacker.exe.config
-C:\dev\old\build\vinpacker.exe
-C:\dev\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.csprojAssemblyReference.cache
-C:\dev\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.Form1.resources
-C:\dev\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.Properties.Resources.resources
-C:\dev\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.csproj.GenerateResource.cache
-C:\dev\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.csproj.CoreCompileInputs.cache
-C:\dev\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.exe
-C:\dev\old\BlackDisplay\vinpacker\obj\x64\Release\vinpacker.pdb
-C:\dev\old\build\vinpacker.pdb

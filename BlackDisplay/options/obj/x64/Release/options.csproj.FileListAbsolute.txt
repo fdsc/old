@@ -16,3 +16,4 @@ C:\dev\old\build\options.pdb
 C:\dev\old\BlackDisplay\options\obj\x64\Release\options.csproj.CoreCompileInputs.cache
 C:\dev\old\BlackDisplay\options\obj\x64\Release\options.dll
 C:\dev\old\BlackDisplay\options\obj\x64\Release\options.pdb
+C:\dev\old\BlackDisplay\options\obj\x64\Release\options.csprojAssemblyReference.cache
