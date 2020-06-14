@@ -1709,8 +1709,9 @@ namespace BlackDisplay
             uint lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, lpTotalNumberOfClusters;
             GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
 
-            int block = (int) (lpSectorsPerCluster * lpBytesPerSector);
-            var nullb = sha.getGamma(4*1024*1024 < block ? (long) block : 4*1024*1024);
+            int  block = (int) (lpSectorsPerCluster * lpBytesPerSector);
+            long gSize = 4*1024*1024 < block ? (long) block : 4*1024*1024;
+            var  nullb = sha.getGamma(gSize);
 
             ConcurrentQueue<byte[]> gamma = new ConcurrentQueue<byte[]>();
             gamma.Enqueue(nullb);
@@ -1722,7 +1723,7 @@ namespace BlackDisplay
                         //int ti = 0;
                         while (!ended)
                         {
-                            var t = sha.getGamma(block);
+                            var t = sha.getGamma(gSize);
                             gamma.Enqueue(t);
                             // BytesBuilder.CopyTo(t, nullb, ti);
                             /*
@@ -1946,7 +1947,7 @@ namespace BlackDisplay
                     {
                         dt2 = DateTime.Now;
                         var span = dt2 - dt1;
-                        var tm = (int) (span.TotalMilliseconds * 0.5);
+                        var tm = (int) (span.TotalMilliseconds * 1.0);
                         if (tm < 50)
                             tm = 50;
                         if (tm > 500)
