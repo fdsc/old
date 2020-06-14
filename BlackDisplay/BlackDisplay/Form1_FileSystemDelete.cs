@@ -1603,17 +1603,26 @@ namespace BlackDisplay
             cnt.show();
         }
 
-        
+        static int sleepForDiskSpaceClean = 100;
         private void создатьБольшойФайлОдинПроходToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            sleepForDiskSpaceClean = 0;
+            СоздатьБольшойФайлДиалог(2);
+        }
+        
+        private void создатьМногоФайловзадержкаБезГарантийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sleepForDiskSpaceClean = 500;
             СоздатьБольшойФайлДиалог(2);
         }
 
+        // Выклюячено
         private void создатьБольшойФайлТриПроходаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             СоздатьБольшойФайлДиалог(1);
         }
 
+        // Выклюячено
         private void создатьНаДискеБольшойФайлToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             СоздатьБольшойФайлДиалог(0);
@@ -1736,6 +1745,10 @@ namespace BlackDisplay
             int errCount  = 0;
             for (long length = 0; /*NumberOfBytesWritten > 0*/ true; )
             {
+                if (sleepForDiskSpaceClean > 0)
+                    Thread.Sleep(sleepForDiskSpaceClean);
+
+
                 int bin; string FileName;
                 if (di.DriveFormat.StartsWith("FAT"))
                 {
