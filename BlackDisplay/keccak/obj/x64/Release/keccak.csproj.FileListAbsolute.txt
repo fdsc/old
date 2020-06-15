@@ -15,4 +15,3 @@ C:\dev\old\build\keccak.pdb
 C:\dev\old\BlackDisplay\keccak\obj\x64\Release\keccak.csproj.CoreCompileInputs.cache
 C:\dev\old\BlackDisplay\keccak\obj\x64\Release\keccak.dll
 C:\dev\old\BlackDisplay\keccak\obj\x64\Release\keccak.pdb
-C:\dev\old\BlackDisplay\keccak\obj\x64\Release\keccak.csprojAssemblyReference.cache

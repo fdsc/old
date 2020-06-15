@@ -856,7 +856,7 @@ namespace BlackDisplay
                         Thread.Sleep(50);
 
                     if (fi.Length >= block)
-                        bin = CreateFileW(fnb, 0x40000000, 0, 0, 3, 0x80 | 0x20000000 | 0x80000000, 0); // GENERIC_WRITE, NO_SHARE, OPEN_EXISTING, FILE_FLAG_NO_BUFFERING FILE_FLAG_WRITE_THROUGH
+                        bin = CreateFileW(fnb, 0x40000000, 0, 0, 3, 0x80/* | 0x20000000 | 0x80000000*/, 0); // GENERIC_WRITE, NO_SHARE, OPEN_EXISTING, FILE_FLAG_NO_BUFFERING FILE_FLAG_WRITE_THROUGH
                     else
                         bin = CreateFileW(fnb, 0x40000000, 0, 0, 3, 0x80, 0); // GENERIC_WRITE, NO_SHARE, OPEN_EXISTING
                 }
@@ -1033,16 +1033,16 @@ namespace BlackDisplay
             int NumberOfBytesWritten = 0; long tmp = 0;
             long length = 0;
 
-            
+
             // Питер Гутман
-            var bytes = new byte[][] {  new byte[] {}, new byte[] {}, new byte[] {}, new byte[] {}, 
+            var bytes = new byte[][] {  new byte[] {}, new byte[] {}, new byte[] {}, new byte[] {},
                                         new byte[] { 0x55 }, new byte[] { 0xAA }, new byte[] { 0x92, 0x49, 0x24 }, new byte[] { 0x49, 0x24, 0x92 }, new byte[] { 0x24, 0x92, 0x49 },
                                         new byte[] { 0x00 }, new byte[] { 0x11 }, new byte[] { 0x22 }, new byte[] { 0x33 }, new byte[] { 0x44 },
                                         new byte[] { 0x55 }, new byte[] { 0x66 }, new byte[] { 0x77 }, new byte[] { 0x88 }, new byte[] { 0x99 },
                                         new byte[] { 0xAA }, new byte[] { 0xBB }, new byte[] { 0xCC }, new byte[] { 0xDD }, new byte[] { 0xEE }, new byte[] { 0xFF },
                                         new byte[] { 0x92, 0x49, 0x24 }, new byte[] { 0x49, 0x24, 0x92 }, new byte[] { 0x24, 0x92, 0x49 },
                                         new byte[] { 0x6D, 0xB6, 0xDB }, new byte[] { 0xB6, 0xDB, 0x6D }, new byte[] { 0xDB, 0x6D, 0xB6 },
-                                        new byte[] {}, new byte[] {}, new byte[] {}, new byte[] {}, 
+                                        new byte[] {}, new byte[] {}, new byte[] {}, new byte[] {},
                                     };
 
             ddso.stage = 0;
@@ -1050,35 +1050,73 @@ namespace BlackDisplay
             var t1 = DateTime.Now;
             byte[] nullb = null;
 
-            if (fl <= block)
-                nullb = sha.getGamma(fl);
-            else
-                nullb = sha.getGamma(block);
-
             var ts1 = DateTime.Now.Subtract(t1);
 
             t1 = DateTime.Now;
             // Простая перезапись одинаковым случайным блоком всего файла
             SetFilePointerEx(bin, 0, out tmp, 0);
-            
+
+            long getNewBlockSize(long fileLength, int blockSize)
+            {
+                long result = fileLength;
+
+                long bs = blockSize << 10;
+                if (result >= bs)
+                {
+                    result = bs;
+                }
+
+                return result;
+            };
+
+            long gSize = getNewBlockSize(fl, block);
+
+            long bytesWriten = 0;
+            bool success = true;
             for (length = 0; length < fl; length += nullb.Length)
             {
+                nullb = sha.getGamma(getNewBlockSize(fl - length, block));
+
                 WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
-                ddso.prepercent = (float) length * 100f / fl;
+                bytesWriten += NumberOfBytesWritten;
+                if (NumberOfBytesWritten != nullb.Length)
+                {
+                    var t = GetLastError();
+                    ddso.errorMessage += "\r\nGetLastError: " + t;
+                }
+
+                FlushFileBuffers(bin);
+
+                ddso.prepercent = (float)length * 100f / fl;
                 if (ddso.doTerminate || (ddso.parent != null && ddso.parent.doTerminate))
                     break;
             }
-            FlushFileBuffers(bin);
+
+            var flb = fl % block;
+            if (bytesWriten >= fl)
+            if (fl > block && fl % block != 0)
+            {
+                nullb = sha.getGamma(block - flb);
+                WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
+                bytesWriten += NumberOfBytesWritten;
+                FlushFileBuffers(bin);
+
+                fl += block - flb;
+            }
+
             ddso.prepercent = 100f;
+
+            if (bytesWriten < fl)
+                success = false;
 
             if (onlySimpleDestruction == 2)
             {
-                ddso.successd = true;
+                ddso.successd = success;
                 return;
             }
 
-            var ts2   = DateTime.Now.Subtract(t1);
-            float scale = (float) (ts1.TotalSeconds * fl / block / ts2.TotalSeconds) + 1f;
+            var ts2 = DateTime.Now.Subtract(t1);
+            float scale = (float)(ts1.TotalSeconds * fl / block / ts2.TotalSeconds) + 1f;
             if (scale < 1)
                 scale = 1;
 
@@ -1098,50 +1136,67 @@ namespace BlackDisplay
 
                 cntts += 2;
             }
-            while (DateTime.Now.Subtract(t1).Ticks < 10*10000); // 10 мс
-            var ts3   = DateTime.Now.Subtract(t1).TotalSeconds / (double) cntts;
+            while (DateTime.Now.Subtract(t1).Ticks < 10 * 10000); // 10 мс
+            var ts3 = DateTime.Now.Subtract(t1).TotalSeconds / (double)cntts;
 
-            var oneMx = ts3/ts2.TotalSeconds*((double)fl/(double)nullb.Length);
+            var oneMx = ts3 / ts2.TotalSeconds * ((double)fl / (double)nullb.Length);
             var sc = 1.0;
             if (fl < block)
                 sc *= 2.0;
             ddso.scale = scale;
-            var MX = 4 + bytes.Length + 8*scale + maxData*scale;
+            var MX = 4 + bytes.Length + 8 * scale + maxData * scale;
             if (onlySimpleDestruction == 1)
-                MX = 4;
+                MX = 5;
             else
             if (onlySimpleDestruction == 3)
-                MX = 4+8 + (float)(sc*ts3*((float)fl/(float)nullb.Length)*(512)/ts2.TotalSeconds);
+                MX = 5 + 8 + (float)(sc * ts3 * ((float)fl / (float)nullb.Length) * (512) / ts2.TotalSeconds);
             else
             if (onlySimpleDestruction == 4)
                 if (ddso.complex)
-                    MX = 4 + 8 + (float)(sc*ts3*((float)fl/(float)nullb.Length)*ddso.countToWrite/ts2.TotalSeconds);
+                    MX = 5 + 8 + (float)(sc * ts3 * ((float)fl / (float)nullb.Length) * ddso.countToWrite / ts2.TotalSeconds);
                 else
-                    MX = 4 + 8 + ddso.countToWrite;
+                    MX = 5 + 8 + ddso.countToWrite;
 
 
             ddso.MX = MX;
 
             if (onlySimpleDestruction == 3)
-                ddso.ts = (float) (ts2.TotalSeconds*MX);
+                ddso.ts = (float)(ts2.TotalSeconds * MX);
             else
             if (onlySimpleDestruction == 4)
-                ddso.ts = (float) (ts2.TotalSeconds*MX);
+                ddso.ts = (float)(ts2.TotalSeconds * MX);
             else
-                ddso.ts = (float) (ts2.TotalSeconds*MX);
+                ddso.ts = (float)(ts2.TotalSeconds * MX);
+
+            nullb = sha.getGamma(getNewBlockSize(fl, block));
+
+            var st = ddso.stage;
+            SetFilePointerEx(bin, 0, out tmp, 0);
+
+            // Перезапись файла одинаковым шаблоном
+            for (length = 0; length < fl; length += nullb.Length)
+            {
+                WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
+                ddso.stage = (float)(st + (float)length / fl);
+                if (ddso.doTerminate || (ddso.parent != null && ddso.parent.doTerminate))
+                    break;
+            }
+            FlushFileBuffers(bin);
+            ddso.stage = st + 1;
 
             // Перезапись полудополненными значениями
             for (int i = 0; i < nullb.Length; i++)
             {
                 nullb[i] ^= 0x55;
             }
-            var st = ddso.stage;
-            SetFilePointerEx(bin, 0, out tmp, 0);
             
+            st = ddso.stage;
+            SetFilePointerEx(bin, 0, out tmp, 0);
+
             for (length = 0; length < fl; length += nullb.Length)
             {
                 WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
-                ddso.stage = (float) (st + (float) length / fl);
+                ddso.stage = (float)(st + (float)length / fl);
                 if (ddso.doTerminate || (ddso.parent != null && ddso.parent.doTerminate))
                     break;
             }
@@ -1153,13 +1208,17 @@ namespace BlackDisplay
             {
                 nullb[i] ^= 0xFF;
             }
-            st = ddso.stage;
+
             SetFilePointerEx(bin, 0, out tmp, 0);
-            
+            st = ddso.stage;
+
+            // Здесь нет
+            // nullb = sha.getGamma(nullb.Length);
+            // т.к. это простая перезапись шаблонов всего файла
             for (length = 0; length < fl; length += nullb.Length)
             {
                 WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
-                ddso.stage = (float) (st + (float) length / fl);
+                ddso.stage = (float)(st + (float)length / fl);
                 if (ddso.doTerminate || (ddso.parent != null && ddso.parent.doTerminate))
                     break;
             }
@@ -1173,7 +1232,7 @@ namespace BlackDisplay
             for (length = 0; length < fl; length += nullb.Length)
             {
                 WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
-                ddso.stage = (float) (st + (float) length / fl);
+                ddso.stage = (float)(st + (float)length / fl);
                 if (ddso.doTerminate || (ddso.parent != null && ddso.parent.doTerminate))
                     break;
             }
@@ -1190,7 +1249,7 @@ namespace BlackDisplay
             for (length = 0; length < fl; length += nullb.Length)
             {
                 WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
-                ddso.stage = (float) (st + (float) length / fl);
+                ddso.stage = (float)(st + (float)length / fl);
                 if (ddso.doTerminate || (ddso.parent != null && ddso.parent.doTerminate))
                     break;
             }
@@ -1216,7 +1275,7 @@ namespace BlackDisplay
             }
             else
             {
-                var bytes3 = new byte[][] {  new byte[] {0x55, 0xAA, 0x55, 0xAA, 0xAA, 0x55, 0xAA, 0x55}, new byte[] {0xAA, 0x55, 0xAA, 0x55, 0x55, 0xAA, 0x55, 0xAA}};
+                var bytes3 = new byte[][] { new byte[] { 0x55, 0xAA, 0x55, 0xAA, 0xAA, 0x55, 0xAA, 0x55 }, new byte[] { 0xAA, 0x55, 0xAA, 0x55, 0x55, 0xAA, 0x55, 0xAA } };
                 for (int i = 0; i < 4; i++) // 4 по два раза
                 {
                     SimpleDataSanitization(di, ddso, sha, fl, bin, ref NumberOfBytesWritten, ref tmp, ref length, bytes3);
@@ -1396,9 +1455,9 @@ namespace BlackDisplay
         public static extern Int32 FlushFileBuffers(Int32 hFile);
 
         [DllImport("Kernel32.dll")]
-        public static unsafe extern Int32 WriteFile(Int32 hFile, byte[] buffer, int nNumberOfBytesToWrite, out int NumberOfBytesWritten, int lpOverlapped);
+        public static unsafe extern Int32 WriteFile(Int32 hFile, byte[] buffer, int nNumberOfBytesToWrite, out Int32 NumberOfBytesWritten, int lpOverlapped);
         [DllImport("Kernel32.dll")]
-        public static unsafe extern Int32 WriteFile(Int32 hFile, byte* buffer, int nNumberOfBytesToWrite, out int NumberOfBytesWritten, int lpOverlapped);
+        public static unsafe extern Int32 WriteFile(Int32 hFile, byte* buffer, int nNumberOfBytesToWrite, out Int32 NumberOfBytesWritten, int lpOverlapped);
 
         [DllImport("Kernel32.dll")]
         public static extern Int32 GetDiskFreeSpaceA(string LpRootPathName , out UInt32 lpSectorsPerCluster, out UInt32 lpBytesPerSector, out UInt32 lpNumberOfFreeClusters,
