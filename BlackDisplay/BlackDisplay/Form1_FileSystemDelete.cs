@@ -76,8 +76,8 @@ namespace BlackDisplay
                     ddso.preStepPassed = true;
                     ddso.prepercent = 100f;
 
-                    if (regime != 2)
-                        удалитьДиректориюПодметод(dirName, ddso, regime, true);
+                    //if (regime != 2)
+                    удалитьДиректориюПодметод(dirName, ddso, regime, true);
                 }
             }
             catch (Exception e)
