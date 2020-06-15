@@ -69,13 +69,16 @@ namespace BlackDisplay
                 }
                 flag = ddso.success;
 
-                ddso.success = false;
-                ddso.doNotDelete = dnd;
-                ddso.preStepPassed = true;
-                ddso.prepercent = 100f;
+                if (ddso.success && regime != 2)
+                {
+                    ddso.success = false;
+                    ddso.doNotDelete = dnd;
+                    ddso.preStepPassed = true;
+                    ddso.prepercent = 100f;
 
-                if (regime != 2)
-                    удалитьДиректориюПодметод(dirName, ddso, regime, true);
+                    if (regime != 2)
+                        удалитьДиректориюПодметод(dirName, ddso, regime, true);
+                }
             }
             catch (Exception e)
             {
@@ -1716,6 +1719,8 @@ namespace BlackDisplay
             ConcurrentQueue<byte[]> gamma = new ConcurrentQueue<byte[]>();
             gamma.Enqueue(nullb);
 
+            int bytesToWrite = nullb.Length;
+
             bool ended = false;
             var T = new Thread(new ThreadStart
                     (delegate
@@ -1723,7 +1728,11 @@ namespace BlackDisplay
                         //int ti = 0;
                         while (!ended)
                         {
-                            var t = sha.getGamma(gSize);
+                            var gs = gSize;
+                            if (bytesToWrite <= block)
+                                gs = block;
+
+                            var t = sha.getGamma(gs);
                             gamma.Enqueue(t);
                             // BytesBuilder.CopyTo(t, nullb, ti);
                             /*
@@ -1745,7 +1754,6 @@ namespace BlackDisplay
             ddso.MX = fl + 1;
             var t1 = DateTime.Now;
 
-            int bytesToWrite = nullb.Length;
 
             List<string> files = new List<string>();
             var dir = SHA3.generatePwd(sha.getGamma(64), "qwertyuioplkjjhgfdsazxcvbnm0123456789.-!@#$%^&()_~+");
@@ -1756,15 +1764,14 @@ namespace BlackDisplay
             DateTime dt1 = default, dt2;
             for (long length = 0; /*NumberOfBytesWritten > 0*/ true; )
             {
+                while (!gamma.TryDequeue(out nullb))
+                    Thread.Sleep(50);
+
                 if (sleepForDiskSpaceClean > 0)
                 {
                     dt1 = DateTime.Now;
                     // Thread.Sleep(sleepForDiskSpaceClean);
                 }
-
-
-                while (!gamma.TryDequeue(out nullb))
-                    Thread.Sleep(50);
 
                 int bin; string FileName;
                 if (di.DriveFormat.StartsWith("FAT"))
@@ -1970,7 +1977,27 @@ namespace BlackDisplay
                             ddso.success = true;
                             return;
                         }
+
+                        if (sleepForDiskSpaceClean > 0)
+                        {
+                            dt1 = DateTime.Now;
+                            // Thread.Sleep(sleepForDiskSpaceClean);
+                        }
+
                         File.Delete(files[i]);
+
+                        if (sleepForDiskSpaceClean > 0)
+                        {
+                            dt2 = DateTime.Now;
+                            var span = dt2 - dt1;
+                            var tm = (int) (span.TotalMilliseconds * 1.0);
+                            if (tm < 50)
+                                tm = 50;
+                            if (tm > 500)
+                                tm = 500;
+
+                            Thread.Sleep(tm);
+                        }
                     }
                     catch
                     {}

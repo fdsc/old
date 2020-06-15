@@ -67,8 +67,7 @@ namespace BlackDisplay
         //Use this function to install a thread-specific hook.
         [DllImport("user32.dll",CharSet=CharSet.Auto,
          CallingConvention=CallingConvention.StdCall)]
-        public static extern int SetWindowsHookEx(int idHook, HookProc lpfn, 
-        IntPtr hInstance, int threadId);
+        public static extern int SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId);
 
         //This is the Import for the UnhookWindowsHookEx function.
         //Call this function to uninstall the hook.
@@ -80,8 +79,7 @@ namespace BlackDisplay
         //Use this function to pass the hook information to the next hook procedure in chain.
         [DllImport("user32.dll",CharSet=CharSet.Auto,
          CallingConvention=CallingConvention.StdCall)]
-        public static extern int CallNextHookEx(int idHook, int nCode, 
-        int wParam, IntPtr lParam);
+        public static extern int CallNextHookEx(int idHook, int nCode,  int wParam, IntPtr lParam);
 
         public static int registerHooks(bool register = true, bool forced = false)
         {
@@ -209,7 +207,7 @@ namespace BlackDisplay
         static readonly int WM_SYSKEYUP      = 0x0105;
 
         public static long  lastMouseMoveTime = 0;
-        public static POINT lastPoint = new POINT(0, 0);
+        // public static POINT lastPoint = new POINT(0, 0);
         public static int LowLevelMouseHookProc(int nCode, int wParam, IntPtr lParam)
         {
             try
@@ -218,7 +216,7 @@ namespace BlackDisplay
 
 	            if (nCode < 0)
 	            {
-		            return CallNextHookEx(hHook1, nCode, wParam, lParam);
+		            return CallNextHookEx(0, nCode, wParam, lParam);
 	            }
 	            else
 	            {
@@ -230,18 +228,23 @@ namespace BlackDisplay
                         || wParam == WM_MBUTTONUP
                         || wParam == WM_LBUTTONDBLCLK
                         || wParam == WM_RBUTTONDBLCLK
-                        || wParam == WM_MOUSEHWHEEL)
+                        || wParam == WM_MOUSEHWHEEL
+                        )
                     {
                         lastKeyDownTime = DateTime.Now.Ticks;
 
                         if (MouseHookProcEvent != null && (wParam == WM_LBUTTONUP || wParam == WM_RBUTTONUP || wParam == WM_MBUTTONUP || wParam == WM_MOUSEHWHEEL))
+                        {
                             MouseHookProcEvent(MouseHookStruct.pt.x, MouseHookStruct.pt.y, wParam);
+                        }
                     }
 
                     if (wParam == WM_MOUSEMOVE)
                     {
-                        if (Math.Abs(lastPoint.x - MouseHookStruct.pt.x) > 16 || Math.Abs(lastPoint.y - MouseHookStruct.pt.y) > 16)
+                        /*if (Math.Abs(lastPoint.x - MouseHookStruct.pt.x) > 16 || Math.Abs(lastPoint.y - MouseHookStruct.pt.y) > 16)
                             lastMouseMoveTime = DateTime.Now.Ticks;
+                            */
+                        lastMouseMoveTime = DateTime.Now.Ticks;
 
                         if (MouseHookProcEvent != null)
                             MouseHookProcEvent(MouseHookStruct.pt.x, MouseHookStruct.pt.y, wParam);
@@ -249,7 +252,7 @@ namespace BlackDisplay
 
 		            try
                     {
-                        return CallNextHookEx(hHook1, nCode, wParam, lParam);
+                        return CallNextHookEx(0, nCode, wParam, lParam);
                     }
                     catch
                     {
@@ -261,7 +264,7 @@ namespace BlackDisplay
             {
                 try
                 {
-                    return CallNextHookEx(hHook1, nCode, wParam, lParam);
+                    return CallNextHookEx(0, nCode, wParam, lParam);
                 }
                 catch
                 {
@@ -280,7 +283,7 @@ namespace BlackDisplay
 
 	            if (nCode < 0)
 	            {
-		            return CallNextHookEx(hHook2, nCode, wParam, lParam);
+		            return CallNextHookEx(0, nCode, wParam, lParam);
 	            }
 	            else
 	            {
@@ -302,14 +305,14 @@ namespace BlackDisplay
                         lastScanCode = -1;
                     }
 
-		            return CallNextHookEx(hHook2, nCode, wParam, lParam);
+		            return CallNextHookEx(0, nCode, wParam, lParam);
 	            }
             }
             catch
             {
                 try
                 {
-                    return CallNextHookEx(hHook2, nCode, wParam, lParam);
+                    return CallNextHookEx(0, nCode, wParam, lParam);
                 }
                 catch
                 {

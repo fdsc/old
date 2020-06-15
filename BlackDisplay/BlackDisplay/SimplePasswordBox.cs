@@ -514,23 +514,23 @@ namespace BlackDisplay
 
                 ThreadPool.QueueUserWorkItem
                 (
-                delegate
-                {
-                    try
+                    delegate
                     {
-                        if (!MouseHaoticProg(x, y, /*1589*/ 100 * 10000, wParam))
-                            return;
+                        try
+                        {
+                            if (!MouseHaoticProg(x, y, /*1589*/ 100 * 10000, wParam))
+                                return;
 
-                        if (!this.IsDisposed)
-                        if (this.InvokeRequired)
-                            this.Invoke(vd);
-                        else
-                            setBitsCountToBox();
+                            if (!this.IsDisposed)
+                            if (this.InvokeRequired)
+                                this.Invoke(vd);
+                            else
+                                setBitsCountToBox();
+                        }
+                        catch
+                        {
+                        }
                     }
-                    catch
-                    {
-                    }
-                }
                 );
             }
         }

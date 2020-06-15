@@ -13,3 +13,9 @@ C:\dev\old2\old\build\PostBuilder.pdb
 C:\dev\old2\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.csproj.CoreCompileInputs.cache
 C:\dev\old2\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.exe
 C:\dev\old2\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.pdb
+C:\dev\old\build\PostBuilder.exe.config
+C:\dev\old\build\PostBuilder.exe
+C:\dev\old\build\PostBuilder.pdb
+C:\dev\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.csproj.CoreCompileInputs.cache
+C:\dev\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.exe
+C:\dev\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.pdb

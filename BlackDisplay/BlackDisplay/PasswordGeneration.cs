@@ -21,6 +21,8 @@ namespace BlackDisplay
             inBox.isHaotic = true;
             inBox.isMouseAllow = MouseAllowBox.Checked;
             PwdLengthCombo.SelectedIndex = PwdLengthCombo.Items.Count - 1;
+
+            inBox.isGlobalBackground = GlobalHookPwdCheckBox.Checked;
         }
 
         public static PasswordGeneration openedPwdForm//
