@@ -173,7 +173,7 @@ namespace BlackDisplay
 
             // Почему-то диск работает на полную катушку именно при 4-х
             // Не учтена возможность того, что один файл будет переименовываться в другой, и их названия совпадут при переименовании, но после проверки (где они ещё не совпадали)
-            int count = 4;
+            int count = 1;  // Изменил на 1 с 4
             for (int i = 0; i < count; i++)
             ThreadPool.QueueUserWorkItem
             (
@@ -1071,11 +1071,66 @@ namespace BlackDisplay
 
             long gSize = getNewBlockSize(fl, block);
 
+            ConcurrentQueue<byte[]> gamma = new ConcurrentQueue<byte[]>();
+
+            bool ended = false;
+            void StartCryptoThread(SHA3 _sha)
+            {
+                var T = new Thread
+                                (
+                                    new ThreadStart
+                                    (
+                                        delegate
+                                        {
+                                            //int ti = 0;
+                                            while (!ended)
+                                            {
+                                                var gs = gSize;
+
+                                                var t = _sha.getGamma(gs);
+                                                gamma.Enqueue(t);
+                                                // BytesBuilder.CopyTo(t, nullb, ti);
+                                                /*
+                                                ti += block;
+                                                if (ti > nullb.Length)
+                                                    ti = 0;*/
+
+                                                while (gamma.Count > 16)
+                                                    Thread.Sleep(50);
+                                            }
+                                        }
+                                    )
+                                );
+
+                T.IsBackground = true;
+                T.Start();
+            }
+
+            var sha1 = new SHA3(gSize);
+            sha1.prepareGamma(sha.getGamma(512), sha.getGamma());
+            StartCryptoThread(sha1);
+
+            if (gSize < fl)
+            {
+                sha1 = new SHA3(gSize);
+                sha1.prepareGamma(sha.getGamma(512), sha.getGamma());
+                StartCryptoThread(sha1);
+
+                sha1 = new SHA3(gSize);
+                sha1.prepareGamma(sha.getGamma(512), sha.getGamma());
+                StartCryptoThread(sha1);
+
+                sha1 = new SHA3(gSize);
+                sha1.prepareGamma(sha.getGamma(512), sha.getGamma());
+                StartCryptoThread(sha1);
+            }
+
             long bytesWriten = 0;
             bool success = true;
             for (length = 0; length < fl; length += nullb.Length)
             {
-                nullb = sha.getGamma(getNewBlockSize(fl - length, block));
+                // nullb = sha.getGamma(getNewBlockSize(fl - length, block));
+                while (!gamma.TryDequeue(out nullb)) ;
 
                 WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
                 bytesWriten += NumberOfBytesWritten;
@@ -1094,15 +1149,18 @@ namespace BlackDisplay
 
             var flb = fl % block;
             if (bytesWriten >= fl)
-            if (fl > block && fl % block != 0)
-            {
-                nullb = sha.getGamma(block - flb);
-                WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
-                bytesWriten += NumberOfBytesWritten;
-                FlushFileBuffers(bin);
+                if (fl > block && fl % block != 0)
+                {
+                    // nullb = sha.getGamma(block - flb);
+                    while (!gamma.TryDequeue(out nullb)) ;
 
-                fl += block - flb;
-            }
+                    WriteFile(bin, nullb, (int)(block - flb), out NumberOfBytesWritten, 0);
+                    bytesWriten += NumberOfBytesWritten;
+                    FlushFileBuffers(bin);
+
+                    fl += block - flb;
+                }
+            ended = true;
 
             ddso.prepercent = 100f;
 
@@ -1189,7 +1247,7 @@ namespace BlackDisplay
             {
                 nullb[i] ^= 0x55;
             }
-            
+
             st = ddso.stage;
             SetFilePointerEx(bin, 0, out tmp, 0);
 
