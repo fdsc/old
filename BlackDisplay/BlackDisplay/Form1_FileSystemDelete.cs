@@ -1144,7 +1144,7 @@ namespace BlackDisplay
             if (fl < block)
                 sc *= 2.0;
             ddso.scale = scale;
-            var MX = 4 + bytes.Length + 8 * scale + maxData * scale;
+            var MX = 5 + bytes.Length + 8 * scale + maxData * scale;
             if (onlySimpleDestruction == 1)
                 MX = 5;
             else
