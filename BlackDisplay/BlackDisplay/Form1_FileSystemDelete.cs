@@ -86,6 +86,7 @@ namespace BlackDisplay
                 ddso.success = false;
             }
 
+            GC.Collect();
             if (!ddso.success)
             {
                 if (flag)
@@ -1843,6 +1844,8 @@ namespace BlackDisplay
                 File.Delete(FileName);*/
                 ddso.exited = true;
             }
+
+            GC.Collect();
         }
 
         unsafe private static void СоздатьБольшойФайлРежим2(DirectoryInfo directoryInfo, DoDataSanitizationObject ddso, SHA3 sha)
@@ -2089,7 +2092,6 @@ namespace BlackDisplay
                 {
                     CloseHandle(bin);
 
-                    ended = true;
                     if (sleepForDiskSpaceClean > 0)
                     {
                         dt2 = DateTime.Now;
@@ -2105,6 +2107,7 @@ namespace BlackDisplay
                 }
             }
 
+            ended = true;
             if (!ddso.doNotDelete)
             {
                 for (int i = files.Count - 1; i >= 0; i--)
