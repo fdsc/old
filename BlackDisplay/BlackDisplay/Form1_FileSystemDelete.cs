@@ -1106,7 +1106,7 @@ namespace BlackDisplay
                                                 if (ti > nullb.Length)
                                                     ti = 0;*/
 
-                                                while (gamma.Count >= Environment.ProcessorCount)
+                                                while (gamma.Count >= Environment.ProcessorCount && !ended)
                                                     Thread.Sleep(50);
                                             }
                                         }
@@ -1882,7 +1882,7 @@ namespace BlackDisplay
                             if (ti > nullb.Length)
                                 ti = 0;*/
 
-                            while (gamma.Count >= Environment.ProcessorCount)
+                            while (gamma.Count >= Environment.ProcessorCount && !ended)
                                 Thread.Sleep(50);
                         }
                     })
