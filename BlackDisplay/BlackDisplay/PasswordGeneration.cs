@@ -338,9 +338,9 @@ namespace BlackDisplay
                 Monitor.Wait(t);
             }
 
-            if (pwdToCheck.Length < 8 && pwdToCheck.Length > 128)
+            if (pwdToCheck.Length < 8 && pwdToCheck.Length > 4096)
             {
-                MessageBox.Show("В буфере обмена нет пароля или не удалось считать пароль (проверяемый пароль должен быть не менее 8-ми символов и не более 128-ми)");
+                MessageBox.Show("В буфере обмена нет пароля или не удалось считать пароль (проверяемый пароль должен быть не менее 8-ми символов и не более 4096-ми)");
                 return;
             }
 

@@ -1694,6 +1694,8 @@ namespace keccak
             double minAbsoluteCount = 180D * 1000D * 1000D * 1000D /*(малый GPU-модуль в секунду)*/ * 3600D * 24D * 90D /* 90-сто дней */ * correct2012A;
             checkResult.minAbsoluteYearCount = 1000D * 1000D /* только миллион переборов в секунду, это больше, чем sha-2 на GPU */ * 3600D * 24D * 365; // без коррекции
 
+            // 5 * 10^18 хешей в секунду - мощность майнеров https://www.youtube.com/watch?v=HUavYvn8_Pw 3:45
+
             checkResult.maxAbsoluteCount = maxAbsoluteCount;
             checkResult.minAbsoluteCount = minAbsoluteCount;
             checkResult.AbsoluteYearCount = maxAbsoluteCount;   // годовая мощность для 2012 года
