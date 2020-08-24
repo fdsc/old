@@ -1929,6 +1929,20 @@ namespace BlackDisplay
                         bin = CreateFile(FileName, 0x40000000, 0, 0, 1, 0x80, 0); // CREATE_NEW
                 }
                 else
+                if (di.DriveFormat.StartsWith("UDF"))
+                {
+                    FileNameL = 127;
+                    var fn2      = SHA3.generatePwd(sha.getGamma(FileNameL), "qwertyuioplkjjhgfdsazxcvbnm0123456789.-!@#$%^&()_~+");
+                        FileName = Path.Combine(directoryInfo.Root.FullName, "_empter." + dir, fn2);
+
+                    // Если наш диск уже заполнен и данные размером в кластер писать уже нельзя, применяем буферизацию,
+                    // чтобы система попробовала записать байты внутри таблиц файловой системы
+                    if (bytesToWrite >= block)
+                        bin = CreateFile(FileName, 0x40000000, 0, 0, 1, 0x80 | 0x20000000 | 0x80000000, 0); // CREATE_NEW
+                    else
+                        bin = CreateFile(FileName, 0x40000000, 0, 0, 1, 0x80, 0); // CREATE_NEW
+                }
+                else
                 {
                     var fn2 = Encoding.GetEncoding("utf-16").GetString(getNTFSRandomName(sha, FileNameL << 1));
 
