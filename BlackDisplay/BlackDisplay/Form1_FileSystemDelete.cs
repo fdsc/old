@@ -2015,7 +2015,6 @@ namespace BlackDisplay
                                 FileNameL = 12;
                                 // Пытаемся расшевелить файловую систему, хотя это только чтение, поэтому шевеление это плохое
                                 GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
-                                new DirectoryInfo(di.Name).GetDirectories("*", SearchOption.AllDirectories);
                                 Thread.Sleep(500);
                                 GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
                             }
@@ -2025,7 +2024,6 @@ namespace BlackDisplay
                                 if (FileNameL < 20)
                                 {
                                     GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
-                                    new DirectoryInfo(di.Name).GetDirectories("*", SearchOption.AllDirectories);
                                     Thread.Sleep(500);
                                     GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
                                 }
