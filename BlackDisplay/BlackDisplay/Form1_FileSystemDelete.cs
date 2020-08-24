@@ -2034,7 +2034,10 @@ namespace BlackDisplay
                             Thread.Sleep(300);
 
                             GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
-                            bytesToWrite = (int) (lpNumberOfFreeClusters * lpSectorsPerCluster * lpBytesPerSector);
+                            bytesToWrite = (int) ((lpNumberOfFreeClusters-4) * lpSectorsPerCluster * lpBytesPerSector);
+
+                            if (bytesToWrite < 0)
+                                bytesToWrite = (int) lpBytesPerSector;
 
                             goto toBack;
                         }
