@@ -1854,8 +1854,18 @@ namespace BlackDisplay
             uint lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, lpTotalNumberOfClusters;
             GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
 
+            int maxSize = 16*1024*1024;
+
             int  block = (int) (lpSectorsPerCluster * lpBytesPerSector);
-            long gSize = 16*1024*1024 < block ? (long) block : 16*1024*1024;
+            long gSize = maxSize < block ? (long) block : maxSize;
+            if (di.DriveFormat.StartsWith("UDF"))
+            {
+                if (gSize == maxSize)
+                {
+                    gSize = maxSize << 2;
+                }
+            }
+
             var  nullb = sha.getGamma(gSize);
 
             ConcurrentQueue<byte[]> gamma = new ConcurrentQueue<byte[]>();
