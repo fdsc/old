@@ -1929,7 +1929,20 @@ namespace BlackDisplay
                         bin = CreateFile(FileName, 0x40000000, 0, 0, 1, 0x80, 0); // CREATE_NEW
                 }
                 else
-                if (di.DriveFormat.StartsWith("UDF"))
+                if (di.DriveFormat.StartsWith("NTFS"))
+                {
+                    var fn2 = Encoding.GetEncoding("utf-16").GetString(getNTFSRandomName(sha, FileNameL << 1));
+
+                        FileName = Path.Combine(directoryInfo.Root.FullName, "_empter." + dir, fn2);
+                    var fn       = Encoding.GetEncoding("utf-16").GetBytes(FileName);
+
+                    if (bytesToWrite >= block)
+                        bin = CreateFileW(fn, 0x40000000, 0, 0, 1, 0x80 | 0x20000000 | 0x80000000, 0); // CREATE_NEW
+                    else
+                        bin = CreateFileW(fn, 0x40000000, 0, 0, 1, 0x80, 0); // CREATE_NEW
+                }
+                else
+                //if (di.DriveFormat.StartsWith("UDF"))
                 {
                     FileNameL = 127;
                     var fn2      = SHA3.generatePwd(sha.getGamma(FileNameL), "qwertyuioplkjjhgfdsazxcvbnm0123456789.-!@#$%^&()_~+");
@@ -1942,19 +1955,6 @@ namespace BlackDisplay
                     else
                         bin = CreateFile(FileName, 0x40000000, 0, 0, 1, 0x80, 0); // CREATE_NEW
                 }
-                else
-                {
-                    var fn2 = Encoding.GetEncoding("utf-16").GetString(getNTFSRandomName(sha, FileNameL << 1));
-
-                        FileName = Path.Combine(directoryInfo.Root.FullName, "_empter." + dir, fn2);
-                    var fn       = Encoding.GetEncoding("utf-16").GetBytes(FileName);
-
-                    if (bytesToWrite >= block)
-                        bin = CreateFileW(fn, 0x40000000, 0, 0, 1, 0x80 | 0x20000000 | 0x80000000, 0); // CREATE_NEW
-                    else
-                        bin = CreateFileW(fn, 0x40000000, 0, 0, 1, 0x80, 0); // CREATE_NEW
-                }
-
                 var continueFlag = false;
                 if (bin <= 0)
                 {
