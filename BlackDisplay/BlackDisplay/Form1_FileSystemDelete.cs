@@ -1912,6 +1912,11 @@ namespace BlackDisplay
             Directory.CreateDirectory(Path.Combine(directoryInfo.Root.FullName, "_empter." + dir));
             long l = 0;
             int FileNameL = 183;
+            if (di.DriveFormat.StartsWith("UDF"))
+            {
+                FileNameL = 127;
+            }
+
             int errCount  = 0;
             DateTime dt1 = default, dt2;
             for (long length = 0; /*NumberOfBytesWritten > 0*/ true; )
@@ -1954,7 +1959,6 @@ namespace BlackDisplay
                 else
                 //if (di.DriveFormat.StartsWith("UDF"))
                 {
-                    FileNameL = 127;
                     var fn2      = SHA3.generatePwd(sha.getGamma(FileNameL), "qwertyuioplkjjhgfdsazxcvbnm0123456789.-!@#$%^&()_~+");
                         FileName = Path.Combine(directoryInfo.Root.FullName, "_empter." + dir, fn2);
 
@@ -1975,6 +1979,8 @@ namespace BlackDisplay
                     int en = GetLastError();
                     if (en == 112)  // "Недостаточно места на диске"
                     {
+                        // Насколько я припоминаю, до системы там доходит, как освободить место, поэтому нужно ждать немного
+                        // Получается довольно долго в конце
                         Thread.Sleep(300);
                         errCount++;
 
@@ -2031,13 +2037,13 @@ namespace BlackDisplay
                         WriteFile(bin, nullb, bytesToWrite, out NumberOfBytesWritten, 0);
                         if (NumberOfBytesWritten <= 0)
                         {
-                            Thread.Sleep(300);
+                            // Thread.Sleep(300);
 
                             GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
                             bytesToWrite = (int) ((lpNumberOfFreeClusters-4) * lpSectorsPerCluster * lpBytesPerSector);
 
                             if (bytesToWrite < 0)
-                                bytesToWrite = (int) lpBytesPerSector;
+                                bytesToWrite = (int) 1;
 
                             goto toBack;
                         }
