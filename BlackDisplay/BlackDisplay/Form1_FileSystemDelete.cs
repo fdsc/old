@@ -1855,7 +1855,7 @@ namespace BlackDisplay
             GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
 
             int  block = (int) (lpSectorsPerCluster * lpBytesPerSector);
-            long gSize = 4*1024*1024 < block ? (long) block : 4*1024*1024;
+            long gSize = 16*1024*1024 < block ? (long) block : 16*1024*1024;
             var  nullb = sha.getGamma(gSize);
 
             ConcurrentQueue<byte[]> gamma = new ConcurrentQueue<byte[]>();
