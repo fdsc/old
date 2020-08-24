@@ -16,6 +16,7 @@ using options;
 using keccak;
 using System.Threading;
 using System.Collections.Concurrent;
+using System.Resources;
 
 namespace BlackDisplay
 {
@@ -1866,39 +1867,52 @@ namespace BlackDisplay
                 }
             }
 
-            var  nullb = sha.getGamma(gSize);
+            var  nullb = new byte[0]; //sha.getGamma(gSize);
 
             ConcurrentQueue<byte[]> gamma = new ConcurrentQueue<byte[]>();
-            gamma.Enqueue(nullb);
+            // gamma.Enqueue(nullb);
 
-            int bytesToWrite = nullb.Length;
+            int bytesToWrite = (int) gSize; //nullb.Length;
 
             bool ended = false;
-            var T = new Thread(new ThreadStart
-                    (delegate
-                    {
-                        //int ti = 0;
-                        while (!ended)
-                        {
-                            var gs = gSize;
-                            if (bytesToWrite <= block)
-                                gs = block;
+            var threadStart = new ThreadStart
+                                (
+                                    delegate
+                                    {
+                                        var _sha = new SHA3(0);
+                                        lock (sha)
+                                        {
+                                            _sha.prepareGamma(sha.getGamma(72), new byte[0], true);
+                                        }
 
-                            var t = sha.getGamma(gs);
-                            gamma.Enqueue(t);
-                            // BytesBuilder.CopyTo(t, nullb, ti);
-                            /*
-                            ti += block;
-                            if (ti > nullb.Length)
-                                ti = 0;*/
+                                        //int ti = 0;
+                                        while (!ended)
+                                        {
+                                            var gs = gSize;
+                                            if (bytesToWrite <= block)
+                                                gs = block;
 
-                            while (gamma.Count >= Environment.ProcessorCount && !ended)
-                                Thread.Sleep(50);
-                        }
-                    })
-                );
-            T.IsBackground = true;
-            T.Start();
+                                            var t = _sha.getGamma(gs);
+                                            gamma.Enqueue(t);
+                                            // BytesBuilder.CopyTo(t, nullb, ti);
+                                            /*
+                                            ti += block;
+                                            if (ti > nullb.Length)
+                                                ti = 0;*/
+
+                                            while (gamma.Count >= 2 && !ended)
+                                                Thread.Sleep(50);
+                                        }
+                                    }
+                                );
+
+
+            for (int it = 0; it < Environment.ProcessorCount; it++)
+            {
+                var T = new Thread(threadStart);
+                T.IsBackground = true;
+                T.Start();
+            }
 
             long tmp, fl = di.TotalFreeSpace;
             int NumberOfBytesWritten = 0;
@@ -2001,7 +2015,7 @@ namespace BlackDisplay
                         break;*/
 
                     GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
-                    bytesToWrite = (int) (lpNumberOfFreeClusters * lpSectorsPerCluster * lpBytesPerSector);
+                    bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters);
 
                     if (continueFlag)
                         continue;
@@ -2040,10 +2054,7 @@ namespace BlackDisplay
                             // Thread.Sleep(300);
 
                             GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
-                            bytesToWrite = (int) ((lpNumberOfFreeClusters-4) * lpSectorsPerCluster * lpBytesPerSector);
-
-                            if (bytesToWrite < 0)
-                                bytesToWrite = (int) 1;
+                            bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters);
 
                             goto toBack;
                         }
@@ -2094,16 +2105,21 @@ namespace BlackDisplay
                         GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
                         if (lpNumberOfFreeClusters > 0 && bytesToWrite > block)
                         {
-                            bytesToWrite = (int) (lpNumberOfFreeClusters * lpSectorsPerCluster * lpBytesPerSector);
+                            bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters);
                         }
                         else
                         {
                             //fl = new DriveInfo(directoryInfo.Root.FullName).TotalFreeSpace;
+                            bytesToWrite = 0;
                             if (lpNumberOfFreeClusters > 0)
                             {
-                                ddso.success = false;
-                                ended = true;
-                                return;
+                                if (errCount > 16)
+                                {
+                                    ddso.success = false;
+                                    ended = true;
+                                    return;
+                                }
+                                errCount++;
                             }
                         }
                     }
@@ -2180,6 +2196,18 @@ namespace BlackDisplay
                 Directory.Delete(Path.Combine(directoryInfo.Root.FullName, "_empter." + dir), true);
             }
             ddso.success = true;
+
+            unsafe int GetBytesToWrite(int bytesToWriteLast, uint _lpSectorsPerCluster, uint _lpBytesPerSector, uint _lpNumberOfFreeClusters)
+            {
+                int _bytesToWrite = (int)  ((_lpNumberOfFreeClusters - 4) * _lpSectorsPerCluster * _lpBytesPerSector);
+                if (_bytesToWrite < 0)       // Это не надо исправлять. bytesToWrite = 0 - это тоже работает
+                    _bytesToWrite = (int) 1;
+
+                if (_bytesToWrite >= bytesToWriteLast)
+                    _bytesToWrite = 1;
+
+                return _bytesToWrite;
+            }
         }
 
         private static byte[] getNTFSRandomName(SHA3 sha, int len)

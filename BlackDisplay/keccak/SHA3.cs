@@ -1121,7 +1121,7 @@ namespace keccak
         /// getGamma - хэш сообщения с секретным ключём.
         /// </summary>
         /// <param name="key">Секретный ключ</param>
-        /// <param name="OpenInitVector">Публичный вектор инициализации</param>
+        /// <param name="OpenInitVector">Публичный вектор инициализации. Не может быть null, может быть new byte[0]</param>
         public unsafe void prepareGamma(byte[] key, byte[] OpenInitVector, bool AcceptEmptyInitVector = false)
         {
             if (key.Length <= 0 || (!AcceptEmptyInitVector && OpenInitVector.Length <= 0))
