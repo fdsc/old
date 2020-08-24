@@ -1981,7 +1981,12 @@ namespace BlackDisplay
                     if (bytesToWrite >= block)
                         bin = CreateFile(FileName, 0x40000000, 0, 0, 1, 0x80 | 0x20000000 | 0x80000000, 0); // CREATE_NEW
                     else
+                    {
+                        // Не торопясь всё перезаписываем. Т.к. ОС иногда долго соображает по поводу свободного места на диске
+                        // Пауза именно здесь, т.к. сейчас предыдущий файл закрыт, а новый ещё не открыт
+                        Thread.Sleep(850);
                         bin = CreateFile(FileName, 0x40000000, 0, 0, 1, 0x80, 0); // CREATE_NEW
+                    }
                 }
                 var continueFlag = false;
                 if (bin <= 0)
@@ -1995,17 +2000,43 @@ namespace BlackDisplay
                     {
                         // Насколько я припоминаю, до системы там доходит, как освободить место, поэтому нужно ждать немного
                         // Получается довольно долго в конце
-                        Thread.Sleep(300);
+                        if (FileNameL % 25 == 0)
+                            Thread.Sleep(500);
+
                         errCount++;
 
                         if (FileNameL > 0)
                         {
                             FileNameL--;
-                            errCount = 0;
+
+                            if (FileNameL <= 12)
+                            {
+                                // 12 - это старое имя файла в FAT. Если место для файла есть, то его имя не менее 12-ти. Для других ФС это неверно, но используется для всех
+                                FileNameL = 12;
+                                // Пытаемся расшевелить файловую систему, хотя это только чтение, поэтому шевеление это плохое
+                                GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
+                                new DirectoryInfo(di.Name).GetDirectories("*", SearchOption.AllDirectories);
+                                Thread.Sleep(500);
+                                GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
+                            }
+                            else
+                            {
+                                errCount = 0;
+                                if (FileNameL < 20)
+                                {
+                                    GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
+                                    new DirectoryInfo(di.Name).GetDirectories("*", SearchOption.AllDirectories);
+                                    Thread.Sleep(500);
+                                    GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
+                                }
+                            }
                         }
 
-                        if (FileNameL <= 0)
+                        if (FileNameL <= 12 && errCount > 10)
+                        {
+                            errCount = 0;
                             break;
+                        }
 
                         continueFlag = true;
                     }
@@ -2051,7 +2082,7 @@ namespace BlackDisplay
                         WriteFile(bin, nullb, bytesToWrite, out NumberOfBytesWritten, 0);
                         if (NumberOfBytesWritten <= 0)
                         {
-                            // Thread.Sleep(300);
+                            Thread.Sleep(300);
 
                             GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
                             bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters);
