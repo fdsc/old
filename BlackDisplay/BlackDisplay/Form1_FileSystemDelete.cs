@@ -399,14 +399,24 @@ namespace BlackDisplay
                 var fn    = "";
 
                 // 20 ещё и ниже
-                float all = fns.Length << 20, completed = 0;
+                float all   = fns.Length << 20, completed = 0;
+                int   fncnt = 0;
                 foreach (var fna in fns)
                 {
-                    fn += fna + "\r\n";
+                    fncnt++;
+                    if (fncnt <= 20 && fn.Length < 20*80)
+                    {
+                        fn += fna + "\r\n";
+                    }
+                    else
+                        fncnt = 21;
 
                     if (fns.Length > 1)
                         all += new FileInfo(fna).Length;
                 }
+
+                if (fncnt > 20)
+                    fn += "И другие файлы\r\n\r\nВсего файлов к удалению: " + fns.Length;
 
                 if (MessageBox.Show("Вы уверены, что хотите удалить следующие файлы?\r\n" + fn, "Запрос на удаление файла", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
                     return;
