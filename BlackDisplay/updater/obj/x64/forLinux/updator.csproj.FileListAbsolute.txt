@@ -10,3 +10,15 @@ C:\dev\old\old\BlackDisplay\updater\obj\x64\forLinux\updator.csproj.CoreCompileI
 C:\dev\old\old\BlackDisplay\updater\obj\x64\forLinux\updator.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\updater\obj\x64\forLinux\updatorvs8.exe
 C:\dev\old\old\BlackDisplay\updater\obj\x64\forLinux\updatorvs8.pdb
+C:\dev\old\build\updatorvs8.exe.config
+C:\dev\old\build\updatorvs8.exe
+C:\dev\old\build\updatorvs8.pdb
+C:\dev\old\build\updatorvs8.exe.CodeAnalysisLog.xml
+C:\dev\old\build\updatorvs8.exe.lastcodeanalysissucceeded
+C:\dev\old\BlackDisplay\updater\obj\x64\forLinux\updator.csprojAssemblyReference.cache
+C:\dev\old\BlackDisplay\updater\obj\x64\forLinux\updator.Properties.Resources.resources
+C:\dev\old\BlackDisplay\updater\obj\x64\forLinux\updator.csproj.GenerateResource.cache
+C:\dev\old\BlackDisplay\updater\obj\x64\forLinux\updator.csproj.CoreCompileInputs.cache
+C:\dev\old\BlackDisplay\updater\obj\x64\forLinux\updator.csproj.CopyComplete
+C:\dev\old\BlackDisplay\updater\obj\x64\forLinux\updatorvs8.exe
+C:\dev\old\BlackDisplay\updater\obj\x64\forLinux\updatorvs8.pdb

@@ -4,3 +4,8 @@ C:\dev\old\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.csprojAssemblyReferen
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.csproj.CoreCompileInputs.cache
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.dll
 C:\dev\old\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.pdb
+C:\dev\old\build\keccak.dll
+C:\dev\old\build\keccak.pdb
+C:\dev\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.csproj.CoreCompileInputs.cache
+C:\dev\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.dll
+C:\dev\old\BlackDisplay\keccak\obj\x64\forLinux\keccak.pdb

@@ -154,7 +154,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'forLinux|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\..\build\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;forLinux</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>

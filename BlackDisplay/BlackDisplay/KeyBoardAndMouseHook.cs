@@ -139,7 +139,7 @@ namespace BlackDisplay
 
 		        if(hHook1 == 0 || hHook2 == 0)
 		        {
-                    Program.toLogFile("Не удалось зарегистрировать хуки! " + hHook1 + " / " + hHook2 + " " + GetLastError());
+                    Program.ToLogFile("Не удалось зарегистрировать хуки! " + hHook1 + " / " + hHook2 + " " + GetLastError());
 
 			        registerHooksResult = -1;
 			        return registerHooksResult;
@@ -162,7 +162,7 @@ namespace BlackDisplay
 		            ret1 = UnhookWindowsHookEx(hHook1);
                     if (ret1 == false)
 		            {
-                        Program.toLogFile("Не удалось снять хуки с регистрации! " + ret1 + " " + GetLastError());
+                        Program.ToLogFile("Не удалось снять хуки с регистрации! " + ret1 + " " + GetLastError());
 
                         registerHooksResult = -2;
 		            }
@@ -175,7 +175,7 @@ namespace BlackDisplay
 
 		        if (ret1 == false || ret2 == false)
 		        {
-                    Program.toLogFile("Не удалось снять хуки с регистрации! " + ret1 + " / " + ret2 + " " + GetLastError());
+                    Program.ToLogFile("Не удалось снять хуки с регистрации! " + ret1 + " / " + ret2 + " " + GetLastError());
 
                     registerHooksResult = -2;
 			        return registerHooksResult;

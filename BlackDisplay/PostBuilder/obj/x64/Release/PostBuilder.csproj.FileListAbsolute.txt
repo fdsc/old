@@ -19,4 +19,3 @@ C:\dev\old\build\PostBuilder.pdb
 C:\dev\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.csproj.CoreCompileInputs.cache
 C:\dev\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.exe
 C:\dev\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.pdb
-C:\dev\old\BlackDisplay\PostBuilder\obj\x64\Release\PostBuilder.csprojAssemblyReference.cache

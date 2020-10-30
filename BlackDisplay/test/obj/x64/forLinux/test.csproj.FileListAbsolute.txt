@@ -6,3 +6,10 @@ C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.csproj.CoreCompileInputs.
 C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.exe
 C:\dev\old\old\BlackDisplay\test\obj\x64\forLinux\test.pdb
+C:\dev\old\build\test.exe.config
+C:\dev\old\build\test.exe
+C:\dev\old\build\test.pdb
+C:\dev\old\BlackDisplay\test\obj\x64\forLinux\test.csproj.CoreCompileInputs.cache
+C:\dev\old\BlackDisplay\test\obj\x64\forLinux\test.csproj.CopyComplete
+C:\dev\old\BlackDisplay\test\obj\x64\forLinux\test.exe
+C:\dev\old\BlackDisplay\test\obj\x64\forLinux\test.pdb

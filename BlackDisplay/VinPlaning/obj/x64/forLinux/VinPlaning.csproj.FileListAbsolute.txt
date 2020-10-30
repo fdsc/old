@@ -8,3 +8,13 @@ C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.csproj.CoreCo
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.dll
 C:\dev\old\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.pdb
+C:\dev\old\build\VinPlaning.dll
+C:\dev\old\build\VinPlaning.pdb
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.csprojAssemblyReference.cache
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.Properties.Resources.resources
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.TreeTableView.resources
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.csproj.GenerateResource.cache
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.csproj.CoreCompileInputs.cache
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.csproj.CopyComplete
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.dll
+C:\dev\old\BlackDisplay\VinPlaning\obj\x64\forLinux\VinPlaning.pdb

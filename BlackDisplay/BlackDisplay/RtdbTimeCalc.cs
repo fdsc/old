@@ -320,7 +320,7 @@ namespace BlackDisplay
                     return;
                 }
                 else
-                    Program.toLogFile("Экран запроса на отдых должен быть активен, однако это не так [чёрный экран при превышении ожидания ответа пользователя]");
+                    Program.ToLogFile("Экран запроса на отдых должен быть активен, однако это не так [чёрный экран при превышении ожидания ответа пользователя]");
             }
 
 #if DEBUG
@@ -481,7 +481,7 @@ namespace BlackDisplay
 
             if (toRelax < 0 || RelaxTime < 0)
             {
-                Program.toLogFile("toRelax < 0 || RelaxTime < 0");
+                Program.ToLogFile("toRelax < 0 || RelaxTime < 0");
                 throw new Exception("Программа произвела неверный расчёт времени отдыха. Сообщите об этом разработчику!");
             }
 
@@ -537,7 +537,7 @@ namespace BlackDisplay
                 result += DateTime.Now.Ticks - records[0].timeMark;
 
             if (errorOccur > 0)
-                Program.toLogFile("Произошла ошибка: в функции calcWorkTime найдена отрицательная длительность " + errorOccur + " раз");
+                Program.ToLogFile("Произошла ошибка: в функции calcWorkTime найдена отрицательная длительность " + errorOccur + " раз");
 
             return result;
         }

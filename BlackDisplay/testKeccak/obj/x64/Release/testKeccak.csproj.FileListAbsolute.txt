@@ -116,7 +116,6 @@ C:\dev\old\build\files\opentextS.bin
 C:\dev\old\build\testKeccak.exe.config
 C:\dev\old\build\testKeccak.exe
 C:\dev\old\build\testKeccak.pdb
-C:\dev\old\BlackDisplay\testKeccak\obj\x64\Release\testKeccak.csprojAssemblyReference.cache
 C:\dev\old\BlackDisplay\testKeccak\obj\x64\Release\testKeccak.csproj.CoreCompileInputs.cache
 C:\dev\old\BlackDisplay\testKeccak\obj\x64\Release\testKeccak.csproj.CopyComplete
 C:\dev\old\BlackDisplay\testKeccak\obj\x64\Release\testKeccak.exe

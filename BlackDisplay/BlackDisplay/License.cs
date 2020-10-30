@@ -49,7 +49,7 @@ namespace BlackDisplay
                 return;
 
             Close();
-            Program.uninstall(true);
+            Program.Uninstall(true);
         }
     }
 }

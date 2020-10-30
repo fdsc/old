@@ -87,7 +87,7 @@ namespace BlackDisplay
             {
                 if (args[0] == "uninstall")
                 {
-                    uninstall(false);
+                    Uninstall(false);
                 }
                 else
                 {
@@ -108,7 +108,7 @@ namespace BlackDisplay
             {
                 // Не выводим сообщение, чтобы освободить exe-файл для обновления как можно быстрее
                 // MessageBox.Show("Невозможно запустить две программы 'relax time black display' одновременно", "Недопустимо", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                toLogFile("semaphore locked - program exited");
+                ToLogFile("semaphore locked - program exited");
                 DbgLog.allLogsDispose();
                 return 3;
             }
@@ -138,7 +138,7 @@ namespace BlackDisplay
                 //File.SetAccessControl(Path.GetDirectoryName(Application.StartupPath), fs);
 
                 // setUninstall();
-                truncateLog(new FileInfo(Application.StartupPath + errorLogFileName));
+                TruncateLog(new FileInfo(Application.StartupPath + errorLogFileName));
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -154,9 +154,9 @@ namespace BlackDisplay
             return 0;
         }
 
-        public static void uninstall(bool isApplicationExists)
+        public static void Uninstall(bool isApplicationExists)
         {
-            var msg = deleteBootRun();
+            var msg = DeleteBootRun();
             if (isApplicationExists)
             {
                 new Uninstall(msg).Show();
@@ -170,7 +170,7 @@ namespace BlackDisplay
         }
 
         // :логирование :$$$.логирование
-        private static void truncateLog(FileInfo fi)
+        private static void TruncateLog(FileInfo fi)
         {
             if (fi.Exists && fi.Length > 128 * 1024)
             {
@@ -180,25 +180,8 @@ namespace BlackDisplay
             }
         }
 
-        // :$$$.семафор
-        private static bool blockSemaphore(System.Threading.Semaphore s, int p)
-        {
-            try
-            {
-                for (int i = 0; i < p; i++)
-                {
-                    s.WaitOne();
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         // :$$$.реестр
-        private static string deleteBootRun()
+        private static string DeleteBootRun()
         {
             try
             {
@@ -262,14 +245,14 @@ namespace BlackDisplay
             Form1.toWndLog();
         }
 
-        public static void toLogFile(string msg)
+        public static void ToLogFile(string msg)
         {
             var s = String.Format(errorMessage, DateTime.Now, msg, "none");
             File.AppendAllText(Application.StartupPath + errorLogFileName, s);
             DbgLog.dbg.errorToLog("ProgramLogFile", s);
         }
 
-        public static void toLogFileMessage(string msg)
+        public static void ToLogFileMessage(string msg)
         {
             var s = String.Format(logMessage, DateTime.Now, msg, "none");
             File.AppendAllText(Application.StartupPath + errorLogFileName, s);

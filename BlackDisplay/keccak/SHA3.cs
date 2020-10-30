@@ -4213,7 +4213,7 @@ namespace keccak
         unsafe public static long ToNull(long targetLength, byte* t, long index = 0, long count = -1)
         {
             if (count < 0)
-                count = targetLength;
+                count = targetLength - index;
 
             byte* te = t + targetLength;
 
@@ -4379,11 +4379,11 @@ namespace keccak
 
         public unsafe static void BytesToNull(byte[] bytes, long firstNotNull = long.MaxValue, long start = 0)
         {
-            if (firstNotNull > bytes.LongLength)
-                firstNotNull = bytes.LongLength;
-
             if (start < 0)
                 start = 0;
+
+            if (firstNotNull > bytes.LongLength)
+                firstNotNull = bytes.LongLength;
 
             fixed (byte * b = bytes)
             {

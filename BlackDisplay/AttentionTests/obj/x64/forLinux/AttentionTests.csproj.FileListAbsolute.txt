@@ -9,3 +9,14 @@ C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.cspro
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.csproj.CopyComplete
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.dll
 C:\dev\old\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.pdb
+C:\dev\old\build\AttentionTests.dll
+C:\dev\old\build\AttentionTests.pdb
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.csprojAssemblyReference.cache
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.Attention2Number.resources
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.Attention2Number_Velocity.resources
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.RedBlack.resources
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.csproj.GenerateResource.cache
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.csproj.CoreCompileInputs.cache
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.csproj.CopyComplete
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.dll
+C:\dev\old\BlackDisplay\AttentionTests\obj\x64\forLinux\AttentionTests.pdb

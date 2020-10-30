@@ -111,6 +111,7 @@
     <CodeAnalysisRuleSet>keccak.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <DefineConstants>forLinux</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

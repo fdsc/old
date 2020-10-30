@@ -97,7 +97,7 @@ namespace BlackDisplay
             Form1.GetDelayTime(out p, out result, out dwTime, true);
             if (dwTime > 3000)  // 1000 - 1 секунда
             {
-                Program.toLogFileMessage("Попытка перерегистрации хуков; простой " + dwTime);
+                Program.ToLogFileMessage("Попытка перерегистрации хуков; простой " + dwTime);
                 Form1.registerHooks(true, true);
             }
 #endif

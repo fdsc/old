@@ -236,7 +236,7 @@ namespace BlackDisplay
                     var notificationHandle = RegisterPowerSettingNotification(window.Handle,  ref s, 0 /* DEVICE_NOTIFY_WINDOW_HANDLE */);
                     if (notificationHandle == 0)
                     {
-                        Program.toLogFile(msg + GetLastError() + " " + e.ToString());
+                        Program.ToLogFile(msg + GetLastError() + " " + e.ToString());
                         crash = true;
                     }
                     notificationHandles.Add(notificationHandle);
@@ -504,12 +504,12 @@ namespace BlackDisplay
             var arguments = String.Format(" \"{0}\" \"{1}\" {2} \"{3}\"", Path.Combine(wd, "update.flag"), Program.MainMutexName, "1", ep);
             var umovePath = Path.Combine(wdm, "umove.exe");
 
-            Program.toLogFileMessage("start update: " + arguments);
+            Program.ToLogFileMessage("start update: " + arguments);
             logTime(TimeRecord.update);
 
             System.Diagnostics.Process.Start(umovePath, arguments);
 
-            Program.toLogFileMessage("update started");
+            Program.ToLogFileMessage("update started");
         }
 
 
@@ -1446,7 +1446,7 @@ namespace BlackDisplay
 
                 if (ph == 0)
                 {
-                    Program.toLogFile("OpenProcess return 0 для окна " + fw + " и идентификатора процесса " + pId + " LastError " + GetLastError());
+                    Program.ToLogFile("OpenProcess return 0 для окна " + fw + " и идентификатора процесса " + pId + " LastError " + GetLastError());
                     toWndLog();
 
                     if (lastCheckedScreen != 0)
@@ -1464,7 +1464,7 @@ namespace BlackDisplay
                 l = QueryFullProcessImageNameA(ph, 0 /* не PROCESS_NAME_NATIVE */, b, ref L);
                 if (l == 0 || L == 0)
                 {
-                    Program.toLogFile("GetModuleFileNameExA return 0 для окна " + fw + " и процесса " + ph + " LastError " + GetLastError());
+                    Program.ToLogFile("GetModuleFileNameExA return 0 для окна " + fw + " и процесса " + ph + " LastError " + GetLastError());
 
                     if (lastCheckedScreen != 0)
                     {
@@ -1679,7 +1679,7 @@ namespace BlackDisplay
                 Form1.GetDelayTime(out p, out result, out dwTime, true);
                 if (dwTime > 3000)  // 1000 - 1 секунда
                 {
-                    Program.toLogFileMessage("Попытка перерегистрации хуков; простой " + dwTime);
+                    Program.ToLogFileMessage("Попытка перерегистрации хуков; простой " + dwTime);
                     Form1.registerHooks(true, true);
                 }
             #endif
@@ -1733,7 +1733,7 @@ namespace BlackDisplay
             }
             catch (Exception ex)
             {
-                Program.toLogFile(ex.Message + "\r\n" + ex.StackTrace.Replace("\r\n", "\r\n\t"));
+                Program.ToLogFile(ex.Message + "\r\n" + ex.StackTrace.Replace("\r\n", "\r\n\t"));
                 MessageBox.Show("Произошла ошибка при вызове справки: " + ex.Message, "Не удалось вызвать справку",  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1876,7 +1876,7 @@ namespace BlackDisplay
                 Form1.GetDelayTime(out p, out result, out dwTime, true);
                 if (dwTime > 3000)  // 1000 - 1 секунда
                 {
-                    Program.toLogFileMessage("Попытка перерегистрации хуков; простой " + dwTime);
+                    Program.ToLogFileMessage("Попытка перерегистрации хуков; простой " + dwTime);
                     Form1.registerHooks(true, true);
                 }
             #endif

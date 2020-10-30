@@ -42,7 +42,7 @@ namespace BlackDisplay
                 }
                 catch (Exception ex)
                 {
-                    Program.toLogFile("DataSanitizationProgressForm.timer1_Tick ошибка: \r\n" + ex.Message + "\r\n" + ex.StackTrace.Replace("\r\n", "\r\n\t"));
+                    Program.ToLogFile("DataSanitizationProgressForm.timer1_Tick ошибка: \r\n" + ex.Message + "\r\n" + ex.StackTrace.Replace("\r\n", "\r\n\t"));
                     label1.Text = ex.Message;
                 }
             }
