@@ -1848,6 +1848,11 @@ namespace BlackDisplay
                 /*if (regime < 2)
                     DoDataSanitization(FileName, ddso, regime);*/
             }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ошибка в функции СоздатьБольшойФайл: " + e.Message);
+                Program.ToLogFile("Ошибка в функции СоздатьБольшойФайл: " + e.Message + "\r\n" + e.StackTrace + "\r\n\r\n");
+            }
             finally
             {
                 /*FlushFileBuffers(bin);
@@ -1882,7 +1887,9 @@ namespace BlackDisplay
             ConcurrentQueue<byte[]> gamma = new ConcurrentQueue<byte[]>();
             // gamma.Enqueue(nullb);
 
-            int bytesToWrite = (int) gSize; //nullb.Length;
+            long bytesToWrite = gSize; //nullb.Length;
+            long FreeSpace;
+            GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, out FreeSpace);
 
             bool ended = false;
             var threadStart = new ThreadStart
@@ -2054,7 +2061,7 @@ namespace BlackDisplay
                         break;*/
 
                     GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
-                    bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters);
+                    bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, out FreeSpace);
 
                     if (continueFlag)
                         continue;
@@ -2085,15 +2092,30 @@ namespace BlackDisplay
                     if (bytesToWrite > nullb.Length)
                         bytesToWrite = nullb.Length;
 
+                    if (bytesToWrite >= block && FreeSpace > nullb.Length << 1)
+                    {
+                        WriteFile(bin, nullb, (int) bytesToWrite, out NumberOfBytesWritten, 0);
+
+                        GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
+                        bytesToWrite = GetBytesToWrite(NumberOfBytesWritten, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, out FreeSpace);
+
+                        if (NumberOfBytesWritten <= 0)
+                        {
+                            Thread.Sleep(300);
+
+                            goto toBack;
+                        }
+                    }
+                    else
                     if (bytesToWrite >= block)
                     {
-                        WriteFile(bin, nullb, bytesToWrite, out NumberOfBytesWritten, 0);
+                        WriteFile(bin, nullb, block, out NumberOfBytesWritten, 0);
                         if (NumberOfBytesWritten <= 0)
                         {
                             Thread.Sleep(300);
 
                             GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
-                            bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters);
+                            bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, out FreeSpace);
 
                             goto toBack;
                         }
@@ -2117,10 +2139,11 @@ namespace BlackDisplay
                                     else
                                         Thread.Sleep(100);
 
-                                    if (lastCount > block)
+                                    if (lastCount >= block)
                                     {
                                         FlushFileBuffers(bin);
                                         lastCount = 0;
+                                        break;
                                     }
 
                                     if (nullb.Length <= a)
@@ -2144,7 +2167,7 @@ namespace BlackDisplay
                         GetDiskFreeSpaceA(di.Name, out lpSectorsPerCluster, out lpBytesPerSector, out lpNumberOfFreeClusters, out lpTotalNumberOfClusters);
                         if (lpNumberOfFreeClusters > 0 && bytesToWrite > block)
                         {
-                            bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters);
+                            bytesToWrite = GetBytesToWrite(bytesToWrite, lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, out FreeSpace);
                         }
                         else
                         {
@@ -2236,14 +2259,25 @@ namespace BlackDisplay
             }
             ddso.success = true;
 
-            unsafe int GetBytesToWrite(int bytesToWriteLast, uint _lpSectorsPerCluster, uint _lpBytesPerSector, uint _lpNumberOfFreeClusters)
+            unsafe long GetBytesToWrite(long bytesToWriteLast, uint _lpSectorsPerCluster, uint _lpBytesPerSector, uint _lpNumberOfFreeClusters, out long _FreeSpace)
             {
-                int _bytesToWrite = (int)  ((_lpNumberOfFreeClusters - 4) * _lpSectorsPerCluster * _lpBytesPerSector);
+                long _bytesToWrite = (long)  (_lpNumberOfFreeClusters - 4);
+                _bytesToWrite *= _lpSectorsPerCluster * _lpBytesPerSector;
+
+                _FreeSpace = _bytesToWrite;
+
                 if (_bytesToWrite < 0)       // Это не надо исправлять. bytesToWrite = 0 - это тоже работает
                     _bytesToWrite = (int) 1;
 
                 if (_bytesToWrite >= bytesToWriteLast)
-                    _bytesToWrite = 1;
+                {
+                    _bytesToWrite = bytesToWriteLast;
+                    if (bytesToWriteLast < _lpSectorsPerCluster * _lpBytesPerSector)
+                        _bytesToWrite = 1;
+                }
+
+                if (_bytesToWrite > int.MaxValue)
+                    _bytesToWrite = int.MaxValue;
 
                 return _bytesToWrite;
             }
