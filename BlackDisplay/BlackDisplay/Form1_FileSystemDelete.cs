@@ -1218,21 +1218,29 @@ namespace BlackDisplay
                 // Если файл пустой, то его сейчас должно затереть какой-то информацией
                 t1 = DateTime.Now;
                 var cntts = 0;
-                do
+
+                // Ошибки здесь игнорируем. Может места на диске не хватить или ещё какие проблемы
+                try
                 {
-                    nullb = sha.getGamma(nullb.Length);
-                    SetFilePointerEx(bin, 0, out tmp, 0);
-                    WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
-                    FlushFileBuffers(bin);
+                    do
+                    {
+                        nullb = sha.getGamma(nullb.Length);
+                        SetFilePointerEx(bin, 0, out tmp, 0);
+                        WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
+                        FlushFileBuffers(bin);
 
-                    nullb = sha.getGamma(nullb.Length);
-                    SetFilePointerEx(bin, 0, out tmp, 0);
-                    WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
-                    FlushFileBuffers(bin);
+                        nullb = sha.getGamma(nullb.Length);
+                        SetFilePointerEx(bin, 0, out tmp, 0);
+                        WriteFile(bin, nullb, nullb.Length, out NumberOfBytesWritten, 0);
+                        FlushFileBuffers(bin);
 
-                    cntts += 2;
+                        cntts += 2;
+                    }
+                    while (DateTime.Now.Subtract(t1).Ticks < 10 * 10000); // 10 мс
                 }
-                while (DateTime.Now.Subtract(t1).Ticks < 10 * 10000); // 10 мс
+                catch
+                {}
+
                 var ts3 = DateTime.Now.Subtract(t1).TotalSeconds / (double)cntts;
 
                 if (onlySimpleDestruction == 2)
