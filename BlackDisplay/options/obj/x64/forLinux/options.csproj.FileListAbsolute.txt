@@ -8,4 +8,3 @@ C:\dev\old\build\options.pdb
 C:\dev\old\BlackDisplay\options\obj\x64\forLinux\options.csproj.CoreCompileInputs.cache
 C:\dev\old\BlackDisplay\options\obj\x64\forLinux\options.dll
 C:\dev\old\BlackDisplay\options\obj\x64\forLinux\options.pdb
-C:\dev\old\BlackDisplay\options\obj\x64\forLinux\options.csprojAssemblyReference.cache

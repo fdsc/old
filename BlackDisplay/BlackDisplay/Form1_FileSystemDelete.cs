@@ -42,6 +42,7 @@ namespace BlackDisplay
                 ddso.success = false;
                 ddso.doNotPreStep = regime == 2;
                 ddso.preStepPassed = false;
+                ddso.doNotDelete   = GetDoNotDeleteFromUser();
 
                 var dnd = ddso.doNotDelete;
                 ddso.doNotDelete = ddso.doNotPreStep ? dnd : true;
@@ -394,17 +395,17 @@ namespace BlackDisplay
             var context = cnt as OFDC;
             if (isOk)
             {
-                var fns   = context.dialog.FileNames;
-                var r     = context.regime;
-                var fn    = "";
+                var fns = context.dialog.FileNames;
+                var r = context.regime;
+                var fn = "";
 
                 // 20 ещё и ниже
-                float all   = fns.Length << 20, completed = 0;
-                int   fncnt = 0;
+                float all = fns.Length << 20, completed = 0;
+                int fncnt = 0;
                 foreach (var fna in fns)
                 {
                     fncnt++;
-                    if (fncnt <= 20 && fn.Length < 20*80)
+                    if (fncnt <= 20 && fn.Length < 20 * 80)
                     {
                         fn += fna + "\r\n";
                     }
@@ -422,6 +423,7 @@ namespace BlackDisplay
                     return;
 
                 var ddsoMany = new DoDataSanitizationObject();
+                ddsoMany.doNotDelete = GetDoNotDeleteFromUser();
 
                 if (r == 4)
                 {
@@ -442,9 +444,11 @@ namespace BlackDisplay
                 var i = 0;
                 addNewDelegate addNew = delegate (string FileName, DoDataSanitizationObject.exitedCallback func)
                 {
-                    var ddso = new DoDataSanitizationObject();
-                    ddso.complex = ddsoMany.complex;
+                    var ddso          = new DoDataSanitizationObject();
+                    ddso.complex      = ddsoMany.complex;
                     ddso.countToWrite = ddsoMany.countToWrite;
+                    ddso.doNotDelete  = ddsoMany.doNotDelete;
+
                     DataSanitizationProgressForm f = null;
                     if (fns.Length == 1)
                     {
@@ -456,7 +460,7 @@ namespace BlackDisplay
                     {
                         var fi = new FileInfo(FileName);
                         ddso.workLength = fi.Length;
-                        ddso.fileName   = fi.Name;
+                        ddso.fileName = fi.Name;
                         ddso.ec += func;
                     }
 
@@ -474,14 +478,14 @@ namespace BlackDisplay
 
                 long toWork = fns.Length;
                 string failedList = "";
-                DoDataSanitizationObject.exitedCallback funca = delegate(DoDataSanitizationObject ddso)
+                DoDataSanitizationObject.exitedCallback funca = delegate (DoDataSanitizationObject ddso)
                 {
                     toWork--;
 
                     if (toWork > 0)
                     {
-                        completed     += ddso.workLength + (1 << 20);
-                        ddsoMany.ts    = all / completed * (DateTime.Now.Ticks - DT) / 10000f / 1000f;
+                        completed += ddso.workLength + (1 << 20);
+                        ddsoMany.ts = all / completed * (DateTime.Now.Ticks - DT) / 10000f / 1000f;
                         ddsoMany.stage = completed;
 
                         if (!ddso.success && ddso.exited)
@@ -506,6 +510,11 @@ namespace BlackDisplay
 
                 addNew(fns[i++], funca);
             }
+        }
+
+        private bool GetDoNotDeleteFromUser()
+        {
+            return неУдалятьФайлыToolStripMenuItem.Checked;
         }
 
         private delegate void addNewDelegate(string FileName, DoDataSanitizationObject.exitedCallback func);
@@ -1088,6 +1097,10 @@ namespace BlackDisplay
                     result = bs;
                 }
 
+                // Если файл нулевого размера, мы всё равно сгенерируем блок для его перезаписи
+                if (result <= 0)
+                    result = blockSize;
+
                 return result;
             };
 
@@ -1185,24 +1198,24 @@ namespace BlackDisplay
 
                         fl += block - flb;
                     }
-                ended = true;
 
                 ddso.prepercent = 100f;
 
                 if (bytesWriten < fl)
                     success = false;
 
-                if (onlySimpleDestruction == 2)
-                {
-                    ddso.successd = success;
-                    return;
-                }
+                // Если файл нулевого размера, дальше размер nullb используется в качестве задающего для перезатирания
+                if (nullb == null)
+                    while (!gamma.TryDequeue(out nullb)) ;
+
+                ended = true;
 
                 var ts2 = DateTime.Now.Subtract(t1);
                 float scale = (float)(ts1.TotalSeconds * fl / block / ts2.TotalSeconds) + 1f;
                 if (scale < 1)
                     scale = 1;
 
+                // Если файл пустой, то его сейчас должно затереть какой-то информацией
                 t1 = DateTime.Now;
                 var cntts = 0;
                 do
@@ -1221,6 +1234,12 @@ namespace BlackDisplay
                 }
                 while (DateTime.Now.Subtract(t1).Ticks < 10 * 10000); // 10 мс
                 var ts3 = DateTime.Now.Subtract(t1).TotalSeconds / (double)cntts;
+
+                if (onlySimpleDestruction == 2)
+                {
+                    ddso.successd = success;
+                    return;
+                }
 
                 var oneMx = ts3 / ts2.TotalSeconds * ((double)fl / (double)nullb.Length);
                 var sc = 1.0;

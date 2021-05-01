@@ -64,6 +64,7 @@
             this.создатьНаДискеБольшойФайлToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьБольшойФайлТриПроходаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьБольшойФайлОдинПроходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.режимToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.быстрыйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.замедленныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +83,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.убратьМенюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.закрытьклавишиEscCtrlAltИлиShiftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.неУдалятьФайлыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testsMenu.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -248,6 +249,7 @@
             this.удалитьДиректориюToolStripMenuItem,
             this.удалитьДиректориюТремяПроходамиToolStripMenuItem,
             this.удалитьДиректориюОднимПроходомToolStripMenuItem,
+            this.неУдалятьФайлыToolStripMenuItem,
             this.toolStripSeparator3,
             this.создатьНаДискеБольшойФайлToolStripMenuItem1,
             this.создатьБольшойФайлТриПроходаToolStripMenuItem,
@@ -361,6 +363,13 @@
             this.создатьБольшойФайлОдинПроходToolStripMenuItem.Size = new System.Drawing.Size(423, 22);
             this.создатьБольшойФайлОдинПроходToolStripMenuItem.Text = "Создать много файлов (не гарантирует полное перезатирание)";
             this.создатьБольшойФайлОдинПроходToolStripMenuItem.Click += new System.EventHandler(this.создатьБольшойФайлОдинПроходToolStripMenuItem_Click);
+            // 
+            // создатьМногоФайловзадержкаБезГарантийToolStripMenuItem
+            // 
+            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem.Name = "создатьМногоФайловзадержкаБезГарантийToolStripMenuItem";
+            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem.Size = new System.Drawing.Size(423, 22);
+            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem.Text = "Создать много файлов (без гарантий; задержка)";
+            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem.Click += new System.EventHandler(this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem_Click);
             // 
             // режимToolStripMenuItem
             // 
@@ -500,12 +509,13 @@
             this.закрытьклавишиEscCtrlAltИлиShiftToolStripMenuItem.Text = "Закрыть (клавиши Esc, ctrl, alt или shift)";
             this.закрытьклавишиEscCtrlAltИлиShiftToolStripMenuItem.Click += new System.EventHandler(this.закрытьклавишиEscCtrlAltИлиShiftToolStripMenuItem_Click);
             // 
-            // создатьМногоФайловзадержкаБезГарантийToolStripMenuItem
+            // неУдалятьФайлыToolStripMenuItem
             // 
-            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem.Name = "создатьМногоФайловзадержкаБезГарантийToolStripMenuItem";
-            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem.Size = new System.Drawing.Size(423, 22);
-            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem.Text = "Создать много файлов (без гарантий; задержка)";
-            this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem.Click += new System.EventHandler(this.создатьМногоФайловзадержкаБезГарантийToolStripMenuItem_Click);
+            this.неУдалятьФайлыToolStripMenuItem.CheckOnClick = true;
+            this.неУдалятьФайлыToolStripMenuItem.Name = "неУдалятьФайлыToolStripMenuItem";
+            this.неУдалятьФайлыToolStripMenuItem.Size = new System.Drawing.Size(423, 22);
+            this.неУдалятьФайлыToolStripMenuItem.Text = "Не удалять файлы после перезаписи";
+            this.неУдалятьФайлыToolStripMenuItem.Click += new System.EventHandler(this.неУдалятьФайлыToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -593,6 +603,7 @@
         private System.Windows.Forms.ToolStripMenuItem проконтролироватьНеизменностьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сравнитьХешиДляКонтроляToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem создатьМногоФайловзадержкаБезГарантийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem неУдалятьФайлыToolStripMenuItem;
     }
 }
 

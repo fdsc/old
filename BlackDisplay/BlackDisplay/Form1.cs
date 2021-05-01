@@ -1922,5 +1922,10 @@ namespace BlackDisplay
         {
 
         }
+
+        private void неУдалятьФайлыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
