@@ -38,4 +38,3 @@ C:\dev\old\BlackDisplay\updater\obj\x64\Release\updator.csproj.CoreCompileInputs
 C:\dev\old\BlackDisplay\updater\obj\x64\Release\updator.csproj.CopyComplete
 C:\dev\old\BlackDisplay\updater\obj\x64\Release\updatorvs8.exe
 C:\dev\old\BlackDisplay\updater\obj\x64\Release\updatorvs8.pdb
-C:\dev\old\BlackDisplay\updater\obj\x64\Release\updator.csprojAssemblyReference.cache

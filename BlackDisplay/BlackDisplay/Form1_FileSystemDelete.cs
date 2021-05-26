@@ -1933,6 +1933,8 @@ namespace BlackDisplay
                                         while (!ended)
                                         {
                                             var gs = gSize;
+                                            if (gs > FreeSpace)
+                                                gs = block << 4;
                                             if (bytesToWrite <= block)
                                                 gs = block;
 
@@ -2028,7 +2030,7 @@ namespace BlackDisplay
                     {
                         // Не торопясь всё перезаписываем. Т.к. ОС иногда долго соображает по поводу свободного места на диске
                         // Пауза именно здесь, т.к. сейчас предыдущий файл закрыт, а новый ещё не открыт
-                        Thread.Sleep(850);
+                        // Thread.Sleep(850); // Слишком длительная пауза, убрал
                         bin = CreateFile(FileName, 0x40000000, 0, 0, 1, 0x80, 0); // CREATE_NEW
                     }
                 }
